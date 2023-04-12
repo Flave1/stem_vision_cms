@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
+import { app_routes } from '../../router/routes';
 
 const HomeHeader = () => {
     const location = useLocation();
@@ -25,8 +26,7 @@ const HomeHeader = () => {
             <Nav.Link href="#services" className={` scrollto ${location.hash =='#services'&& 'active'}`} >Services</Nav.Link>
             <Nav.Link href="http://cbt.flavetechs.com/"className={`scrollto ${location.hash =='#cbt'&& 'active'}`} target={'_blank'}>CBT</Nav.Link>
             <Nav.Link href="#contact" className={`scrollto ${location.hash =='#contact'&& 'active'}`} >Contact</Nav.Link>
-            <Nav.Link>Login</Nav.Link>
-            {/* <Nav.Link href={authLocations.login} className={` scrollto ${location.pathname == authLocations.login && 'active'}`} >Login</Nav.Link> */}
+            <Nav.Link href={app_routes.authentication.sign_in} className={` scrollto ${location.pathname == app_routes.authentication.sign_in && 'active'}`} >Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         </Container>

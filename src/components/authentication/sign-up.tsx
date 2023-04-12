@@ -47,7 +47,7 @@ const SignUp = () => {
                     <Col md="6">
                         <Row className="justify-content-center">
                             <Col md="10">
-                                <Card className="card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
+                                <Card className="card d-flex justify-content-center mb-0 auth-card">
                                     <Card.Body>
                                         {/* <Link to={dashboardLocations.dashboard} className="navbar-brand d-flex align-items-center mb-3">
                                             {/* <Logo color={true} /> */}
@@ -85,7 +85,7 @@ const SignUp = () => {
                                                                 <Field type="email" className="form-control" name="email" id="email" aria-describedby="email" required placeholder=" " />
                                                             </div>
                                                         </Col>
-                                                        <Col lg="12" className="">
+                                                        <Col lg="12" className="pt-4">
                                                             <div className="form-group">
                                                                 {(touched.password && errors.password) && <div className='text-danger'>{errors.password}</div>}
                                                                 <label htmlFor="password" className="form-label">Password</label>
@@ -129,7 +129,7 @@ const SignUp = () => {
                                                                 </div>
                                                             </div>
                                                         </Col>
-                                                        <Col lg="12" className="d-flex justify-content-between">
+                                                        <Col lg="12" className="d-flex justify-content-between pt-4">
                                                             <div className="form-check mb-3 form-Check">
                                                                 <Field type="checkbox" id="customCheck1" className="form-check-input" />
                                                                 <label htmlFor="customCheck1" className='check-label'>Remember Me </label>
@@ -153,7 +153,7 @@ const SignUp = () => {
                                 </Card>
                             </Col>
                         </Row>
-                        <div className="sign-bg">
+                        {/* <div className="sign-bg">
                             <svg width="280" height="230" viewBox="0 0 431 398" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g opacity="0.05">
                                     <rect x="-157.085" y="193.773" width="543" height="77.5714" rx="38.7857" transform="rotate(-45 -157.085 193.773)" fill="#3B8AFF" />
@@ -162,7 +162,7 @@ const SignUp = () => {
                                     <rect x="62.3154" y="-190.173" width="543" height="77.5714" rx="38.7857" transform="rotate(45 62.3154 -190.173)" fill="#3B8AFF" />
                                 </g>
                             </svg>
-                        </div>
+                        </div> */}
                     </Col>
                     {/* <Col md="6" className="d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
                         {/* <Image src={auth1} className="Image-fluid gradient-main animated-scaleX" alt="images" />

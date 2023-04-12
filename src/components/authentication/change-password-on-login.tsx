@@ -59,16 +59,14 @@ const FirstTimeLoginPassswordChange = () => {
     return (
         <>
             <section className="login-content">
-                <Row className="m-0 align-items-center bg-white vh-100">
-                    <Col md="12" className="p-0">
-                        <Card className="card-transparent auth-card shadow-none d-flex justify-content-center mb-0">
+            <Row className="m-0 align-items-center d-flex justify-content-center bg-white vh-100">
+             <Col md="6">
+                    <Row className="justify-content-center">
+                    <Col md="10">
+                        <Card className="card auth-card d-flex justify-content-center mb-0">
                             <Card.Body>
-
-                                <Logo color={true} />
-                                <br />
-                                <br />
-                                <br />
-                                <p>Enter your current password and a new passsword</p>
+                            <h2 className="mb-5 text-center">Change Password</h2>
+                                <p className='text center mb-2'>Enter your current password and a new passsword</p>
 
 
                                 <Formik
@@ -106,21 +104,21 @@ const FirstTimeLoginPassswordChange = () => {
                                                         <Field type="password" className="form-control" name="oldPassword" id="oldPassword" aria-describedby="oldPassword" required placeholder=" " />
                                                     </div>
                                                 </Col>
-                                                <Col lg="12" className="">
+                                                <Col lg="12" className="pt-4">
                                                     <div className="form-group">
                                                         {(touched.newPassword && errors.newPassword) && <div className='text-danger'>{errors.newPassword}</div>}
                                                         <label htmlFor="newPassword" className="form-label">New Password</label>
                                                         <Field type="password" required className="form-control" name="newPassword" id="newPassword" aria-describedby="newPassword" placeholder=" " />
                                                     </div>
                                                 </Col>
-                                                <Col lg="12" className="">
+                                                <Col lg="12" className="pt-4">
                                                     <div className="form-group">
                                                         {(touched.confirmNewPassword && errors.confirmNewPassword) && <div className='text-danger'>{errors.confirmNewPassword}</div>}
                                                         <label htmlFor="confirmNewPassword" className="form-label">Confirm New Password</label>
                                                         <Field type="password" required className="form-control" name="confirmNewPassword" id="confirmNewPassword" aria-describedby="confirmNewPassword" placeholder=" " />
                                                     </div>
                                                 </Col>
-                                                <Col lg="12" className="d-flex justify-content-between">
+                                                <Col lg="12" className="pt-4 d-flex justify-content-between">
                                                     <div className="form-check mb-3 form-Check">
                                                         <Field type="checkbox" id="customCheck1" className="form-check-input" />
                                                         <label htmlFor="customCheck1" className='check-label'>Remember Me </label>
@@ -128,7 +126,7 @@ const FirstTimeLoginPassswordChange = () => {
                                                     <Link to={app_routes.authentication.sign_in}>Return back to login?</Link>
                                                 </Col>
                                             </Row>
-                                            <div className="d-flex justify-content-center">
+                                            <div className="d-flex justify-content-center pt-4">
                                                 <button onSubmit={() => {
                                                     handleSubmit()
                                                 }} type="submit"  className='btn btn-primary'>Sign In</button>
@@ -144,16 +142,8 @@ const FirstTimeLoginPassswordChange = () => {
 
                             </Card.Body>
                         </Card>
-                        <div className="sign-bg">
-                            <svg width="280" height="230" viewBox="0 0 431 398" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g opacity="0.05">
-                                    <rect x="-157.085" y="193.773" width="543" height="77.5714" rx="38.7857" transform="rotate(-45 -157.085 193.773)" fill="#3B8AFF"></rect>
-                                    <rect x="7.46875" y="358.327" width="543" height="77.5714" rx="38.7857" transform="rotate(-45 7.46875 358.327)" fill="#3B8AFF"></rect>
-                                    <rect x="61.9355" y="138.545" width="310.286" height="77.5714" rx="38.7857" transform="rotate(45 61.9355 138.545)" fill="#3B8AFF"></rect>
-                                    <rect x="62.3154" y="-190.173" width="543" height="77.5714" rx="38.7857" transform="rotate(45 62.3154 -190.173)" fill="#3B8AFF"></rect>
-                                </g>
-                            </svg>
-                        </div>
+                      </Col>
+                      </Row>
                     </Col>
                     
                 </Row>

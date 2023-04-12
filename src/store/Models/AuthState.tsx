@@ -1,8 +1,6 @@
-import { UserDetail } from "../../components/Models copy/auth/UserDetail";
+import { UserDetail } from "../../components/Models/auth/UserDetail";
 
-export interface IAuthState {
-    token: string,
-    refreshToken: string,
-    message: string,
-    userDetail: UserDetail,
+export class AuthenticationResponse {
+    token: string = "";
+    refreshToken: string = "";
 }

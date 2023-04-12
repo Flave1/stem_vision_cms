@@ -1,12 +1,12 @@
-import { IAuthState } from "../Models/AuthState";
+import { AuthenticationResponse } from "../Models/AuthState";
 import { actions } from "../action-types/auth-action-types";
 import { _state } from "../states/auth-state";
 import jwt from 'jwt-decode'
 
-export const authReducer = (state : IAuthState = _state, { type, payload }: any) => {
+export const authReducer = (state : AuthenticationResponse = _state, { type, payload }: any) => {
     switch (type) {
 
-        case actions.LOGIN_USER_SUCCESS: {
+        case actions.LOGIN_USER: {
             sessionStorage.removeItem('token');
             const decodedToken = jwt<any>(payload.authResult.token);
             sessionStorage.setItem('token', payload.authResult.token);
@@ -32,7 +32,7 @@ export const authReducer = (state : IAuthState = _state, { type, payload }: any)
         }
 
 
-        case actions.REGISTER_USER_SUCCESS: {
+        case actions.REGISTER_USER: {
             sessionStorage.removeItem('token');
             const decodedToken = jwt<any>(payload.authResult.token);
             sessionStorage.setItem('token', payload.authResult.token);
@@ -47,7 +47,7 @@ export const authReducer = (state : IAuthState = _state, { type, payload }: any)
         }
 
 
-        case actions.GENERATE_PASSWORD_RESET_LINK_SUCCESS:
+        case actions.GENERATE_PASSWORD_RESET_LINK:
             return {
                 ...state,
                 loading: false,
@@ -55,7 +55,7 @@ export const authReducer = (state : IAuthState = _state, { type, payload }: any)
                 isSuccessful: true,
             }
         
-        case actions.RESET_PASSWORD_SUCCESS:
+        case actions.RESET_PASSWORD:
             sessionStorage.removeItem('token');
             sessionStorage.setItem('token', payload.authResult.token);
             return {

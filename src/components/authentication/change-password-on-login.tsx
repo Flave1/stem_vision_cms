@@ -7,10 +7,10 @@ import { Formik, Form, Field } from 'formik';
 // img
 import { useDispatch, useSelector } from 'react-redux'
 import { changeMyPassword } from '../../store/actions/auth-actions';
-import { IAuthState } from '../../store/Models/AuthState';
-import Card from '../Utils/Card';
+import { AuthenticationResponse } from '../../store/Models/AuthState';
+import Card from '../../utils/Card';
 import { app_routes } from '../../router/routes';
-import Logo from '../Utils/logo';
+import Logo from '../../utils/logo';
 
 
 const FirstTimeLoginPassswordChange = () => {
@@ -20,7 +20,7 @@ const FirstTimeLoginPassswordChange = () => {
     const state = useSelector((state:any) => state);
 
 
-    const { message }: IAuthState = state.auth;
+    const { message } = state.auth;
     var token = sessionStorage.getItem('token');
     var userDetail = sessionStorage.getItem('userDetail');
     const [userId, setId] = useState('');

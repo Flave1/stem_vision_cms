@@ -4,31 +4,31 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import Card from '../Utils/Card';
+import Card from '../../utils/Card';
 import { registerUser } from '../../store/actions/auth-actions';
-import { IAuthState } from '../../store/Models/AuthState';
+import { AuthenticationResponse } from '../../store/Models/AuthState';
 
 
-const Register = () => {
+const SignUp = () => {
     const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const state = useSelector((state: any) => state);
-    const { message }: IAuthState  = state.auth;
+    const { message } = state.auth;
     var token = sessionStorage.getItem('token');
     var user = sessionStorage.getItem('user')
     console.log("token", token);
     useEffect(() => {
-        
-       
+
+
         if (token) {
-            if (JSON.parse(user|| '').userType === '0') {
+            if (JSON.parse(user || '').userType === '0') {
                 window.location.href = '/dashboard';
             } else {
                 window.location.href = '/client-dashboard';
             }
 
         }
-    }, [token,  user])
+    }, [token, user])
 
     const validation = Yup.object().shape({
         email: Yup.string()
@@ -51,7 +51,7 @@ const Register = () => {
                                     <Card.Body>
                                         {/* <Link to={dashboardLocations.dashboard} className="navbar-brand d-flex align-items-center mb-3">
                                             {/* <Logo color={true} /> */}
-                                            {/* <h4 className="logo-title ms-3">FLAVTECH</h4> 
+                                        {/* <h4 className="logo-title ms-3">FLAVTECH</h4> 
                                         </Link> */}
                                         <h2 className="mb-2 text-center">Sign Up</h2>
                                         <p className="text-center">Register as a first time.</p>
@@ -95,7 +95,7 @@ const Register = () => {
                                                                         <svg
                                                                             onClick={() => setShowPassword(false)}
                                                                             className="mx-n5  eyeIcon"
-                                                                            style={{cursor:'pointer'}}
+                                                                            style={{ cursor: 'pointer' }}
                                                                             width="20"
                                                                             viewBox="0 0 24 24"
                                                                             fill="none"
@@ -112,7 +112,7 @@ const Register = () => {
                                                                         <svg
                                                                             onClick={() => setShowPassword(true)}
                                                                             className="mx-n5  eyeIcon"
-                                                                            style={{cursor:'pointer'}}
+                                                                            style={{ cursor: 'pointer' }}
                                                                             width="20"
                                                                             viewBox="0 0 24 24"
                                                                             fill="none"
@@ -127,7 +127,7 @@ const Register = () => {
                                                                         </svg>
                                                                     )}
                                                                 </div>
-                                                                 </div>
+                                                            </div>
                                                         </Col>
                                                         <Col lg="12" className="d-flex justify-content-between">
                                                             <div className="form-check mb-3 form-Check">
@@ -140,7 +140,7 @@ const Register = () => {
                                                     <div className="d-flex justify-content-center">
                                                         <button onSubmit={() => {
                                                             handleSubmit()
-                                                        }} type="submit"  className='btn btn-primary'>Sign Up</button>
+                                                        }} type="submit" className='btn btn-primary'>Sign Up</button>
                                                     </div>
                                                     {/* <p className="mt-3 text-center">
                                                         Don’t have an account? <Link to="/auth/sign-up" className="text-underline">Click here to sign up.</Link>
@@ -173,4 +173,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default SignUp

@@ -7,6 +7,12 @@ import { actions } from "../action-types/auth-action-types";
 import { startSpining, stopSpining } from "./app-layout-actions";
 import jwt from 'jwt-decode'
 
+
+export const ShowTimeOutModal = (status:Boolean) => (dispatch: any) => {
+    dispatch({ type: actions.SHOW_TIME_OUT_MODAL})
+}
+
+
 export const Login = (payload: any, navigate: any) => (dispatch: any) => {
     startSpining()(dispatch);
    
@@ -76,7 +82,7 @@ export const ChangePassword = (payload: any,navigate : any) => (dispatch: any) =
             Alert.showError(err?.response?.data?.message?.friendlyMessage)
         })
 }
-
+  
 
 // export const generatePasswordResetLink = ({ resetOption, resetOptionValue, userType }: any) => (dispatch: any) => {
 //     startSpining()(dispatch);

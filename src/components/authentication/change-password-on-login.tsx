@@ -238,13 +238,13 @@ const FirstTimeLoginPassswordChange = ({ changePassword, auth }: any) => {
                                   ></path>
                                 </svg>
                               )}
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                                <Col lg="12" className="pt-4 d-flex justify-content-between">
-                                                    <div className="form-check mb-3 form-Check">
-                                                        <input type="checkbox" id="customCheck1" className="form-check-input" />
-                                                        <label htmlFor="customCheck1" className='check-label'>Remember Me </label>
+                              </div>
+                                 </div>
+                                    </Col>
+                                        <Col lg="12" className="pt-4 d-flex justify-content-between">
+                                            <div className="form-check mb-3 form-Check">
+                                                 <input type="checkbox" id="customCheck1" className="form-check-input" />
+                                                    <label htmlFor="customCheck1" className='check-label'>Remember Me </label>
                                                     </div>
                                                     <Link to={app_routes.authentication.sign_in}>Return back to login?</Link>
                                                 </Col>

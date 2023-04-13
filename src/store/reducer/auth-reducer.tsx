@@ -5,7 +5,13 @@ import jwt from 'jwt-decode'
 
 export const authReducer = (state : AuthenticationResponse = _state, { type, payload }: any) => {
     switch (type) {
-
+        case actions.SHOW_TIME_OUT_MODAL:{
+            return {
+                ...state,
+                showTimeOutModal: payload
+            }
+        }
+        
         case actions.LOGIN_USER: {
             sessionStorage.removeItem('token');
             const decodedToken = jwt<AuthenticationResponse>(payload.authResult.token);

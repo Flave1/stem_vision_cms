@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
+    "@types/jwt-decode": "^3.1.0",
     "@types/node": "^16.18.23",
     "@types/react": "^18.0.34",
     "@types/react-dom": "^18.0.11",
@@ -22,8 +23,12 @@
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.36.0",
+    "sass-loader": "^8.0.2",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -50,6 +55,9 @@
     ]
   },
   "devDependencies": {
-    "@types/aos": "^3.0.4"
+    "@types/aos": "^3.0.4",
+    "@types/axios": "^0.14.0",
+    "install": "^0.13.0",
+    "npm": "^9.6.4"
   }
 }

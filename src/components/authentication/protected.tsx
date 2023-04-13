@@ -22,7 +22,6 @@ const WrapperComponent = (props : any) => {
     }
   }, [isLoggedIn, token])
   
-console.log("isLoggedIn",isLoggedIn);
 
   return (
     isLoggedIn === true ?

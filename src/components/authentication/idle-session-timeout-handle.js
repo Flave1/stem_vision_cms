@@ -4,42 +4,40 @@ import { useDispatch, useSelector } from "react-redux";
 import IdleSessionTimeOutModal from "./idle-session-timeout-modal";
 import { ShowTimeOutModal } from "../../store/actions/auth-actions";
 
-const IdleSessionTimeOutHandler = (props : any) => {
+const IdleSessionTimeOutHandler = (props) => {
   const dispatch = useDispatch();
-  const state = useSelector((state : any) => state);
+  const state = useSelector((state ) => state);
   const {  showTimeOutModal } = state.auth;
   const [isLogout, setLogout] = useState(false);
+  
   useEffect(() => {
     if (!showTimeOutModal) {
       setLogout(false);
     }
-    return () => {
-      ShowTimeOutModal(false)(dispatch);
-    };
+   
   }, [showTimeOutModal]);
   
-  let timer : any = undefined;
+ let timer = undefined;
   const events = ["click", "scroll", "load", "keydown"];
   const startTimer = () => {
     if (timer) {
       clearTimeout(timer);
     }
-    
     timer = setTimeout(() => {
         let lastInteractionTime = sessionStorage.getItem("lastInteractionTime");
         const diff = moment.duration(
           moment().diff(moment(lastInteractionTime))
         );
+       
         let timeOutInterval = props.timeOutInterval
           ? props.timeOutInterval
-          : 900000;
-          
+          : 900000
         if (isLogout) {
           clearTimeout(timer);
         } else {
-          if (diff.milliseconds < timeOutInterval) {
+          if (diff._milliseconds < timeOutInterval) {
             startTimer();
-            props.onActive();
+            props.onActive();  
           } else {
             props.onIdle();
             ShowTimeOutModal(true)(dispatch);
@@ -50,9 +48,9 @@ const IdleSessionTimeOutHandler = (props : any) => {
     );
   };
 
-  const eventHandler = (eventType : any) => {
+  const eventHandler = (eventType ) => {
     if (!isLogout) {
-      sessionStorage.setItem("lastInteractionTime", JSON.stringify(moment()));
+      sessionStorage.setItem("lastInteractionTime", moment());
       if (timer) {
         props.onActive();
         startTimer();

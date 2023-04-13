@@ -9,7 +9,7 @@ import jwt from 'jwt-decode'
 
 
 export const ShowTimeOutModal = (status:Boolean) => (dispatch: any) => {
-    dispatch({ type: actions.SHOW_TIME_OUT_MODAL})
+    dispatch({ type: actions.SHOW_TIME_OUT_MODAL,payload:status})
 }
 
 

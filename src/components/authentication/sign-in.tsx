@@ -12,7 +12,7 @@ import { Login } from '../../store/actions/auth-actions';
 import HomeHeader from '../Landing-Page/header';
 import Card from '../../utils/Card';
 import { app_routes } from '../../router/routes';
-
+var user : any = sessionStorage.getItem("user");
 
 const SignIn = ({ login, auth }: any) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -146,15 +146,13 @@ const SignIn = ({ login, auth }: any) => {
                                                         <label htmlFor="customCheck1" className='check-label'>Remember Me </label>
                                                     </div>
                                                     <Link to={app_routes.authentication.register}>Sign Up</Link>
-                                                    <Link to={app_routes.authentication.firstTimeLogin}>Forgot Password?</Link>
+                                                    <Link to={`${app_routes.authentication.sign_in}`}>Forgot Password?</Link>
                                                 </Col>
                                             </Row>
                                             <div className="d-flex justify-content-center">
                                                 <button onClick={() => handleSubmit()} type="button" className='btn btn-primary'>Sign In</button>
                                             </div>
-                                            {/* <p className="mt-3 text-center">
-                                                        Don’t have an account? <Link to="/auth/sign-up" className="text-underline">Click here to sign up.</Link>
-                                                    </p> */}
+                                          
                                         </Form>
 
                                     </Card.Body>

@@ -7,3 +7,4 @@ export const startSpining = () => (dispatch: any) => {
 export const stopSpining = () => (dispatch: any) => {
     dispatch({ type: actions.STOP_SPINNING })
 }
+

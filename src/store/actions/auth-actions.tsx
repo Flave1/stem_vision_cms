@@ -1,5 +1,6 @@
 import axiosInstance from "../../axios/axiosInstance";
 import { UserDetail } from "../../components/Models/auth/UserDetail";
+import { dashboard_routes } from "../../router/fws-path-locations";
 import { app_routes } from "../../router/routes";
 import { Alert } from "../../utils/Alert";
 import { AuthenticationResponse } from "../Models/AuthState";
@@ -24,9 +25,9 @@ export const Login = (payload: any, navigate: any) => (dispatch: any) => {
             const user = JSON.parse(stringValue) as UserDetail;
 
             if (user.userType === '0') {
-                navigate(app_routes.index)
+                navigate(dashboard_routes.dashboard)
             } else {
-                navigate(app_routes.index)
+                navigate(dashboard_routes.dashboard)
             }
         }).catch((err: any) => {
             stopSpining()(dispatch);
@@ -50,9 +51,9 @@ export const Register = (payload: any,navigate:any) => (dispatch: any) => {
             const user = JSON.parse(stringValue) as UserDetail;
             
             if (user.userType === '0') {
-                navigate(app_routes.index)
+                navigate(dashboard_routes.dashboard)
             } else {
-                navigate(app_routes.index)
+                navigate(dashboard_routes.dashboard)
             }
         }).catch((err: any) => {
             stopSpining()(dispatch);
@@ -71,9 +72,9 @@ export const ChangePassword = (payload: any,navigate : any) => (dispatch: any) =
             const user = JSON.parse(stringValue) as UserDetail;
 
             if (user.userType === '0') {
-                navigate(app_routes.index)
+                navigate(dashboard_routes.dashboard)
             } else {
-                navigate(app_routes.index)
+                navigate(dashboard_routes.dashboard)
             }
 
         }).catch((err: any) => {
@@ -83,40 +84,6 @@ export const ChangePassword = (payload: any,navigate : any) => (dispatch: any) =
 }
   
 
-// export const generatePasswordResetLink = ({ resetOption, resetOptionValue, userType }: any) => (dispatch: any) => {
-//     startSpining()(dispatch);
-
-//     const payload = {
-//         resetOption,
-//         resetOptionValue,
-//         userType
-//     }
-
-//     axiosInstance.post('/user/api/v1/generate/reset-link', payload)
-//         .then((res: any) => {
-//             dispatch({ type: actions.GENERATE_PASSWORD_RESET_LINK, payload: res.data.result });
-//         }).catch((err: any) => {
-//             stopSpining()(dispatch);
-//             Alert.showError(err?.response?.data?.message?.friendlyMessage)
-//         })
-// }
-
-// export const ResetPassword = ({ userId, password, resetToken }: any) => (dispatch: any) => {
-//     startSpining()(dispatch);
-//     const payload = {
-//         userId,
-//         password,
-//         resetToken
-//     }
-
-//     axiosInstance.post('/user/api/v1/reset/password', payload)
-//         .then((res: any) => {
-//             dispatch({ type: actions.RESET_PASSWORD, payload: res.data.result });
-//         }).catch((err: any) => {
-//             stopSpining()(dispatch);
-//             Alert.showError(err?.response?.data?.message?.friendlyMessage)
-//         })
-// }
 
 
 

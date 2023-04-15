@@ -81,4 +81,5 @@ function mapDispatchToProps(dispatch:any) {
  
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProducts);
+ connect(mapStateToProps, mapDispatchToProps)(UserProducts);
+ export default UserProducts;

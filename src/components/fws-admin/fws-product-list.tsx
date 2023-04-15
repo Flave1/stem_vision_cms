@@ -5,7 +5,7 @@ import { dashboard_routes } from "../../router/fws-path-locations";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
-const Products = ({products,getAllProducts}:any) => {
+const Products = ({getAllProducts,products}:any) => {
   const navigate = useNavigate();
   useEffect(() => {
     getAllProducts();
@@ -15,6 +15,8 @@ const Products = ({products,getAllProducts}:any) => {
       return str.slice(0, 80) + "...";
     } else return str;
   }
+  console.log("products",products);
+  
   return (
     <>
       <Card>
@@ -122,4 +124,5 @@ function mapDispatchToProps(dispatch:any) {
  
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+connect(mapStateToProps, mapDispatchToProps)(Products);
+export default Products

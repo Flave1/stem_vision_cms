@@ -11,14 +11,14 @@ import WrapperComponent from "../components/authentication/protected";
 const IndexRouter = () => {
     return (
         <>
-        <WrapperComponent>
+        {/* <WrapperComponent> */}
             <Routes>
                 <Route path={app_routes.index} element={<Home />} />
                 <Route path={app_routes.authentication.sign_in} element={<SignIn />} />
                 <Route path={app_routes.authentication.firstTimeLogin} element={<FirstTimeLoginPassswordChange/>} />
                 <Route path={app_routes.authentication.register} element={<SignUp />} />
             </Routes>
-        </WrapperComponent>
+        {/* </WrapperComponent> */}
         </>
     );
 }

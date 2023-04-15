@@ -16,7 +16,6 @@ export const ShowTimeOutModal = (status:Boolean) => (dispatch: any) => {
 export const Login = (payload: any, navigate: any) => (dispatch: any) => {
     startSpining()(dispatch);
    
-
     axiosInstance.post('fws/user/api/v1/login', payload)
         .then((res: any) => {
             dispatch({ type: actions.LOGIN_USER, payload: res.data.result });

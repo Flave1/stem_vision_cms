@@ -1,0 +1,94 @@
+
+import axiosInstance from "../../axios/axiosInstance";
+import { Alert } from "../../utils/Alert";
+import { actions } from "../action-types/smservice-action-types";
+import { startSpining, stopSpining } from "./app-layout-actions";
+
+export const GetAllSms = () => (dispatch: any) => {
+    startSpining()(dispatch);
+    
+    axiosInstance.get(`/fws/products/api/v1/get-all-products`)
+        .then((res) => {
+            dispatch({
+                type: actions.FETCH_SMS,
+                payload: res.data.result,
+            });
+        })
+        .catch((err :any) => {
+            stopSpining()(dispatch);
+            console.log('err', err);
+            Alert.showError(err?.response?.data?.message?.friendlyMessage)
+        });
+};
+
+
+export const CreateSms = (formData: any) => (dispatch: any) => {
+    startSpining()(dispatch);
+                
+    axiosInstance.post('/fws/sms/api/v1/create-sms',  formData)
+        .then((res) => {
+            Alert.showSuccess(res.data.message.friendlyMessage)
+            GetAllSms()(dispatch);
+        }).catch((err :any) => {
+            stopSpining()(dispatch);
+            Alert.showError(err?.response?.data?.message?.friendlyMessage)
+        });
+}
+
+export const UpdateSms = (formData: any) => (dispatch: any) => {
+    startSpining()(dispatch);
+                
+    axiosInstance.post('/fws/sms/api/v1/update-sms',  formData)
+        .then((res) => {
+            Alert.showSuccess(res.data.message.friendlyMessage)
+            GetAllSms()(dispatch);
+        }).catch((err : any)  => {
+            stopSpining()(dispatch);
+            Alert.showError(err?.response?.data?.message?.friendlyMessage)
+        });
+}
+
+export const ExportPins = (numberOfPins: number,clientId :string) => (dispatch: any) => {
+    startSpining()(dispatch);
+                
+ const payload={
+    numberOfPins,
+    clientId
+ }
+
+ 
+    axiosInstance.post('fws/sms/api/v1/export-pins',  payload)
+        .then((res) => {
+            dispatch({
+                type: actions.EXPORT_PINS,
+                payload: res.data.result
+            });
+         
+        }).catch((err :any) => {
+            stopSpining()(dispatch);
+            console.log('err', err);
+            Alert.showError(err?.response?.data?.message?.friendlyMessage)
+        });
+}
+
+
+
+export const ValidateBaseUrlSuffix = (suffix: any) => (dispatch: any) => {
+    startSpining()(dispatch);
+                
+const payload={
+    suffix
+}
+    axiosInstance.post(`fws/sms/api/v1/validate-baseurl-suffix`,payload)
+        .then(response => {
+            dispatch({
+                type: actions.VALIDATE_BASE_URL_SUFFIX,
+                payload: response.data.result
+            });
+
+        }).catch((err :any) => {
+            stopSpining()(dispatch);
+            console.log('err', err);
+            Alert.showError(err?.response?.data?.message?.friendlyMessage)
+})
+}

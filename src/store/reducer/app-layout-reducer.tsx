@@ -4,7 +4,7 @@ import { _state } from "../states/app-layout-state";
 export const appLayoutReducer = (state = _state, { type, payload }: any) => {
     switch (type) {
         case actions.START_SPINNING: {
-            console.log('started');
+         
             return {
                 ...state,
                 loading: true

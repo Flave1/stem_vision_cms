@@ -70,7 +70,7 @@ const UserProducts = ({userProducts,getAllUserProducts}:any) => {
 };
 function mapStateToProps(state:any) {
   return { 
-    userProducts: state.auth.userProducts,
+    userProducts: state.product.userProducts,
   };
 }
 
@@ -81,5 +81,5 @@ function mapDispatchToProps(dispatch:any) {
  
 }
 
- connect(mapStateToProps, mapDispatchToProps)(UserProducts);
- export default UserProducts;
+ export default connect(mapStateToProps, mapDispatchToProps)(UserProducts);
+  

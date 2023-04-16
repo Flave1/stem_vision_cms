@@ -74,11 +74,9 @@ const SignIn = ({ login, auth }: any) => {
                                                             type="text"
                                                             name={values.userName}
                                                             onChange={(e: any) => {
-                                                                handleChange("userName")
                                                                 setFieldValue("userName", e.target.value)
                                                             }}
                                                             value={values.userName}
-                                                            onBlur={() => handleBlur('userName')}
                                                             className="form-control hodinput"
                                                             placeholder="Enter Username" />
                                                     </div>
@@ -94,11 +92,9 @@ const SignIn = ({ login, auth }: any) => {
                                                                 type="password"
                                                                 name={values.password}
                                                                 onChange={(e: any) => {
-                                                                    handleChange("password")
                                                                     setFieldValue("password", e.target.value)
                                                                 }}
                                                                 value={values.password}
-                                                                onBlur={() => handleBlur('password')}
                                                                 className="form-control hodinput"
                                                                 placeholder="Enter password" />
 

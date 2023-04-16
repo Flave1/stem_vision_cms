@@ -13,6 +13,8 @@ import UserProducts from "../components/fws-admin/fws-user-product-list";
 
 
 const IndexRouter = () => {
+   const user :any = sessionStorage.getItem('user');
+   const userDetails = JSON.parse(user)||""
     return (
         <>
         {/* <WrapperComponent> */}
@@ -21,10 +23,7 @@ const IndexRouter = () => {
                 <Route path={app_routes.authentication.sign_in} element={<SignIn />} />
                 <Route path={app_routes.authentication.firstTimeLogin} element={<FirstTimeLoginPassswordChange/>} />
                 <Route path={app_routes.authentication.register} element={<SignUp />} />
-                <Route path={dashboard_routes.dashboard} element={<Index />} />
-                <Route path={dashboard_routes.productsLocations.products} element={<Products />} />
-                <Route path={dashboard_routes.productsLocations.userProductDetails} element={<UserProducts />} />
-
+                <Route path={dashboard_routes.dashboard} element={userDetails?.userType == 'Candidate' ? <Index /> : <Index />} />
             </Routes>
         {/* </WrapperComponent> */}
         </>

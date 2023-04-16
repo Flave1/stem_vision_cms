@@ -22,26 +22,28 @@ export const GetAllSms = () => (dispatch: any) => {
 };
 
 
-export const CreateSms = (formData: any) => (dispatch: any) => {
+export const AddSms = (formData: any,navigate:any) => (dispatch: any) => {
     startSpining()(dispatch);
                 
     axiosInstance.post('/fws/sms/api/v1/create-sms',  formData)
         .then((res) => {
             Alert.showSuccess(res.data.message.friendlyMessage)
             GetAllSms()(dispatch);
+            navigate(-1)
         }).catch((err :any) => {
             stopSpining()(dispatch);
             Alert.showError(err?.response?.data?.message?.friendlyMessage)
         });
 }
 
-export const UpdateSms = (formData: any) => (dispatch: any) => {
+export const UpdateSmservice = (formData: any,navigate:any) => (dispatch: any) => {
     startSpining()(dispatch);
                 
     axiosInstance.post('/fws/sms/api/v1/update-sms',  formData)
         .then((res) => {
             Alert.showSuccess(res.data.message.friendlyMessage)
             GetAllSms()(dispatch);
+            navigate(-1)
         }).catch((err : any)  => {
             stopSpining()(dispatch);
             Alert.showError(err?.response?.data?.message?.friendlyMessage)
@@ -91,4 +93,39 @@ const payload={
             console.log('err', err);
             Alert.showError(err?.response?.data?.message?.friendlyMessage)
 })
+}
+
+export const GetCountries = () => (dispatch: any) => {
+    startSpining()(dispatch);
+
+    axiosInstance.get(`/fws/lookups/api/v1/get/country-select`)
+        .then(response => {
+            dispatch({
+                type: actions.FETCH_COUNTRY,
+                payload: response.data.result
+            });
+        }).catch((err :any) => {
+            stopSpining()(dispatch);
+            console.log('err', err);
+            Alert.showError(err?.response?.data?.message?.friendlyMessage)
+            });
+        
+}
+
+export const GetStates = (country: any) => (dispatch: any) => {
+    startSpining()(dispatch);
+
+    axiosInstance.get(`/fws/lookups/api/v1/get/state-select?country=${country}`)
+        .then(response => {
+            dispatch({
+                type: actions.FETCH_STATE,
+                payload: response.data.result
+            });
+
+        }).catch((err :any) => {
+            stopSpining()(dispatch);
+            console.log('err', err);
+            Alert.showError(err?.response?.data?.message?.friendlyMessage)
+            });
+     
 }

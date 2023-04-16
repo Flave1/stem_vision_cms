@@ -5,8 +5,15 @@ import 'aos/dist/aos.css';
 import CountUp from 'react-countup';
 import HomeHeader from './header';
 import HomeFooter from './footer';
-import { AiOutlineTwitter } from "react-icons/ai";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
+import { AiOutlineTwitter, AiFillProject, AiTwotoneMail } from "react-icons/ai";
+import { HiLightBulb } from "react-icons/hi";
+import { GiCyberEye } from "react-icons/gi";
+import { ImHappy2 } from "react-icons/im";
+import { BiSupport } from "react-icons/bi";
+import { MdWorkHistory } from "react-icons/md";
+import { BsFacebook, BsInstagram, BsLinkedin, BsPlayCircle, BsFillPhoneFill } from "react-icons/bs";
+import { Link, useNavigate } from 'react-router-dom';
+import { app_routes } from '../../router/routes';
 
 const SocialComponent = () => {
   return (
@@ -20,6 +27,8 @@ const SocialComponent = () => {
 }
 
 const Home = () => {
+  
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -28,15 +37,16 @@ const Home = () => {
       mirror: false
     });
 
-  }, [])
+  }, []);
+
   return (
     <>
       {/* Top Bar */}
       <section id="topbar" className="d-flex align-items-center">
         <div className="container d-flex justify-content-center justify-content-md-between">
           <div className="contact-info d-flex align-items-center">
-            <i className="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-            <i className="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
+            <i className="bi bi-envelope d-flex align-items-center"><a href="mailto:flaveconosole@gmail.com">flaveconosole@gmail.com</a></i>
+            <i className="bi bi-phone d-flex align-items-center ms-4"><span>+234 7067650531</span></i>
           </div>
           <div className="social-links d-none d-md-flex align-items-center">
             <a href=""><AiOutlineTwitter size={20} color='white' /></a>
@@ -56,7 +66,7 @@ const Home = () => {
           <h2>Looking for a technology partner to help you achieve your goals ?</h2>
           <div className="d-flex">
             <a href="#about" className="btn-get-started scrollto">Get Started</a>
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" className="glightbox btn-watch-video"><i className="bi bi-play-circle"></i><span>Watch Video</span></a>
+            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" className="glightbox btn-watch-video"><BsPlayCircle size={20} color='#106eea' /><span>Watch Video</span></a>
           </div>
         </div>
       </section>
@@ -70,32 +80,37 @@ const Home = () => {
               <div className="col-md-6 col-lg-3 d-flex  align-items-stretch mb-5 mb-lg-0">
                 <div className="icon-box" data-aos="fade-up" data-aos-delay="100">
                   <div className="icon"><i className="bx bxl-dribbble"></i></div>
-                  <h4 className="title"><a href="">Lorem Ipsum</a></h4>
-                  <p className="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                  <h4 className="title"><a href="" className='text-danger'>School Managemnt System</a></h4>
+                  <p className="description">The school management portal is an innovative educational management system that
+                    seeks to revolutionize the way school, college and university administrations manage their operations</p>
                 </div>
               </div>
 
               <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div className="icon-box" data-aos="fade-up" data-aos-delay="200">
                   <div className="icon"><i className="bx bx-file"></i></div>
-                  <h4 className="title"><a href="">Sed ut perspiciatis</a></h4>
-                  <p className="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+                  <h4 className="title"><a href="" className='text-info'>Computer Base Test (CBT)</a></h4>
+                  <p className="description">The CBT sytem is an assessment infrastructure system that utilizes computers
+                    and digital technologies as the primary delivery system for tests, exams, quizzes or surveys which provides an excellent testing experience</p>
                 </div>
               </div>
 
               <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div className="icon-box" data-aos="fade-up" data-aos-delay="300">
                   <div className="icon"><i className="bx bx-tachometer"></i></div>
-                  <h4 className="title"><a href="">Magni Dolores</a></h4>
-                  <p className="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+                  <h4 className="title "><a href="" className='text-success'>Intel Schools</a></h4>
+                  <p className="description">Intel school is an advanced schools search engine.  Our innovative platform makes finding the perfect school
+                    for your child a breeze.</p>
                 </div>
               </div>
 
               <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div className="icon-box" data-aos="fade-up" data-aos-delay="400">
                   <div className="icon"><i className="bx bx-world"></i></div>
-                  <h4 className="title"><a href="">Nemo Enim</a></h4>
-                  <p className="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+                  <h4 className="title"><a href="" className='text-warning'>Child Gadget Monitor</a></h4>
+                  <p className="description"> Designed to help parents monitor their child's mobile device usage. With this app, parents can receive detailed
+                    reports of their child's activity, including which apps they are using, how long they are spending on each app, and what times of day they
+                    are most active</p>
                 </div>
               </div>
 
@@ -109,41 +124,41 @@ const Home = () => {
 
             <div className="section-title">
               <h2>About</h2>
-              <h3>Find Out More <span>About Us</span></h3>
-              <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+              <h3>Find Out More <span>Flave Console</span></h3>
+              <p>We are committed to driving success for our clients and creating lasting partnerships that fuel growth and innovation</p>
             </div>
 
             <div className="row">
               <div className="col-lg-6" data-aos="fade-right" data-aos-delay="100">
                 <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/about.jpg" className="img-fluid" alt="" />
               </div>
-              <div className="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                <p className="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
+              <div className="col-lg-6  content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+
                 <ul>
-                  <li>
-                    <i className="bx bx-store-alt"></i>
+                  <li className='pb-4'>
+                    <i style={{ background: 'black' }}><HiLightBulb size={40} color='yellow' /></i>
                     <div>
-                      <h5>Ullamco laboris nisi ut aliquip consequat</h5>
-                      <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
+                      <h5>MISSION:</h5>
+                      <p>Our mission is to provide innovative, technology-driven solutions that improve education and enhance
+                        child safety. We aim to simplify administrative tasks for schools, deliver accurate testing results,
+                        enable parents to monitor their children's device usage, and help parents find the best schools for their children</p>
                     </div>
                   </li>
-                  <li>
-                    <i className="bx bx-images"></i>
+                  <li className='pt-4'>
+                    <i style={{ background: 'white' }}><GiCyberEye size={40} color='' /></i>
                     <div>
-                      <h5>Magnam soluta odio exercitationem reprehenderi</h5>
-                      <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
+                      <h5>VISION</h5>
+                      <p>Our vision is to be the leading provider of educational technology solutions worldwide. We aspire to
+                        continually innovate and improve our services to meet the evolving needs of our customers.
+                        We are committed to promoting excellence in education and ensuring the safety and well-being of children in the digital age.</p>
                     </div>
                   </li>
                 </ul>
-                <p>
+                {/* <p>
                   Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
                   velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                   culpa qui officia deserunt mollit anim id est laborum
-                </p>
+                </p> */}
               </div>
             </div>
 
@@ -159,7 +174,7 @@ const Home = () => {
 
               <div className="col-lg-3 col-md-6">
                 <div className="count-box">
-                  <i className="bi bi-emoji-smile"></i>
+                  <i ><ImHappy2 size={20} /></i>
                   <span className="purecounter"><CountUp start={0} end={232} duration={3} /></span>
                   <p>Happy Clients</p>
                 </div>
@@ -167,7 +182,7 @@ const Home = () => {
 
               <div className="col-lg-3 col-md-6 mt-5 mt-md-0">
                 <div className="count-box">
-                  <i className="bi bi-journal-richtext"></i>
+                  <i ><AiFillProject size={20} /></i>
                   <span className="purecounter"><CountUp start={0} end={521} duration={3} /></span>
                   <p>Projects</p>
                 </div>
@@ -175,7 +190,7 @@ const Home = () => {
 
               <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div className="count-box">
-                  <i className="bi bi-headset"></i>
+                  <i ><BiSupport size={20} /></i>
                   <span className="purecounter"><CountUp start={0} end={1463} duration={3} /></span>
                   <p>Hours Of Support</p>
                 </div>
@@ -183,7 +198,7 @@ const Home = () => {
 
               <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div className="count-box">
-                  <i className="bi bi-people"></i>
+                  <i><MdWorkHistory size={20} /></i>
                   <span className="purecounter"><CountUp start={0} end={15} duration={3} /></span>
                   <p>Hard Workers</p>
                 </div>
@@ -230,7 +245,7 @@ const Home = () => {
 
 
 
-        <section id="testimonials" className="testimonials">
+        {/* <section id="testimonials" className="testimonials">
           <div className="container" data-aos="zoom-in">
 
             <div className="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -306,9 +321,9 @@ const Home = () => {
             </div>
 
           </div>
-        </section>
+        </section> */}
 
-        <section id="team" className="team section-bg">
+        {/* <section id="team" className="team section-bg">
           <div className="container" data-aos="fade-up">
 
             <div className="section-title">
@@ -374,7 +389,7 @@ const Home = () => {
             </div>
 
           </div>
-        </section>
+        </section> */}
 
         <section id="pricing" className="pricing">
           <div className="container" data-aos="fade-up">
@@ -382,76 +397,39 @@ const Home = () => {
             <div className="section-title">
               <h2>Pricing</h2>
               <h3>Check our <span>Pricing</span></h3>
-              <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+              <p>Below is a view table for our two  pricing options for you to  choose one that best suits you</p>
             </div>
 
-            <div className="row">
+            <div className="row d-flex  justify-content-center">
 
               <div className="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                 <div className="box">
-                  <h3>Free</h3>
-                  <h4><sup>$</sup>0<span> / month</span></h4>
+                  <h3>Free (initial term only)</h3>
+                  <h4><sup>$</sup>0<span> / student</span></h4>
                   <ul>
-                    <li>Aida dere</li>
-                    <li>Nec feugiat nisl</li>
-                    <li>Nulla at volutpat dola</li>
-                    <li className="na">Pharetra massa</li>
-                    <li className="na">Massa ultricies mi</li>
+                    <li><a href="#">All portal features</a></li>
+                    <li><a href="#">CBT</a></li>
+                    <li><a href="#">Intel school Ads</a></li>
+                    <li className="na"><a href="#">Child gadget monitor</a></li>
                   </ul>
                   <div className="btn-wrap">
-                    <a href="#" className="btn-buy">Buy Now</a>
+                    <Link to={app_routes.contact_us} className="btn-buy"  >GET STARTED</Link>
                   </div>
                 </div>
               </div>
 
               <div className="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
                 <div className="box featured">
-                  <h3>Business</h3>
-                  <h4><sup>$</sup>19<span> / month</span></h4>
+                  <h3>Premium (each term)</h3>
+                  <h4><sup>$</sup>3<span> / student</span></h4>
                   <ul>
-                    <li>Aida dere</li>
-                    <li>Nec feugiat nisl</li>
-                    <li>Nulla at volutpat dola</li>
-                    <li>Pharetra massa</li>
-                    <li className="na">Massa ultricies mi</li>
+                    <li><a href="#">All portal features</a></li>
+                    <li><a href="#">CBT</a></li>
+                    <li><a href="#">Intel school Ads</a></li>
+                    <li><a href="#">Child gadget monitor</a></li>
                   </ul>
                   <div className="btn-wrap">
-                    <a href="#" className="btn-buy">Buy Now</a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
-                <div className="box">
-                  <h3>Developer</h3>
-                  <h4><sup>$</sup>29<span> / month</span></h4>
-                  <ul>
-                    <li>Aida dere</li>
-                    <li>Nec feugiat nisl</li>
-                    <li>Nulla at volutpat dola</li>
-                    <li>Pharetra massa</li>
-                    <li>Massa ultricies mi</li>
-                  </ul>
-                  <div className="btn-wrap">
-                    <a href="#" className="btn-buy">Buy Now</a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
-                <div className="box">
-                  <span className="advanced">Advanced</span>
-                  <h3>Ultimate</h3>
-                  <h4><sup>$</sup>49<span> / month</span></h4>
-                  <ul>
-                    <li>Aida dere</li>
-                    <li>Nec feugiat nisl</li>
-                    <li>Nulla at volutpat dola</li>
-                    <li>Pharetra massa</li>
-                    <li>Massa ultricies mi</li>
-                  </ul>
-                  <div className="btn-wrap">
-                    <a href="#" className="btn-buy">Buy Now</a>
+                    <a href="#" className="btn-buy">GET STARTED</a>
                   </div>
                 </div>
               </div>
@@ -461,7 +439,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section id="faq" className="faq section-bg">
+        {/* <section id="faq" className="faq section-bg">
           <div className="container" data-aos="fade-up">
 
             <div className="section-title">
@@ -533,7 +511,7 @@ const Home = () => {
             </div>
 
           </div>
-        </section>
+        </section> */}
 
         <section id="contact" className="contact">
           <div className="container" data-aos="fade-up">
@@ -544,41 +522,36 @@ const Home = () => {
               <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
             </div>
 
-            <div className="row" data-aos="fade-up" data-aos-delay="100">
-              <div className="col-lg-6">
+            <div className="row d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+              {/* <div className="col-lg-6">
                 <div className="info-box mb-4">
                   <i className="bx bx-map"></i>
                   <h3>Our Address</h3>
                   <p>A108 Adam Street, New York, NY 535022</p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="col-lg-3 col-md-6">
                 <div className="info-box  mb-4">
-                  <i className="bx bx-envelope"></i>
+                  <i className=""><AiTwotoneMail size={40} color='black' /></i>
                   <h3>Email Us</h3>
-                  <p>contact@example.com</p>
+                  <p>flaveconsole@gmail.com</p>
                 </div>
               </div>
 
               <div className="col-lg-3 col-md-6">
                 <div className="info-box  mb-4">
-                  <i className="bx bx-phone-call"></i>
+                  <i className=""><BsFillPhoneFill size={40} color='black' /></i>
                   <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
+                  <p>+234 7067650531</p>
                 </div>
               </div>
 
             </div>
 
-            <div className="row" data-aos="fade-up" data-aos-delay="100">
-
-              <div className="col-lg-6 ">
-                <iframe className="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameBorder={0} style={{ border: 0, width: ' 100%', height: '384px' }} allowFullScreen></iframe>
-              </div>
-
-              <div className="col-lg-6">
-                <form action="forms/contact.php" method="post" role="form" className="php-email-form">
+            <div className="row d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+              <div className="col-lg-8">
+                <form role="form" className="php-email-form">
                   <div className="row">
                     <div className="col form-group">
                       <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" required />
@@ -593,11 +566,6 @@ const Home = () => {
                   <div className="form-group">
                     <textarea className="form-control" name="message" rows={5} placeholder="Message" required></textarea>
                   </div>
-                  <div className="my-3">
-                    <div className="loading">Loading</div>
-                    <div className="error-message"></div>
-                    <div className="sent-message">Your message has been sent. Thank you!</div>
-                  </div>
                   <div className="text-center"><button type="submit">Send Message</button></div>
                 </form>
               </div>
@@ -611,9 +579,6 @@ const Home = () => {
 
       <HomeFooter />
 
-      {/* <div id="preloader"></div>
-<a href="#" className="back-to-top d-flex align-items-center justify-content-center"><i className="bi bi-arrow-up-short"></i></a>
- */}
 
     </>
   )

@@ -145,14 +145,14 @@ const SignIn = ({ login, auth }: any) => {
                                                         <input type="checkbox" id="customCheck1" className="form-check-input" />
                                                         <label htmlFor="customCheck1" className='check-label'>Remember Me </label>
                                                     </div>
-                                                    <Link to={app_routes.authentication.register}>Sign Up</Link>
+                                                   
                                                     <Link to={`${app_routes.authentication.sign_in}`}>Forgot Password?</Link>
                                                 </Col>
                                             </Row>
                                             <div className="d-flex justify-content-center">
                                                 <button onClick={() => handleSubmit()} type="button" className='btn btn-primary'>Sign In</button>
                                             </div>
-                                          
+                                               <Link to={app_routes.authentication.register} className='d-flex justify-content-center mt-3'>Sign Up</Link>
                                         </Form>
 
                                     </Card.Body>

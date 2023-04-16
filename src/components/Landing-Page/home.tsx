@@ -1,64 +1,24 @@
-import React, { useEffect } from 'react'
-import "./home.css"
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { useEffect } from 'react'
 import CountUp from 'react-countup';
-import HomeHeader from './header';
-import HomeFooter from './footer';
-import { AiOutlineTwitter, AiFillProject, AiTwotoneMail } from "react-icons/ai";
-import { HiLightBulb } from "react-icons/hi";
-import { GiCyberEye } from "react-icons/gi";
+import { AiFillProject } from "react-icons/ai";
 import { ImHappy2 } from "react-icons/im";
 import { BiSupport } from "react-icons/bi";
 import { MdWorkHistory } from "react-icons/md";
-import { BsFacebook, BsInstagram, BsLinkedin, BsPlayCircle, BsFillPhoneFill } from "react-icons/bs";
-import { Link, useNavigate } from 'react-router-dom';
-import { app_routes } from '../../router/routes';
+import { BsPlayCircle } from "react-icons/bs";
+import { aos } from '../../utils/Animation/aos-animation';
+import ContactUsForm from './contactus-form';
+import AboutUs from './aboutus';
+import Pricing from './pricing';
 
-const SocialComponent = () => {
-  return (
-    <div className="social">
-      <a href=""><AiOutlineTwitter size={20} color='white' /></a>
-      <a href=""><BsFacebook size={20} color='white' /></a>
-      <a href=""><BsInstagram size={20} color='white' /></a>
-      <a href=""><BsLinkedin size={20} color='white' /></a>
-    </div >
-  )
-}
 
-const Home = () => {
-  
-  const navigate = useNavigate();
+
+const Home = ({ navigate }: any) => {
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
-
+    aos.animate();
   }, []);
 
   return (
     <>
-      {/* Top Bar */}
-      <section id="topbar" className="d-flex align-items-center">
-        <div className="container d-flex justify-content-center justify-content-md-between">
-          <div className="contact-info d-flex align-items-center">
-            <i className="bi bi-envelope d-flex align-items-center"><a href="mailto:flaveconosole@gmail.com">flaveconosole@gmail.com</a></i>
-            <i className="bi bi-phone d-flex align-items-center ms-4"><span>+234 7067650531</span></i>
-          </div>
-          <div className="social-links d-none d-md-flex align-items-center">
-            <a href=""><AiOutlineTwitter size={20} color='white' /></a>
-            <a href=""><BsFacebook size={20} color='white' /></a>
-            <a href=""><BsInstagram size={20} color='white' /></a>
-            <a href=""><BsLinkedin size={20} color='white' /></a>
-          </div>
-        </div>
-      </section>
-
-      {/* nav bar */}
-      <HomeHeader />
 
       <section id="hero" className="d-flex align-items-center">
         <div className="container" data-aos="zoom-out" data-aos-delay="100">
@@ -71,9 +31,7 @@ const Home = () => {
         </div>
       </section>
 
-      <main id="main">
-
-        <section id="featured-services" className="featured-services">
+      <section id="featured-services" className="featured-services">
           <div className="container" data-aos="fade-up">
 
             <div className="row">
@@ -119,53 +77,9 @@ const Home = () => {
           </div>
         </section>
 
-        <section id="about" className="about section-bg">
-          <div className="container" data-aos="fade-up">
-
-            <div className="section-title">
-              <h2>About</h2>
-              <h3>Find Out More <span>Flave Console</span></h3>
-              <p>We are committed to driving success for our clients and creating lasting partnerships that fuel growth and innovation</p>
-            </div>
-
-            <div className="row">
-              <div className="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-                <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/about.jpg" className="img-fluid" alt="" />
-              </div>
-              <div className="col-lg-6  content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-
-                <ul>
-                  <li className='pb-4'>
-                    <i style={{ background: 'black' }}><HiLightBulb size={40} color='yellow' /></i>
-                    <div>
-                      <h5>MISSION:</h5>
-                      <p>Our mission is to provide innovative, technology-driven solutions that improve education and enhance
-                        child safety. We aim to simplify administrative tasks for schools, deliver accurate testing results,
-                        enable parents to monitor their children's device usage, and help parents find the best schools for their children</p>
-                    </div>
-                  </li>
-                  <li className='pt-4'>
-                    <i style={{ background: 'white' }}><GiCyberEye size={40} color='' /></i>
-                    <div>
-                      <h5>VISION</h5>
-                      <p>Our vision is to be the leading provider of educational technology solutions worldwide. We aspire to
-                        continually innovate and improve our services to meet the evolving needs of our customers.
-                        We are committed to promoting excellence in education and ensuring the safety and well-being of children in the digital age.</p>
-                    </div>
-                  </li>
-                </ul>
-                {/* <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p> */}
-              </div>
-            </div>
-
-          </div>
+        <section className='section-bg'>
+          <AboutUs />
         </section>
-
-
 
         <section id="counts" className="counts">
           <div className="container" data-aos="fade-up">
@@ -242,8 +156,6 @@ const Home = () => {
 
           </div>
         </section>
-
-
 
         {/* <section id="testimonials" className="testimonials">
           <div className="container" data-aos="zoom-in">
@@ -391,53 +303,7 @@ const Home = () => {
           </div>
         </section> */}
 
-        <section id="pricing" className="pricing">
-          <div className="container" data-aos="fade-up">
-
-            <div className="section-title">
-              <h2>Pricing</h2>
-              <h3>Check our <span>Pricing</span></h3>
-              <p>Below is a view table for our two  pricing options for you to  choose one that best suits you</p>
-            </div>
-
-            <div className="row d-flex  justify-content-center">
-
-              <div className="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div className="box">
-                  <h3>Free (initial term only)</h3>
-                  <h4><sup>$</sup>0<span> / student</span></h4>
-                  <ul>
-                    <li><a href="#">All portal features</a></li>
-                    <li><a href="#">CBT</a></li>
-                    <li><a href="#">Intel school Ads</a></li>
-                    <li className="na"><a href="#">Child gadget monitor</a></li>
-                  </ul>
-                  <div className="btn-wrap">
-                    <Link to={app_routes.contact_us} className="btn-buy"  >GET STARTED</Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
-                <div className="box featured">
-                  <h3>Premium (each term)</h3>
-                  <h4><sup>$</sup>3<span> / student</span></h4>
-                  <ul>
-                    <li><a href="#">All portal features</a></li>
-                    <li><a href="#">CBT</a></li>
-                    <li><a href="#">Intel school Ads</a></li>
-                    <li><a href="#">Child gadget monitor</a></li>
-                  </ul>
-                  <div className="btn-wrap">
-                    <a href="#" className="btn-buy">GET STARTED</a>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </section>
+        <Pricing navigate={navigate} />
 
         {/* <section id="faq" className="faq section-bg">
           <div className="container" data-aos="fade-up">
@@ -513,73 +379,9 @@ const Home = () => {
           </div>
         </section> */}
 
-        <section id="contact" className="contact">
-          <div className="container" data-aos="fade-up">
-
-            <div className="section-title">
-              <h2>Contact</h2>
-              <h3><span>Contact Us</span></h3>
-              <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-            </div>
-
-            <div className="row d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-              {/* <div className="col-lg-6">
-                <div className="info-box mb-4">
-                  <i className="bx bx-map"></i>
-                  <h3>Our Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-              </div> */}
-
-              <div className="col-lg-3 col-md-6">
-                <div className="info-box  mb-4">
-                  <i className=""><AiTwotoneMail size={40} color='black' /></i>
-                  <h3>Email Us</h3>
-                  <p>flaveconsole@gmail.com</p>
-                </div>
-              </div>
-
-              <div className="col-lg-3 col-md-6">
-                <div className="info-box  mb-4">
-                  <i className=""><BsFillPhoneFill size={40} color='black' /></i>
-                  <h3>Call Us</h3>
-                  <p>+234 7067650531</p>
-                </div>
-              </div>
-
-            </div>
-
-            <div className="row d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-              <div className="col-lg-8">
-                <form role="form" className="php-email-form">
-                  <div className="row">
-                    <div className="col form-group">
-                      <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" required />
-                    </div>
-                    <div className="col form-group">
-                      <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" required />
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <input type="text" className="form-control" name="subject" id="subject" placeholder="Subject" required />
-                  </div>
-                  <div className="form-group">
-                    <textarea className="form-control" name="message" rows={5} placeholder="Message" required></textarea>
-                  </div>
-                  <div className="text-center"><button type="submit">Send Message</button></div>
-                </form>
-              </div>
-
-            </div>
-
-          </div>
+        <section className='section-bg'>
+          <ContactUsForm navigate={navigate} />
         </section>
-
-      </main>
-
-      <HomeFooter />
-
-
     </>
   )
 }

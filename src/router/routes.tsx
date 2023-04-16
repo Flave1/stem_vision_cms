@@ -1,6 +1,7 @@
 export const app_routes = {
     index: '/',
-    contact_us: 'contact-us',
+    contact_us: '/contact-us',
+    about_us: '/contact-us',
     authentication: {
         sign_in: '/sign-in',
         register: "/fws/register",

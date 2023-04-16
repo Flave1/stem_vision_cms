@@ -1,3 +1,6 @@
+:root {
+  --fontFamily: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
 a {
   color: #106eea;
   text-decoration: none;
@@ -752,6 +755,7 @@ section {
   font-size: 15px;
   line-height: 28px;
   margin-bottom: 0;
+  font-family: var(--fontFamily)
 }
 
 .featured-services .icon-box:hover .title a,
@@ -780,6 +784,9 @@ section {
   display: flex;
   align-items: flex-start;
   margin-bottom: 35px;
+}
+.about .content ul div{
+font-family: var(--fontFamily);
 }
 
 .about .content ul li:first-child {

@@ -9,12 +9,7 @@ import {
   UpdateSmservice,
   ValidateBaseUrlSuffix,
 } from "../../../store/actions/smservice-actions";
-import avatars1 from "../../../assets/images/avatars/01.png";
-import avatars2 from "../../../assets/images/avatars/avtar_2.png";
-import avatars3 from "../../../assets/images/avatars/avtar_2.png";
-import avatars4 from "../../../assets/images/avatars/avtar_3.png";
-import avatars5 from "../../../assets/images/avatars/avtar_4.png";
-import avatars6 from "../../../assets/images/avatars/avtar_5.png";
+
 import * as Yup from "yup";
 import { GetSingleUserProduct } from "../../../store/actions/products-actions";
 
@@ -348,39 +343,10 @@ const UpdateSms = (props:any) => {
                               </p>
                             </div>
                             <div className="profile-img-edit position-relative">
-                              {/* <div>
-                                <img
-                                  src={avatars1}
-                                  alt="User-Profile"
-                                  className="theme-color-default-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                />
-                                <img
-                                  src={avatars2}
-                                  alt="User-Profile"
-                                  className="theme-color-purple-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                />
-                                <img
-                                  src={avatars3}
-                                  alt="User-Profile"
-                                  className="theme-color-blue-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                />
-                                <img
-                                  src={avatars5}
-                                  alt="User-Profile"
-                                  className="theme-color-green-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                />
-                                <img
-                                  src={avatars6}
-                                  alt="User-Profile"
-                                  className="theme-color-yellow-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                />
-                                <img
-                                  src={avatars4}
-                                  alt="User-Profile"
-                                  className="theme-color-pink-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                />{" "}
-                              </div> */}
-                              <div className="upload-icone bg-primary">
+                            <div>
+                           <img src="http://fwsapi.flavetechs.com/ApplicationFiles/3361a39c-7f7f-433e-b82b-e0ba77e7b90c.png" alt="profile img"    className=" "  height="120px" width="120px"/>
+                               </div>
+                            <div className="upload-icone bg-primary">
                                 <label htmlFor="files">
                                   <svg
                                     className="upload-button"
@@ -474,7 +440,7 @@ function mapStateToProps(state: any) {
 }
 function mapDispatchToProps(dispatch: any) {
   return { getCountries: () => GetCountries()(dispatch),
-    getState: (values: any) => GetStates(values)(dispatch),
+    getStates: (values: any) => GetStates(values)(dispatch),
     validateBaseUrlSuffix: (values: any) => ValidateBaseUrlSuffix(values)(dispatch),
     updateSmservice: (values: any, navigate: any) => UpdateSmservice(values, navigate)(dispatch),
     getSingleUserProduct:(values: any) => GetSingleUserProduct(values)(dispatch)

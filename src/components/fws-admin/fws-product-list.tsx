@@ -19,7 +19,7 @@ const Products = ({getAllProducts,products}:any) => {
   
   return (
     <>
-      <Card>
+      <Card className="pb-5">
         <Card.Body>
           <Row className="p-3">
             {products?.map((product:any, idx:any) => (

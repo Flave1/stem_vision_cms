@@ -3,13 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { connect, } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-
-import avatars1 from "../../../assets/images/avatars/01.png";
-import avatars2 from "../../../assets/images/avatars/avtar_2.png";
-import avatars3 from "../../../assets/images/avatars/avtar_2.png";
-import avatars4 from "../../../assets/images/avatars/avtar_3.png";
-import avatars5 from "../../../assets/images/avatars/avtar_4.png";
-import avatars6 from "../../../assets/images/avatars/avtar_5.png";
 import * as Yup from "yup";
 import { AddSms, GetCountries, GetStates, ValidateBaseUrlSuffix } from "../../../store/actions/smservice-actions";
 
@@ -328,39 +321,10 @@ const CreateSms = (props:any) => {
                                 </p>
                               </div>
                               <div className="profile-img-edit position-relative">
-                                {/* <div>
-                                  <img
-                                    src={avatars1}
-                                    alt="User-Profile"
-                                    className="theme-color-default-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                  />
-                                  <img
-                                    src={avatars2}
-                                    alt="User-Profile"
-                                    className="theme-color-purple-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                  />
-                                  <img
-                                    src={avatars3}
-                                    alt="User-Profile"
-                                    className="theme-color-blue-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                  />
-                                  <img
-                                    src={avatars5}
-                                    alt="User-Profile"
-                                    className="theme-color-green-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                  />
-                                  <img
-                                    src={avatars6}
-                                    alt="User-Profile"
-                                    className="theme-color-yellow-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                  />
-                                  <img
-                                    src={avatars4}
-                                    alt="User-Profile"
-                                    className="theme-color-pink-img img-fluid avatar avatar-100 avatar-rounded-100"
-                                  />{" "}
-                                </div> */}
-                                <div className="upload-icone bg-primary">
+                                <div>
+                               <img src="http://fwsapi.flavetechs.com/ApplicationFiles/3361a39c-7f7f-433e-b82b-e0ba77e7b90c.png" alt="profile img"    className=" "  height="120px" width="120px"/>
+                               </div>
+                                <div className="upload-icone bg-primary ">
                                   <label htmlFor="files">
                                     <svg
                                       className="upload-button"

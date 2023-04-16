@@ -21,7 +21,7 @@ const UserProducts = ({userProducts,getAllUserProducts}:any) => {
   }
   return (
     <>
-      <Card>
+      <Card className="pb-5">
         <Card.Body>
           <Row className="p-3">
             {userProducts?.map((product:any, idx:number) => (

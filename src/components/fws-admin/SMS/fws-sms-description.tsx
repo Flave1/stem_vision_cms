@@ -15,9 +15,9 @@ const SmsDescription = ({singleProduct,getSingleProduct}:any) => {
   }, []);
   return (
     <>
-      <Row>
+      <Row className="p-3">
         <Card>
-          <Card.Header>
+          <div className="px-3 pt-3">
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip id="button-tooltip-2"> back</Tooltip>}
@@ -39,7 +39,7 @@ const SmsDescription = ({singleProduct,getSingleProduct}:any) => {
                 ></path>
               </svg>
             </OverlayTrigger>
-          </Card.Header>
+          </div>
           <Card.Body>
             <div className="d-md-flex  justify-content-between align-items-center ">
               <div className="d-flex ">
@@ -104,7 +104,7 @@ const SmsDescription = ({singleProduct,getSingleProduct}:any) => {
                   className="btn btn-sm mx-2"
                   style={{ backgroundColor: "#ffc400", color: "black" }}
                   onClick={() =>
-                    !singleProduct?.installed &&
+                    singleProduct?.installed &&
                     navigate(
                       `${dashboard_routes.smsLocations.createSms}?productId=${productId}`
                     )

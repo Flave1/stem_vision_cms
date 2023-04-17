@@ -79,7 +79,7 @@ const CreateSms = (props:any) => {
     <>
       <div>
        
-            <Row className="d-flex justify-content-center">
+            <Row className="d-flex justify-content-center py-3">
               <Col xl="10" lg="8">
                 <Card>
                   <Card.Header className="d-flex justify-content-between">

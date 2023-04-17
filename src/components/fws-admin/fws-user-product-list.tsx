@@ -26,7 +26,7 @@ const UserProducts = ({userProducts,getAllUserProducts}:any) => {
           <Row className="p-3">
             {userProducts?.map((product:any, idx:number) => (
               <div className="col-xl-3 col-lg-6 mt-2" key={idx}>
-                <div className=" card-transparent border  h-100 w-100  rounded">
+                <div className=" card-transparent border shadow h-100 w-100  rounded">
                   {" "}
                   <div onClick={() => {
                     navigate(

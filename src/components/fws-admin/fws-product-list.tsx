@@ -23,7 +23,7 @@ const Products = ({getAllProducts,products}:any) => {
         <Card.Body>
           <Row className="p-3">
             {products?.map((product:any, idx:any) => (
-              <div className="col-xl-3 col-lg-6 mt-2" key={idx}>
+              <div className="col-xl-3 col-lg-6 mt-2 mb-5 mb-md-3" key={idx}>
                 <div className=" card-transparent border  h-100 w-100  rounded">
                   {" "}
                   <div className="card-body ">
@@ -88,7 +88,7 @@ const Products = ({getAllProducts,products}:any) => {
                   </div>
                 </div>
                 <div
-                  className=" border text-center mt-n3 mb-3 p-2"
+                  className=" border text-center mt-0 mt-md-n3 mb-3 p-2"
                   style={{
                     backgroundColor: product.installed ? "#f9cd39" : "white",
                     color: product.installed ? "white" : "",

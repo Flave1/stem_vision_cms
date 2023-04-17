@@ -125,13 +125,13 @@ const SignIn = ({ login, auth, navigate }: any) => {
                                                         </div>
                                                     </div>
                                                 </Col>
-                                                <Col lg="12" className="d-flex justify-content-between pt-4">
+                                                <Col lg="12" className="d-flex justify-content-between align-items-center pt-4">
                                                     <div className="form-check mb-3 form-Check">
                                                         <input type="checkbox" id="customCheck1" className="form-check-input" />
-                                                        <label htmlFor="customCheck1" className='check-label'>Remember Me </label>
+                                                        <label htmlFor="customCheck1" className='check-label signin-resize-text'>Remember Me </label>
                                                     </div>
 
-                                                    <Link to={`${app_routes.authentication.sign_in}`}>Forgot Password?</Link>
+                                                    <Link to={`${app_routes.authentication.sign_in}`}className='signin-resize-text'>Forgot Password?</Link>
                                                 </Col>
                                             </Row>
                                             <div className="d-flex justify-content-center">

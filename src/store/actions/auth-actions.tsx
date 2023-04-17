@@ -54,7 +54,7 @@ export const Register = (payload: any,navigate:any) => (dispatch: any) => {
             if (user.userType === '0') {
                 navigate(dashboard_routes.dashboard)
             } else {
-                navigate(dashboard_routes.dashboard)
+                navigate(app_routes.index)
             }
         }).catch((err: any) => {
             stopSpining()(dispatch);
@@ -75,7 +75,7 @@ export const ChangePassword = (payload: any,navigate : any) => (dispatch: any) =
             if (user.userType === '0') {
                 navigate(dashboard_routes.dashboard)
             } else {
-                navigate(dashboard_routes.dashboard)
+                navigate(app_routes.index)
             }
 
         }).catch((err: any) => {

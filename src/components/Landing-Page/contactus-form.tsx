@@ -102,7 +102,7 @@ function ContactUsForm({ sendMessage }: any) {
                             </div>
                             <form role="form" className="php-email-form">
                                 <div className="row">
-                                    <div className="col form-group">
+                                    <div className="col-md-6 form-group">
                                         <input
                                             type="text"
                                             name={values.name}
@@ -115,7 +115,7 @@ function ContactUsForm({ sendMessage }: any) {
                                             className="form-control"
                                             placeholder="Enter Name" />
                                     </div>
-                                    <div className="col form-group">
+                                    <div className="col-md-6 form-group">
                                         <input
                                             type="email"
                                             name={values.email}

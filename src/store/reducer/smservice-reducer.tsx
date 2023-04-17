@@ -23,7 +23,18 @@ export const smserviceReducer = (state : ISmserviceState = _state, { type, paylo
                         baseUrlSuffixValidation: payload,
                       };
 
-                      
+                      case actions.FETCH_COUNTRY:
+                        return {
+                          ...state,
+                          countries: payload,
+                        };
+
+                        case actions.FETCH_STATE:
+                        return {
+                          ...state,
+                          states: payload,
+                        };
+
               
                 default:
                     return state

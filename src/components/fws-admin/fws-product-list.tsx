@@ -15,11 +15,11 @@ const Products = ({getAllProducts,products}:any) => {
       return str.slice(0, 80) + "...";
     } else return str;
   }
-  console.log("products",products);
+
   
   return (
     <>
-      <Card>
+      <Card className="pb-5">
         <Card.Body>
           <Row className="p-3">
             {products?.map((product:any, idx:any) => (
@@ -111,10 +111,12 @@ const Products = ({getAllProducts,products}:any) => {
     </>
   );
 };
-function mapStateToProps(state:any) {
+function mapStateToProps(state:any) {  
   return { 
-    products: state.auth.products,
+    products: state.product.products,
   };
+
+  
 }
 
 function mapDispatchToProps(dispatch:any) {
@@ -124,5 +126,4 @@ function mapDispatchToProps(dispatch:any) {
  
 }
 
-connect(mapStateToProps, mapDispatchToProps)(Products);
-export default Products
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

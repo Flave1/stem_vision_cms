@@ -21,12 +21,12 @@ const UserProducts = ({userProducts,getAllUserProducts}:any) => {
   }
   return (
     <>
-      <Card>
+      <Card className="pb-5">
         <Card.Body>
           <Row className="p-3">
             {userProducts?.map((product:any, idx:number) => (
               <div className="col-xl-3 col-lg-6 mt-2" key={idx}>
-                <div className=" card-transparent border  h-100 w-100  rounded">
+                <div className=" card-transparent border shadow h-100 w-100  rounded">
                   {" "}
                   <div onClick={() => {
                     navigate(
@@ -70,7 +70,7 @@ const UserProducts = ({userProducts,getAllUserProducts}:any) => {
 };
 function mapStateToProps(state:any) {
   return { 
-    userProducts: state.auth.userProducts,
+    userProducts: state.product.userProducts,
   };
 }
 
@@ -81,5 +81,5 @@ function mapDispatchToProps(dispatch:any) {
  
 }
 
- connect(mapStateToProps, mapDispatchToProps)(UserProducts);
- export default UserProducts;
+ export default connect(mapStateToProps, mapDispatchToProps)(UserProducts);
+  

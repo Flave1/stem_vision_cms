@@ -12,6 +12,8 @@ export const GetAllProducts = () => (dispatch: any) => {
                 type: actions.FETCH_PRODUCTS,
                 payload: res.data.result,
             });
+          
+            
         })
         .catch((err) => {
             stopSpining()(dispatch);

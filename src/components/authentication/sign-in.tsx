@@ -1,31 +1,23 @@
 import { Row, Col, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import AOS from 'aos';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import "../Landing-Page/home.css"
 
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Login } from '../../store/actions/auth-actions';
-import HomeHeader from '../Landing-Page/header';
 import Card from '../../utils/Card';
 import { app_routes } from '../../router/routes';
-var user : any = sessionStorage.getItem("user");
+import { aos } from '../../utils/Animation/aos-animation';
 
 const SignIn = ({ login, auth }: any) => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        });
+        aos.animate();
+    }, []);
 
-    }, [])
 
     const validation = Yup.object().shape({
         userName: Yup.string()
@@ -49,8 +41,6 @@ const SignIn = ({ login, auth }: any) => {
     });
     return (
         <>
-            <HomeHeader />
-
             <section className="login-content" style={{ background: '#fcfcfc' }} data-aos="fade-up">
 
                 <Row className="m-0 align-items-center d-flex justify-content-center  vh-100">
@@ -141,14 +131,14 @@ const SignIn = ({ login, auth }: any) => {
                                                         <input type="checkbox" id="customCheck1" className="form-check-input" />
                                                         <label htmlFor="customCheck1" className='check-label'>Remember Me </label>
                                                     </div>
-                                                   
+
                                                     <Link to={`${app_routes.authentication.sign_in}`}>Forgot Password?</Link>
                                                 </Col>
                                             </Row>
                                             <div className="d-flex justify-content-center">
                                                 <button onClick={() => handleSubmit()} type="button" className='btn btn-primary'>Sign In</button>
                                             </div>
-                                               <Link to={app_routes.authentication.register} className='d-flex justify-content-center mt-3'>Sign Up</Link>
+                                            <Link to={app_routes.authentication.register} className='d-flex justify-content-center mt-3'>Sign Up</Link>
                                         </Form>
 
                                     </Card.Body>

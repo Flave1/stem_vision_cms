@@ -24,11 +24,12 @@ export const Login = (payload: any, navigate: any) => (dispatch: any) => {
             const stringValue = JSON.stringify(decodedToken);
             const user = JSON.parse(stringValue) as UserDetail;
 
-            if (user.userType === '0') {
-                navigate(dashboard_routes.dashboard)
-            } else {
-                navigate(dashboard_routes.dashboard)
-            }
+            // if (user.userType === '0') {
+            //     navigate(dashboard_routes.dashboard)
+            // } else {
+            //     navigate(dashboard_routes.dashboard)
+            // }
+            navigate(dashboard_routes.dashboard)
         }).catch((err: any) => {
             stopSpining()(dispatch);
             console.log('err', err);

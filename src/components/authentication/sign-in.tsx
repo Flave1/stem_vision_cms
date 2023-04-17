@@ -11,14 +11,13 @@ import Card from '../../utils/Card';
 import { app_routes } from '../../router/routes';
 import { aos } from '../../utils/Animation/aos-animation';
 
-const SignIn = ({ login, auth }: any) => {
+const SignIn = ({ login, auth, navigate }: any) => {
     const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate();
     useEffect(() => {
         aos.animate();
     }, []);
 
-
+    
     const validation = Yup.object().shape({
         userName: Yup.string()
             .min(2, 'Username Too Short!')

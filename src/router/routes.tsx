@@ -6,8 +6,5 @@ export const app_routes = {
         sign_in: '/sign-in',
         register: "/fws/register",
         firstTimeLogin: "/fws/change-password-on-login",
-    },
-    dashboard: {
-        index: '/dashboard',
     }
 }

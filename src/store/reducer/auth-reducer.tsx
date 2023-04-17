@@ -30,6 +30,7 @@ export const authReducer = (state : AuthenticationResponse = _state, { type, pay
             sessionStorage.removeItem('token');
             sessionStorage.removeItem('permissions');
             sessionStorage.removeItem('userDetail');
+            sessionStorage.removeItem('user');
             return {
                 message: '',
                 token: '',

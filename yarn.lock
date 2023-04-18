@@ -2275,10 +2275,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.8 || ^17.0 || ^18.0", "@types/react@^18.0.34", "@types/react@>=16.14.8", "@types/react@>=16.9.11", "@types/react@>=18.0.28":
-  "integrity" "sha512-NO1UO8941541CJl1BeOXi8a9dNKFK09Gnru5ZJqkm4Q3/WoQJtHvmwt0VX0SB9YCEwe7TfSSxDuaNmx6H2BAIQ=="
-  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.34.tgz"
-  "version" "18.0.34"
+"@types/react@*", "@types/react@^16.8 || ^17.0 || ^18.0", "@types/react@^18.0.37", "@types/react@>=16.14.8", "@types/react@>=16.9.11", "@types/react@>=18.0.28":
+  "integrity" "sha512-4yaZZtkRN3ZIQD3KSEwkfcik8s0SWV+82dlJot1AbGYHCzJkWP3ENBY6wYeDRmKZ6HkrgoGAmR2HqdwYGp6OEw=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.37.tgz"
+  "version" "18.0.37"
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"

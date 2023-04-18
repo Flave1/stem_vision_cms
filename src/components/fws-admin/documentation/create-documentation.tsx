@@ -9,7 +9,7 @@ import { Alert } from "../../../utils/Alert";
 import { TextEditorToolBar } from "../../../utils/tools";
 import ReactQuill from "react-quill";
 
-const CreateDocumentation = ({ createDoc }: any) => {
+const CreateDocumentation = ({ documentation,createDoc }: any) => {
     const locations = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(locations.search);
@@ -37,7 +37,8 @@ const CreateDocumentation = ({ createDoc }: any) => {
                 Alert.showError('Body is required');
                 return;
               }
-            else createDoc(values, navigate);
+              
+             createDoc(values, navigate);
         }
     });
 
@@ -85,13 +86,12 @@ const CreateDocumentation = ({ createDoc }: any) => {
                                                     }}
                                                 />
                                             </Form.Group>
-                                            <Form.Group className=" form-group">
+                        <Form.Group className=" form-group">
                                             
-                          <label className="form-label mt-3">
+                          <label className="form-label mt-3 d-block">
                             <b>Body:</b>
-                         
                           </label>
-                          <ReactQuill
+                          {/* <ReactQuill
                             theme="snow"
                             value={content}
                             onChange={setContent}
@@ -99,8 +99,16 @@ const CreateDocumentation = ({ createDoc }: any) => {
                             className="mb-5"
                             id="assessment-editor"
                             style={{ height: "300px",maxHeight:'300px', background: "white" }}
-                          />
-                                            </Form.Group>
+                          /> */}
+                          <textarea name="body"
+                          className="mt-3"
+                          value={content}
+                            onChange={(e)=>setContent(e.target.value)}
+                             cols={100}
+                             rows={10}>
+
+                             </textarea>
+                            </Form.Group>
                                             
                                             
 
@@ -136,7 +144,11 @@ const CreateDocumentation = ({ createDoc }: any) => {
         </>
     );
 };
-
+function mapStateToProps(state: any) {
+    return { 
+        documentation: state.documentation,
+     };
+}
 
 function mapDispatchToProps(dispatch: any) {
     return {
@@ -144,4 +156,4 @@ function mapDispatchToProps(dispatch: any) {
     };
 }
 
-export default connect(mapDispatchToProps)(CreateDocumentation);
+export default connect(mapStateToProps,mapDispatchToProps)(CreateDocumentation);

@@ -8,8 +8,8 @@ export class Alert {
     static showSuccess(text: string) {
         swal("Successful", text, "success")
     }
-    static showDialog ( title : any, text : any) {
-        swal({
+    static showDialog ( title : any, text : any,setSelectedId:any,action:any,params:any,dispatch:any) {
+    swal({
             title,
             text,
             icon: "warning",
@@ -17,10 +17,12 @@ export class Alert {
             dangerMode: true,
         }).then((res: any) => {
             if (res) {
-                respondDialog('continue')
+                action(params)(dispatch)
+                console.log("alert",params);
+                setSelectedId("")
               } else {
                 swal("Your item is safe!");
-                respondDialog('')
+                setSelectedId("")
               }
         });
         return false;

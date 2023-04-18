@@ -70,14 +70,19 @@ export const CreateDoc = (values: any,navigate:any) => (dispatch: any) => {
         });
 }
 
-export const DeleteDoc = (docId: any,navigate:any) => (dispatch: any) => {
+export const DeleteDoc = (values:any) => (dispatch: any) => {
     startSpining()(dispatch);
                 
-    axiosInstance.post('/fws/doc/api/v1/delete',  docId)
+    const payload ={
+        id:values.selectedId
+    }
+ 
+    
+    axiosInstance.post('/fws/doc/api/v1/delete',  payload)
         .then((res) => {
             Alert.showSuccess(res.data.message.friendlyMessage)
-            GetDocList(docId,1)(dispatch);
-            navigate(-1)
+            GetDocList(values.selectedId,1)(dispatch);
+            values.navigate(0);  
         }).catch((err :any) => {
             stopSpining()(dispatch);
             Alert.showError(err?.response?.data?.message?.friendlyMessage)

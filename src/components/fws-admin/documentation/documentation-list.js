@@ -3,18 +3,20 @@ import { Col, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 import Card from '../../../utils/Card';
 import { dashboard_routes } from '../../../router/fws-path-locations';
 import { connect, useDispatch } from 'react-redux';
-import { GetDocList } from '../../../store/actions/documentation-actions';
-import { Link, useLocation } from 'react-router-dom';
+import { DeleteDoc, GetDocList } from '../../../store/actions/documentation-actions';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ReturnFilteredList } from '../../../utils/tools';
 import PaginationFilter from '../../../utils/pagination-filter';
 import { Alert } from '../../../utils/Alert';
 
-const DocumentationList = ({ docList, filterProps, getDocList,showDialog }: any) => {
+const DocumentationList = ({ docList, filterProps, getDocList}) => {
     const locations = useLocation();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const queryParams = new URLSearchParams(locations.search);
     const productId = queryParams.get("productId");
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedIds, setSelectedIds] = useState<any[]>([]);
+    const [selectedId, setSelectedId] = useState('');
 
     useEffect(() => {
         getDocList(productId, 1)
@@ -25,7 +27,7 @@ const DocumentationList = ({ docList, filterProps, getDocList,showDialog }: any)
             ["subject"]
         )
     }, [searchQuery, docList])
-
+  
     return (
         <>
             <div>
@@ -138,7 +140,7 @@ const DocumentationList = ({ docList, filterProps, getDocList,showDialog }: any)
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {docList.map((item: any, idx: number) => (
+                                            {docList.map((item, idx) => (
                                                 <tr key={idx}>
                                                     <td className="h6">
 
@@ -268,8 +270,9 @@ const DocumentationList = ({ docList, filterProps, getDocList,showDialog }: any)
                                                                     title=""
                                                                     data-original-title="Delete"
                                                                     onClick={() => {
-                                                                  showDialog("Delete Documentation","Are you sure you want to delete item")
-                                                                  setSelectedIds(item.id);
+                                                                        const params = {selectedId:item.id,navigate}
+                                                                  Alert.showDialog("Delete Documentation","Are you sure you want to delete item",setSelectedId,DeleteDoc,params,dispatch)
+                                                                  setSelectedId(item.id);
                                                                 }}
                                                                 >
                                                                     <span className="btn-inner">
@@ -325,16 +328,15 @@ const DocumentationList = ({ docList, filterProps, getDocList,showDialog }: any)
     )
 }
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state) {
     return {
         docList: state.documentation.docList,
         filterProps: state.documentation.filterProps,
     };
 }
 
-function mapDispatchToProps(dispatch: any) {
-    return { getDocList: (id: any, pageNumber: number) => GetDocList(id, 1)(dispatch) ,
-        showDialog:(title: any, text: any) => Alert.showDialog(title,text)(dispatch) };
+function mapDispatchToProps(dispatch) {
+    return { getDocList: (id, pageNumber) => GetDocList(id, 1)(dispatch) , };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DocumentationList)

@@ -97,11 +97,11 @@ useEffect(() => {
                                             </Form.Group>
                                             <Form.Group className="col-md-6 form-group">
                                             
-                          <label className="form-label mt-3">
+                          <label className="form-label mt-3 d-block">
                             <b>Body:</b>
                          
                           </label>
-                          <ReactQuill
+                          {/* <ReactQuill
                             theme="snow"
                             value={content}
                             onChange={setContent}
@@ -109,7 +109,15 @@ useEffect(() => {
                             className="mb-5"
                             id="assessment-editor"
                             style={{ height: "300px",maxHeight:'300px', background: "white" }}
-                          />
+                          /> */}
+                            <textarea name="body"
+                          className="mt-3"
+                          value={content}
+                            onChange={(e)=>setContent(e.target.value)}
+                             cols={100}
+                             rows={10}>
+
+                             </textarea>
                                             </Form.Group>
                                             
                                             

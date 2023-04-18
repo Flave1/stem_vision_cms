@@ -1,4 +1,5 @@
 import swal from "sweetalert";
+import { respondDialog } from "../store/actions/app-layout-actions";
 
 export class Alert {
     static showError(text: string) {
@@ -7,7 +8,7 @@ export class Alert {
     static showSuccess(text: string) {
         swal("Successful", text, "success")
     }
-    static showDialog({ title, text }: any): Boolean {
+    static showDialog = ( title : any, text : any) => (dispatch:any) {
         swal({
             title,
             text,
@@ -15,8 +16,12 @@ export class Alert {
             buttons: ["cancel", true],
             dangerMode: true,
         }).then((res: any) => {
-            console.log('dialog res', res);
-            return res;
+            if (res) {
+                respondDialog('continue')(dispatch)
+              } else {
+                swal("Your item is safe!");
+                respondDialog('')(dispatch)
+              }
         });
         return false;
     }

@@ -18,7 +18,11 @@ export const appLayoutReducer = (state = _state, { type, payload }: any) => {
                 loading: false
             }
         }
-
+        case actions.RESPOND_DECISION_DIALOG:
+            return {
+                ...state,
+                dialogResponse: payload
+            }
 
         default:
             return state

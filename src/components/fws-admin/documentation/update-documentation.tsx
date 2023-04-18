@@ -78,7 +78,6 @@ useEffect(() => {
                                                 )}
                                             </div>
                                         </Row>
-                                        <div className="row">
                                             <Form.Group className="col-md-6 form-group">
                                                 <label  className="form-label">
                                                     <b>Subject:</b>
@@ -98,7 +97,7 @@ useEffect(() => {
                                             </Form.Group>
                                             <Form.Group className="col-md-6 form-group">
                                             
-                          <label className="form-label d-flex justify-content-between">
+                          <label className="form-label mt-3">
                             <b>Body:</b>
                          
                           </label>
@@ -117,7 +116,7 @@ useEffect(() => {
 
 
 
-                                        </div>
+                                       
                                         <div className="d-flex justify-content-end">
                                             <Button
                                                 type="button"

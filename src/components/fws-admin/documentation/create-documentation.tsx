@@ -67,8 +67,8 @@ const CreateDocumentation = ({ createDoc }: any) => {
                                                 )}
                                             </div>
                                         </Row>
-                                        <div className="row">
-                                            <Form.Group className="col-md-6 form-group">
+                                       
+                                            <Form.Group className=" form-group">
                                                 <label  className="form-label">
                                                     <b>Subject:</b>
                                                 </label>
@@ -85,9 +85,9 @@ const CreateDocumentation = ({ createDoc }: any) => {
                                                     }}
                                                 />
                                             </Form.Group>
-                                            <Form.Group className="col-md-6 form-group">
+                                            <Form.Group className=" form-group">
                                             
-                          <label className="form-label d-flex justify-content-between">
+                          <label className="form-label mt-3">
                             <b>Body:</b>
                          
                           </label>
@@ -106,7 +106,7 @@ const CreateDocumentation = ({ createDoc }: any) => {
 
 
 
-                                        </div>
+                                       
                                         <div className="d-flex justify-content-end">
                                             <Button
                                                 type="button"

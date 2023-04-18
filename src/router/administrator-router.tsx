@@ -11,6 +11,8 @@ import UserProductDetails from "../components/fws-admin/SMS/fws-user-product-det
 import DocumentationProducts from "../components/fws-admin/documentation/documentation-products";
 import DocumentationList from "../components/fws-admin/documentation/documentation-list";
 import PreviewDocumentation from "../components/fws-admin/documentation/preview-documentation";
+import CreateDocumentation from "../components/fws-admin/documentation/create-documentation";
+import UpdateDocumentation from "../components/fws-admin/documentation/update-documentation";
 
 
 
@@ -30,8 +32,8 @@ const AdminRouter = () => {
        {/* documentation */}
        <Route path={dashboard_routes.documentation.documentationList} element={< DocumentationList />} />
        <Route path={dashboard_routes.documentation.documentationProducts} element={< DocumentationProducts />} />
-       <Route path={dashboard_routes.documentation.createDocumentation} element={< Products />} />
-       <Route path={dashboard_routes.documentation.updateDocumentation} element={< Products />} />
+       <Route path={dashboard_routes.documentation.createDocumentation} element={< CreateDocumentation />} />
+       <Route path={dashboard_routes.documentation.updateDocumentation} element={< UpdateDocumentation />} />
        <Route path={dashboard_routes.documentation.previewDocumentation} element={< PreviewDocumentation />} />
     </Routes>
   );

@@ -334,7 +334,7 @@ function mapStateToProps(state: any) {
 
 function mapDispatchToProps(dispatch: any) {
     return { getDocList: (id: any, pageNumber: number) => GetDocList(id, 1)(dispatch) ,
-        showDialog:(title: any, text: any) => Alert.showDialog()(dispatch) };
+        showDialog:(title: any, text: any) => Alert.showDialog(title,text)(dispatch) };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DocumentationList)

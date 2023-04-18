@@ -8,7 +8,7 @@ export class Alert {
     static showSuccess(text: string) {
         swal("Successful", text, "success")
     }
-    static showDialog = ( title : any, text : any) => (dispatch:any) {
+    static showDialog ( title : any, text : any) {
         swal({
             title,
             text,
@@ -17,10 +17,10 @@ export class Alert {
             dangerMode: true,
         }).then((res: any) => {
             if (res) {
-                respondDialog('continue')(dispatch)
+                respondDialog('continue')
               } else {
                 swal("Your item is safe!");
-                respondDialog('')(dispatch)
+                respondDialog('')
               }
         });
         return false;

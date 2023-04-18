@@ -17,6 +17,7 @@ const Sidebar = (props: any) => {
     const navigate = useNavigate();
     return (
         <>
+          
             <h3 className='m-3 '><Logo color={"blue"} /> FWS</h3>
 
             <Accordion as="ul" className="navbar-nav iq-main-menu mt-4">
@@ -51,7 +52,7 @@ const Sidebar = (props: any) => {
                     <a className={`${location.pathname === app_routes.index ? 'active' : ''} nav-link px-4`} aria-current="page"
                         onClick={() => {
                             dispatch(logOut());
-                            navigate(app_routes.index)
+                            window.location.href = "/sign-in"
                         }} >
                         <i className="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24"><path d="M16 10v-5l8 7-8 7v-5h-8v-4h8zm-16-8v20h14v-2h-12v-16h12v-2h-14z" /></svg>

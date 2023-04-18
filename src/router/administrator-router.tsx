@@ -7,6 +7,7 @@ import CreateSms from "../components/fws-admin/SMS/fws-install-sms";
 import UpdateSms from "../components/fws-admin/SMS/fws-update-sms";
 import UserProducts from "../components/fws-admin/fws-user-product-list";
 import Dashboard from "../components/dashboard/dashboard";
+import UserProductDetails from "../components/fws-admin/SMS/fws-user-product-details";
 
 
 
@@ -16,7 +17,7 @@ const AdminRouter = () => {
 
     <Routes>
       <Route  path={dashboard_routes.dashboard} element={<Dashboard />} />
-      <Route path={dashboard_routes.productsLocations.userProductDetails} element={< UserProducts />} />
+      <Route path={dashboard_routes.productsLocations.userProductDetails} element={< UserProductDetails />} />
       {/* smservice */}
       <Route path={dashboard_routes.smsLocations.sms} element={<SmsDescription />} />
       <Route path={dashboard_routes.smsLocations.createSms} element={<CreateSms />} />

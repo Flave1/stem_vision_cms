@@ -84,7 +84,7 @@ const CreateSms = (props:any) => {
                 <Card>
                   <Card.Header className="d-flex justify-content-between">
                     <div className="header-title">
-                      <h4 className="card-title">
+                      <h4 className="card-title my-2">
                         <b>Add Student Management Service</b>
                       </h4>
                     </div>
@@ -181,7 +181,7 @@ const CreateSms = (props:any) => {
                               value={values.country}
                               onChange={(e: any) => {
                                 setFieldValue("country", e.target.value);
-                                props.getStates(e.target.value);
+                                props.getState(e.target.value);
                               }}
                             >
                               <option value="Select Country">

@@ -104,7 +104,7 @@ const SmsDescription = ({singleProduct,getSingleProduct}:any) => {
                   className="btn btn-sm mx-2"
                   style={{ backgroundColor: "#ffc400", color: "black" }}
                   onClick={() =>
-                    singleProduct?.installed &&
+                    !singleProduct?.installed &&
                     navigate(
                       `${dashboard_routes.smsLocations.createSms}?productId=${productId}`
                     )

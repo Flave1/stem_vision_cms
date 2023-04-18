@@ -25,9 +25,9 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                      <div className="d-flex flex-wrap align-items-center justify-content-between">
                         <div className="d-flex flex-wrap align-items-center">
                            <div className="profile-img position-relative me-3 mb-3 mb-lg-0 profile-logo profile-logo1">
-                              <img src={singleUserProduct?.productUrl} alt="User-Profile" className="theme-color-default-img img-fluid rounded-pill avatar-100" />
+                              <img src={singleUserProduct?.productUrl} alt="User-Profile" className="theme-color-default-img img-fluid " width="70px" height="70px" />
                            </div>
-                           <div className="d-flex flex-wrap align-items-center mb-3 mb-sm-0">
+                           <div className="d-md-flex flex-wrap align-items-center mb-3 mb-sm-0">
                               <h4 className="me-2 h4">{singleUserProduct?.productName}</h4>
                               <span> - Flavetech</span>
                            </div>
@@ -46,7 +46,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                  <div className="header-title">
                                     <div className="d-flex flex-wrap">
                                        <div className="media-support-user-img me-3">
-                                          <img className="rounded-pill img-fluid avatar-60 bg-soft-danger p-1 ps-2" src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/02.png" alt="" />
+                                          <img className="rounded-pill img-fluid avatar-60 bg-soft-danger p-1 ps-2"width="60px" height="60px" src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/02.png" alt="" />
                                        </div>
                                        <div className="media-support-info mt-2">
                                           <h5 className="mb-0">Anna Sthesia</h5>
@@ -67,7 +67,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                               </div>
                               <div className="card-body p-0">
                                  <div className="user-post">
-                                    <a href="#"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/pages/02-page.png" alt="post-image" className="img-fluid" /></a>
+                                    <a href="#"><img className="img-fluid" src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/pages/02-page.png" alt="post-image"  /></a>
                                  </div>
                                  <div className="comment-area p-3">
                                     <div className="d-flex flex-wrap justify-content-between align-items-center">
@@ -100,7 +100,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                     <ul className="list-inline p-0 m-0">
                                        <li className="mb-2">
                                           <div className="d-flex">
-                                             <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/03.png" alt="userimg" className="avatar-50 p-1 pt-2 bg-soft-primary rounded-pill img-fluid" />
+                                             <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/03.png" alt="userimg" className="avatar-50 p-1 pt-2 bg-soft-primary rounded-pill img-fluid" width="50px" height="50px"/>
                                              <div className="ms-3">
                                                 <h6 className="mb-1">Monty Carlo</h6>
                                                 <p className="mb-1">Lorem ipsum dolor sit amet</p>
@@ -315,7 +315,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                               <div className="card-body">
                                  <ul className="list-inline m-0 p-0">
                                     <li className="d-flex mb-4 align-items-center">
-                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/01.png" alt="story-img" className="rounded-pill avatar-40" />
+                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/01.png" alt="story-img" className="rounded-pill avatar-40" width="40px" height="40px"/>
                                        <div className="ms-3 flex-grow-1">
                                           <h6>Paul Molive</h6>
                                           <p className="mb-0">Web Designer</p>
@@ -331,7 +331,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                        </div>
                                     </li>
                                     <li className="d-flex mb-4 align-items-center">
-                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/05.png" alt="story-img" className="rounded-pill avatar-40" />
+                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/05.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" />
                                        <div className="ms-3 flex-grow-1">
                                           <h6>Paul Molive</h6>
                                           <p className="mb-0">trainee</p>
@@ -347,7 +347,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                        </div>
                                     </li>
                                     <li className="d-flex mb-4 align-items-center">
-                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/02.png" alt="story-img" className="rounded-pill avatar-40" />
+                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/02.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" />
                                        <div className="ms-3 flex-grow-1">
                                           <h6>Anna Mull</h6>
                                           <p className="mb-0">Web Developer</p>
@@ -363,7 +363,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                        </div>
                                     </li>
                                     <li className="d-flex mb-4 align-items-center">
-                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/03.png" alt="story-img" className="rounded-pill avatar-40" />
+                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/03.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" />
                                        <div className="ms-3 flex-grow-1">
                                           <h6>Paige Turner</h6>
                                           <p className="mb-0">trainee</p>
@@ -379,7 +379,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                        </div>
                                     </li>
                                     <li className="d-flex mb-4 align-items-center">
-                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/04.png" alt="story-img" className="rounded-pill avatar-40" />
+                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/04.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" />
                                        <div className="ms-3 flex-grow-1">
                                           <h6>Barb Ackue</h6>
                                           <p className="mb-0">Web Designer</p>
@@ -395,7 +395,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                        </div>
                                     </li>
                                     <li className="d-flex mb-4 align-items-center">
-                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/05.png" alt="story-img" className="rounded-pill avatar-40" />
+                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/05.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" />
                                        <div className="ms-3 flex-grow-1">
                                           <h6>Greta Life</h6>
                                           <p className="mb-0">Tester</p>
@@ -411,7 +411,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                        </div>
                                     </li>
                                     <li className="d-flex mb-4 align-items-center">
-                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/03.png" alt="story-img" className="rounded-pill avatar-40" />                              <div className="ms-3 flex-grow-1">
+                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/03.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" />                              <div className="ms-3 flex-grow-1">
                                           <h6>Ira Membrit</h6>
                                           <p className="mb-0">Android Developer</p>
                                        </div>
@@ -426,7 +426,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                        </div>
                                     </li>
                                     <li className="d-flex mb-4 align-items-center">
-                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/02.png" alt="story-img" className="rounded-pill avatar-40" />
+                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/02.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" />
                                        <div className="ms-3 flex-grow-1">
                                           <h6>Pete Sariya</h6>
                                           <p className="mb-0">Web Designer</p>
@@ -455,7 +455,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                               <div className="card-body">
                                  <div className="text-center">
                                     <div className="user-profile">
-                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/01.png" alt="profile-img" className="rounded-pill avatar-130 img-fluid" />
+                                       <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/avatars/01.png" alt="profile-img" className="rounded-pill avatar-130 img-fluid" width="130px" height="130px"/>
                                     </div>
                                     <div className="mt-3">
                                        <h3 className="d-inline-block">Austin Robertson</h3>
@@ -578,21 +578,21 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                         <div className="card-body">
                            <ul className="list-inline m-0 p-0">
                               <li className="d-flex mb-4 align-items-center active">
-                                 <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/06.png" alt="story-img" className="rounded-pill avatar-70 p-1 border bg-soft-light img-fluid" />
+                                 <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/06.png" alt="story-img" className="rounded-pill avatar-70 p-1 border bg-soft-light img-fluid"width="70px" height="70px" />
                                  <div className="ms-3">
                                     <h5>Web Design</h5>
                                     <p className="mb-0">1 hour ago</p>
                                  </div>
                               </li>
                               <li className="d-flex mb-4 align-items-center">
-                                 <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/03.png" alt="story-img" className="rounded-pill avatar-70 p-1 border img-fluid bg-soft-danger" />
+                                 <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/03.png" alt="story-img" className="rounded-pill avatar-70 p-1 border img-fluid bg-soft-danger"width="70px" height="70px" />
                                  <div className="ms-3">
                                     <h5>App Design</h5>
                                     <p className="mb-0">4 hour ago</p>
                                  </div>
                               </li>
                               <li className="d-flex align-items-center">
-                                 <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/07.png" alt="story-img" className="rounded-pill avatar-70 p-1 border bg-soft-primary img-fluid" />
+                                 <img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/07.png" alt="story-img" className="rounded-pill avatar-70 p-1 border bg-soft-primary img-fluid"width="70px" height="70px" />
                                  <div className="ms-3">
                                     <h5>Abstract Design</h5>
                                     <p className="mb-0">9 hour ago</p>
@@ -610,7 +610,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                         <div className="card-body">
                            <ul className="list-inline m-0 p-0">
                               <li className="d-flex mb-4 align-items-center">
-                                 <div className="img-fluid bg-soft-warning rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/05.png" alt="story-img" className="rounded-pill avatar-40" /></div>
+                                 <div className="img-fluid bg-soft-warning rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/05.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" /></div>
                                  <div className="ms-3 flex-grow-1">
                                     <h6>Paul Molive</h6>
                                     <p className="mb-0">4 mutual friends</p>
@@ -627,7 +627,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                  </a>
                               </li>
                               <li className="d-flex mb-4 align-items-center">
-                                 <div className="img-fluid bg-soft-danger rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/03.png" alt="story-img" className="rounded-pill avatar-40" /></div>
+                                 <div className="img-fluid bg-soft-danger rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/03.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" /></div>
                                  <div className="ms-3 flex-grow-1">
                                     <h6>Robert Fox</h6>
                                     <p className="mb-0">4 mutual friends</p>
@@ -644,7 +644,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                  </a>
                               </li>
                               <li className="d-flex mb-4 align-items-center">
-                                 <div className="img-fluid bg-soft-dark rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/06.png" alt="story-img" className="rounded-pill avatar-40" /></div>
+                                 <div className="img-fluid bg-soft-dark rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/06.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" /></div>
                                  <div className="ms-3 flex-grow-1">
                                     <h6>Jenny Wilson</h6>
                                     <p className="mb-0">6 mutual friends</p>
@@ -661,7 +661,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                  </a>
                               </li>
                               <li className="d-flex mb-4 align-items-center">
-                                 <div className="img-fluid bg-soft-primary rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/07.png" alt="story-img" className="rounded-pill avatar-40" /></div>
+                                 <div className="img-fluid bg-soft-primary rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/07.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" /></div>
                                  <div className="ms-3 flex-grow-1">
                                     <h6>Cody Fisher</h6>
                                     <p className="mb-0">8 mutual friends</p>
@@ -678,7 +678,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                  </a>
                               </li>
                               <li className="d-flex mb-4 align-items-center">
-                                 <div className="img-fluid bg-soft-info rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/04.png" alt="story-img" className="rounded-pill avatar-40" /></div>
+                                 <div className="img-fluid bg-soft-info rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/04.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" /></div>
                                  <div className="ms-3 flex-grow-1">
                                     <h6>Bessie Cooper</h6>
                                     <p className="mb-0">1 mutual friends</p>
@@ -695,7 +695,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                  </a>
                               </li>
                               <li className="d-flex mb-4 align-items-center">
-                                 <div className="img-fluid bg-soft-warning rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/02.png" alt="story-img" className="rounded-pill avatar-40" /></div>
+                                 <div className="img-fluid bg-soft-warning rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/02.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" /></div>
                                  <div className="ms-3 flex-grow-1">
                                     <h6>Wade Warren</h6>
                                     <p className="mb-0">3 mutual friends</p>
@@ -712,7 +712,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                  </a>
                               </li>
                               <li className="d-flex mb-4 align-items-center">
-                                 <div className="img-fluid bg-soft-success rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/01.png" alt="story-img" className="rounded-pill avatar-40" /></div>
+                                 <div className="img-fluid bg-soft-success rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/01.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" /></div>
                                  <div className="ms-3 flex-grow-1">
                                     <h6>Guy Hawkins</h6>
                                     <p className="mb-0">12 mutual friends</p>
@@ -729,7 +729,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                                  </a>
                               </li>
                               <li className="d-flex align-items-center">
-                                 <div className="img-fluid bg-soft-info rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/08.png" alt="story-img" className="rounded-pill avatar-40" /></div>
+                                 <div className="img-fluid bg-soft-info rounded-pill"><img src="https://templates.iqonic.design/hope-ui/html/dist/assets/images/icons/08.png" alt="story-img" className="rounded-pill avatar-40"width="40px" height="40px" /></div>
                                  <div className="ms-3 flex-grow-1">
                                     <h6>Floyd Miles</h6>
                                     <p className="mb-0">2 mutual friends</p>

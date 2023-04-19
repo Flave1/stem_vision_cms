@@ -23,3 +23,9 @@ export const contactUs = ({ name, email, message }: any) => (dispatch: any) => {
             Alert.showError(err?.response?.data?.message?.friendlyMessage)
         })
 }
+   export const respondDialog = (value: any) => (dispatch: any)=> {
+    dispatch({
+        type: actions.RESPOND_DECISION_DIALOG,
+        payload: value
+    })
+}

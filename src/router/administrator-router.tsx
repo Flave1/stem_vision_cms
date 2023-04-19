@@ -8,6 +8,11 @@ import UpdateSms from "../components/fws-admin/SMS/fws-update-sms";
 import UserProducts from "../components/fws-admin/fws-user-product-list";
 import Dashboard from "../components/dashboard/dashboard";
 import UserProductDetails from "../components/fws-admin/SMS/fws-user-product-details";
+import DocumentationProducts from "../components/fws-admin/documentation/documentation-products";
+import DocumentationList from "../components/fws-admin/documentation/documentation-list";
+import PreviewDocumentation from "../components/fws-admin/documentation/preview-documentation";
+import CreateDocumentation from "../components/fws-admin/documentation/create-documentation";
+import UpdateDocumentation from "../components/fws-admin/documentation/update-documentation";
 
 
 
@@ -24,7 +29,12 @@ const AdminRouter = () => {
       <Route path={dashboard_routes.smsLocations.updateSms} element={<UpdateSms />} />
       {/* product */}
       <Route path={dashboard_routes.productsLocations.products} element={< Products />} />
-
+       {/* documentation */}
+       <Route path={dashboard_routes.documentation.documentationList} element={< DocumentationList />} />
+       <Route path={dashboard_routes.documentation.documentationProducts} element={< DocumentationProducts />} />
+       <Route path={dashboard_routes.documentation.createDocumentation} element={< CreateDocumentation />} />
+       <Route path={dashboard_routes.documentation.updateDocumentation} element={< UpdateDocumentation />} />
+       <Route path={dashboard_routes.documentation.previewDocumentation} element={< PreviewDocumentation />} />
     </Routes>
   );
 }

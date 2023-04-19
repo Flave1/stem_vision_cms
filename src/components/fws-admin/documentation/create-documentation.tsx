@@ -6,8 +6,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { CreateDoc } from "../../../store/actions/documentation-actions";
 import { Alert } from "../../../utils/Alert";
-// import { TextEditorToolBar } from "../../../utils/tools";
-import ReactQuill from "react-quill";
 import MyEditor from "../../../utils/Editor";
 import '../fwsAdmin.css'
 
@@ -23,7 +21,6 @@ const CreateDocumentation = ({ documentation, createDoc }: any) => {
         subject: Yup.string().required("Subject is required"),
     });
     //VALIDATIONS SCHEMA
-    // const textEditorModules = useMemo(() => ({ toolbar: TextEditorToolBar }), []);
 
     const { handleSubmit, values, setFieldValue, errors, touched } = useFormik({
         initialValues: {
@@ -94,24 +91,8 @@ const CreateDocumentation = ({ documentation, createDoc }: any) => {
                                                 <b>Body:</b>
                                             </label>
 
-                                            <MyEditor  setContent={setContent} />
-                                            {/* <ReactQuill
-                                                theme="snow"
-                                                value={content}
-                                                onChange={setContent}
-                                                modules={textEditorModules}
-                                                className="mb-5"
-                                                id="assessment-editor"
-                                                style={{ height: "300px", maxHeight: '300px', background: "white" }}
-                                            /> */}
-                                            {/* <textarea name="body"
-                                                className="mt-3"
-                                                value={content}
-                                                onChange={(e) => setContent(e.target.value)}
-                                                cols={100}
-                                                rows={10}>
+                                            <MyEditor setContent={setContent} />
 
-                                            </textarea> */}
                                         </Form.Group>
 
 

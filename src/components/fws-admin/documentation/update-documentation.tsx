@@ -6,10 +6,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { CreateDoc, GetSingleDoc } from "../../../store/actions/documentation-actions";
 import { Alert } from "../../../utils/Alert";
-import { TextEditorToolBar } from "../../../utils/tools";
-import ReactQuill from "react-quill";
+import MyEditor from "../../../utils/Editor";
 
-const CreateDocumentation = ({singleDocumentation, createDoc,getSingleDoc }: any) => {
+const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc }: any) => {
     const locations = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(locations.search);
@@ -22,22 +21,21 @@ const CreateDocumentation = ({singleDocumentation, createDoc,getSingleDoc }: any
         subject: Yup.string().required("Subject is required"),
     });
     //VALIDATIONS SCHEMA
-    const textEditorModules = useMemo(() => ({ toolbar: TextEditorToolBar }), []);
 
-   useEffect(() => {
-    getSingleDoc(productId)
-}, [productId])
+    useEffect(() => {
+        getSingleDoc(docId)
+    }, [docId])
 
-useEffect(() => {
-    setContent(singleDocumentation?.body)
-}, [singleDocumentation])
+    useEffect(() => {
+        setContent(singleDocumentation?.body)
+    }, [singleDocumentation])
 
 
-    const { handleSubmit, values, setFieldValue, errors, touched }:any = useFormik({
+    const { handleSubmit, values, setFieldValue, errors, touched }: any = useFormik({
         initialValues: {
             id: docId,
             subject: singleDocumentation?.subject || "",
-            body: singleDocumentation?.body  || "",
+            body: singleDocumentation?.body || "",
             product: productId
         },
         enableReinitialize: true,
@@ -47,7 +45,7 @@ useEffect(() => {
             if (!content) {
                 Alert.showError('Body is required');
                 return;
-              }
+            }
             else createDoc(values, navigate);
         }
     });
@@ -78,53 +76,38 @@ useEffect(() => {
                                                 )}
                                             </div>
                                         </Row>
-                                            <Form.Group className="col-md-6 form-group">
-                                                <label  className="form-label">
-                                                    <b>Subject:</b>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    name="subject"
-                                                    id="subject"
-                                                    aria-describedby="name"
-                                                    placeholder="Subject"
-                                                    value={values.subject}
-                                                    onChange={(e: any) => {
-                                                        setFieldValue("subject", e.target.value);
-                                                    }}
-                                                />
-                                            </Form.Group>
-                                            <Form.Group className="col-md-6 form-group">
-                                            
-                          <label className="form-label mt-3 d-block">
-                            <b>Body:</b>
-                         
-                          </label>
-                          {/* <ReactQuill
-                            theme="snow"
-                            value={content}
-                            onChange={setContent}
-                            modules={textEditorModules}
-                            className="mb-5"
-                            id="assessment-editor"
-                            style={{ height: "300px",maxHeight:'300px', background: "white" }}
-                          /> */}
-                            <textarea name="body"
-                          className="mt-3"
-                          value={content}
-                            onChange={(e)=>setContent(e.target.value)}
-                             cols={100}
-                             rows={10}>
+                                        <Form.Group className="col-md-6 form-group">
+                                            <label className="form-label">
+                                                <b>Subject:</b>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="subject"
+                                                id="subject"
+                                                aria-describedby="name"
+                                                placeholder="Subject"
+                                                value={values.subject}
+                                                onChange={(e: any) => {
+                                                    setFieldValue("subject", e.target.value);
+                                                }}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="col-md-6 form-group">
 
-                             </textarea>
-                                            </Form.Group>
-                                            
-                                            
+                                            <label className="form-label mt-3 d-block">
+                                                <b>Body:</b>
+
+                                            </label>
+                                            <MyEditor setContent={setContent} />
+
+                                        </Form.Group>
 
 
 
-                                       
+
+
+
                                         <div className="d-flex justify-content-end">
                                             <Button
                                                 type="button"
@@ -155,16 +138,16 @@ useEffect(() => {
     );
 };
 function mapStateToProps(state: any) {
-    return { 
+    return {
         singleDocumentation: state.documentation.singleDocumentation,
-     };
+    };
 }
 
 function mapDispatchToProps(dispatch: any) {
     return {
         createDoc: (values: any, navigate: any) => CreateDoc(values, navigate)(dispatch),
-       getSingleDoc: (id: any, pageNumber: number) => GetSingleDoc(id)(dispatch),
+        getSingleDoc: (id: any, pageNumber: number) => GetSingleDoc(id)(dispatch),
     };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CreateDocumentation);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateDocumentation);

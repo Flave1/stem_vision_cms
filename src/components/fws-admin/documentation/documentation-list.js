@@ -33,7 +33,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
             <div>
                 <Row>
                     <Col sm="12">
-                        <Card>
+                        <Card >
                             <Card.Header className="d-flex justify-content-between border-0">
                                 <div className="header-title">
                                     <h4 className="card-title m-3 ">
@@ -152,7 +152,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                     </td>
 
                                                     <td>
-                                                        <div className="flex align-items-center list-user-action">
+                                                        <div className="d-flex align-items-center list-user-action">
                                                             <OverlayTrigger
                                                                 placement="top"
                                                                 overlay={
@@ -161,6 +161,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                     </Tooltip>
                                                                 }
                                                             >
+                                                                
                                                                 <Link
                                                                     className="btn btn-sm btn-icon btn-success"
                                                                     data-toggle="tooltip"
@@ -201,7 +202,8 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                             ></path>
                                                                         </svg>
                                                                     </span>
-                                                                </Link>
+                                                                </Link>{" "}
+                                                                
                                                             </OverlayTrigger>{" "}
                                                             <OverlayTrigger
                                                                 placement="top"
@@ -212,8 +214,9 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                     </Tooltip>
                                                                 }
                                                             >
+                                                            
                                                                 <Link
-                                                                    className="btn btn-sm btn-icon btn-warning"
+                                                                    className="btn btn-sm btn-icon btn-warning mx-2"
                                                                     data-toggle="tooltip"
                                                                     data-placement="top"
                                                                     title=""
@@ -253,6 +256,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                         </svg>
                                                                     </span>
                                                                 </Link>
+
                                                             </OverlayTrigger>{" "}
 
                                                             <OverlayTrigger

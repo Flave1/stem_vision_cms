@@ -6,10 +6,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { CreateDoc } from "../../../store/actions/documentation-actions";
 import { Alert } from "../../../utils/Alert";
-import { TextEditorToolBar } from "../../../utils/tools";
+// import { TextEditorToolBar } from "../../../utils/tools";
 import ReactQuill from "react-quill";
+import MyEditor from "../../../utils/Editor";
+import '../fwsAdmin.css'
 
-const CreateDocumentation = ({ documentation,createDoc }: any) => {
+const CreateDocumentation = ({ documentation, createDoc }: any) => {
     const locations = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(locations.search);
@@ -21,7 +23,7 @@ const CreateDocumentation = ({ documentation,createDoc }: any) => {
         subject: Yup.string().required("Subject is required"),
     });
     //VALIDATIONS SCHEMA
-    const textEditorModules = useMemo(() => ({ toolbar: TextEditorToolBar }), []);
+    // const textEditorModules = useMemo(() => ({ toolbar: TextEditorToolBar }), []);
 
     const { handleSubmit, values, setFieldValue, errors, touched } = useFormik({
         initialValues: {
@@ -36,9 +38,9 @@ const CreateDocumentation = ({ documentation,createDoc }: any) => {
             if (!content) {
                 Alert.showError('Body is required');
                 return;
-              }
-              
-             createDoc(values, navigate);
+            }
+
+            createDoc(values, navigate);
         }
     });
 
@@ -68,53 +70,55 @@ const CreateDocumentation = ({ documentation,createDoc }: any) => {
                                                 )}
                                             </div>
                                         </Row>
-                                       
-                                            <Form.Group className=" form-group">
-                                                <label  className="form-label">
-                                                    <b>Subject:</b>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    name="subject"
-                                                    id="subject"
-                                                    aria-describedby="name"
-                                                    placeholder="Subject"
-                                                    value={values.subject}
-                                                    onChange={(e: any) => {
-                                                        setFieldValue("subject", e.target.value);
-                                                    }}
-                                                />
-                                            </Form.Group>
-                        <Form.Group className=" form-group">
-                                            
-                          <label className="form-label mt-3 d-block">
-                            <b>Body:</b>
-                          </label>
-                          {/* <ReactQuill
-                            theme="snow"
-                            value={content}
-                            onChange={setContent}
-                            modules={textEditorModules}
-                            className="mb-5"
-                            id="assessment-editor"
-                            style={{ height: "300px",maxHeight:'300px', background: "white" }}
-                          /> */}
-                          <textarea name="body"
-                          className="mt-3"
-                          value={content}
-                            onChange={(e)=>setContent(e.target.value)}
-                             cols={100}
-                             rows={10}>
 
-                             </textarea>
-                            </Form.Group>
-                                            
-                                            
+                                        <Form.Group className=" form-group">
+                                            <label className="form-label">
+                                                <b>Subject:</b>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="subject"
+                                                id="subject"
+                                                aria-describedby="name"
+                                                placeholder="Subject"
+                                                value={values.subject}
+                                                onChange={(e: any) => {
+                                                    setFieldValue("subject", e.target.value);
+                                                }}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className=" form-group">
+
+                                            <label className="form-label mt-3 d-block">
+                                                <b>Body:</b>
+                                            </label>
+
+                                            <MyEditor  setContent={setContent} />
+                                            {/* <ReactQuill
+                                                theme="snow"
+                                                value={content}
+                                                onChange={setContent}
+                                                modules={textEditorModules}
+                                                className="mb-5"
+                                                id="assessment-editor"
+                                                style={{ height: "300px", maxHeight: '300px', background: "white" }}
+                                            /> */}
+                                            {/* <textarea name="body"
+                                                className="mt-3"
+                                                value={content}
+                                                onChange={(e) => setContent(e.target.value)}
+                                                cols={100}
+                                                rows={10}>
+
+                                            </textarea> */}
+                                        </Form.Group>
 
 
 
-                                       
+
+
+
                                         <div className="d-flex justify-content-end">
                                             <Button
                                                 type="button"
@@ -145,9 +149,9 @@ const CreateDocumentation = ({ documentation,createDoc }: any) => {
     );
 };
 function mapStateToProps(state: any) {
-    return { 
+    return {
         documentation: state.documentation,
-     };
+    };
 }
 
 function mapDispatchToProps(dispatch: any) {
@@ -156,4 +160,5 @@ function mapDispatchToProps(dispatch: any) {
     };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CreateDocumentation);
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateDocumentation);

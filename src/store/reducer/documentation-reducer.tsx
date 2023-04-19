@@ -4,34 +4,42 @@ import { _state } from "../states/documentation-state";
 
 
 
-export const documentationReducer = (state : IDocumentationState = _state, { type, payload }: any) => {
-    switch (type) {
-      
-          case actions.FETCH_DOCUMENTATION_PRODUCTS:{
-            return {
-              ...state,
-              docProducts: payload,
-            };
-              }
-            case actions.FETCH_DOCUMENTATION_LIST:{
-              return {
-                ...state,
-                filterProps:payload,
-                docList: payload.data,
-              };
-            }
+export const documentationReducer = (state: IDocumentationState = _state, { type, payload }: any) => {
+  switch (type) {
 
-           
-          case actions.FETCH_SINGLE_DOCUMENTATION:{
-            return {
-              ...state,
-              singleDocumentation: payload,
-            };
-          }
+    case actions.FETCH_DOCUMENTATION_PRODUCTS: {
+      return {
+        ...state,
+        docProducts: payload,
+      };
+    }
+    case actions.FETCH_DOCUMENTATION_LIST: {
+      return {
+        ...state,
+        filterProps: payload,
+        docList: payload.data,
+      };
+    }
 
-          
-            
+    case actions.GET_FEATURES: {
+      return {
+        ...state,
+        features: payload,
+      };
+    }
 
-            default:
-                return state
-    }}
+
+    case actions.FETCH_SINGLE_DOCUMENTATION: {
+      return {
+        ...state,
+        singleDocumentation: payload,
+      };
+    }
+
+
+
+
+    default:
+      return state
+  }
+}

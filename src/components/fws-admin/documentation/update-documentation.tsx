@@ -4,11 +4,11 @@ import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { connect, } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { CreateDoc, GetSingleDoc } from "../../../store/actions/documentation-actions";
+import { CreateDoc, GetSingleDoc, getFeatures } from "../../../store/actions/documentation-actions";
 import { Alert } from "../../../utils/Alert";
 import MyEditor from "../../../utils/Editor";
 
-const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc }: any) => {
+const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc, features, getFeatures }: any) => {
     const locations = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(locations.search);
@@ -27,6 +27,10 @@ const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc }: a
     }, [docId])
 
     useEffect(() => {
+        getFeatures()
+    }, [])
+
+    useEffect(() => {
         setContent(singleDocumentation?.body)
     }, [singleDocumentation])
 
@@ -36,7 +40,8 @@ const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc }: a
             id: docId,
             subject: singleDocumentation?.subject || "",
             body: singleDocumentation?.body || "",
-            product: productId
+            product: productId,
+            feature: singleDocumentation?.feature || 0
         },
         enableReinitialize: true,
         validationSchema: validation,
@@ -76,6 +81,31 @@ const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc }: a
                                                 )}
                                             </div>
                                         </Row>
+                                        <Form.Group className=" form-group">
+                                            <label className="form-label">
+                                                <b>Subject:</b>
+                                            </label>
+
+
+                                            <select
+                                                name="feature"
+                                                className="form-select"
+                                                id="feature"
+                                                value={values.feature}
+                                                onChange={(e: any) => {
+                                                    setFieldValue("feature", e.target.value);
+                                                }}
+                                            >
+                                                <option value="Select Featuer">
+                                                    Select Feature
+                                                </option>
+                                                {features?.map((item: any, idx: any) => (
+                                                    <option key={idx} value={item.value}>
+                                                        {item.text}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </Form.Group>
                                         <Form.Group className="col-md-6 form-group">
                                             <label className="form-label">
                                                 <b>Subject:</b>
@@ -99,11 +129,10 @@ const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc }: a
                                                 <b>Body:</b>
 
                                             </label>
-                                            <MyEditor setContent={setContent} />
-
                                         </Form.Group>
 
 
+                                        <MyEditor setContent={setContent} content={content} />
 
 
 
@@ -140,6 +169,7 @@ const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc }: a
 function mapStateToProps(state: any) {
     return {
         singleDocumentation: state.documentation.singleDocumentation,
+        features: state.documentation.features
     };
 }
 
@@ -147,6 +177,7 @@ function mapDispatchToProps(dispatch: any) {
     return {
         createDoc: (values: any, navigate: any) => CreateDoc(values, navigate)(dispatch),
         getSingleDoc: (id: any, pageNumber: number) => GetSingleDoc(id)(dispatch),
+        getFeatures: () => getFeatures()(dispatch)
     };
 }
 

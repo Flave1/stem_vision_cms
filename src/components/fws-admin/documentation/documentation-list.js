@@ -153,8 +153,9 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
 
                                                     <td>
                                                         <div className="d-flex align-items-center list-user-action">
+
                                                             <OverlayTrigger
-                                                                placement="top"
+                                                                placement="left"
                                                                 overlay={
                                                                     <Tooltip id="button-tooltip-2">
                                                                         Preview Documentation
@@ -203,7 +204,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                         </svg>
                                                                     </span>
                                                                 </Link>{" "}
-                                                                
+                                                               
                                                             </OverlayTrigger>{" "}
                                                             <OverlayTrigger
                                                                 placement="top"
@@ -214,9 +215,9 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                     </Tooltip>
                                                                 }
                                                             >
-                                                            
+                                                          
                                                                 <Link
-                                                                    className="btn btn-sm btn-icon btn-warning mx-2"
+                                                                    className="btn btn-sm btn-icon btn-warning"
                                                                     data-toggle="tooltip"
                                                                     data-placement="top"
                                                                     title=""
@@ -256,7 +257,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                         </svg>
                                                                     </span>
                                                                 </Link>
-
+                                                              
                                                             </OverlayTrigger>{" "}
 
                                                             <OverlayTrigger

@@ -259,7 +259,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
 
                                                             </OverlayTrigger>{" "}
 
-                                                            {/* <OverlayTrigger
+                                                            <OverlayTrigger
                                                                 placement="top"
                                                                 overlay={
                                                                     <Tooltip id="button-tooltip-2">
@@ -311,7 +311,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                         </svg>
                                                                     </span>
                                                                 </span>
-                                                            </OverlayTrigger> */}
+                                                            </OverlayTrigger>
 
                                                         </div>
                                                     </td>

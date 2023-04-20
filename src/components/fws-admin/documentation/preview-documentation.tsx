@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Col, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 import Card from '../../../utils/Card';
-import { dashboard_routes } from '../../../router/fws-path-locations';
-import { connect, useDispatch } from 'react-redux';
-import { GetDocList, GetSingleDoc } from '../../../store/actions/documentation-actions';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ReturnFilteredList } from '../../../utils/tools';
-import PaginationFilter from '../../../utils/pagination-filter';
+import { connect } from 'react-redux';
+import { GetSingleDoc } from '../../../store/actions/documentation-actions';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PreviewDocumentation = ({ singleDocumentation, getSingleDoc }: any) => {
   const locations = useLocation();
@@ -63,7 +60,7 @@ const PreviewDocumentation = ({ singleDocumentation, getSingleDoc }: any) => {
                       __html: singleDocumentation?.body,
                     }}
                   >
-                    
+
                   </div>
                   </div>
               </Card.Body>

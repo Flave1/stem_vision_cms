@@ -1,8 +1,12 @@
 import { GiCyberEye } from "react-icons/gi";
 import { HiLightBulb } from "react-icons/hi";
+import HomeFooter from "./footer";
+import HomeHeader from "./header";
 
 function AboutUs() {
     return (
+        <>
+        <HomeHeader />
         <section id="about" className="about ">
             <div className="container" data-aos="fade-up">
 
@@ -48,6 +52,8 @@ function AboutUs() {
 
             </div>
         </section>
+        <HomeFooter />
+        </>
     )
 }
 

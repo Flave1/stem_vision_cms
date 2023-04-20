@@ -10,6 +10,8 @@ import { ChangePassword } from '../../store/actions/auth-actions';
 import Card from '../../utils/Card';
 import { app_routes } from '../../router/routes';
 import AOS from 'aos';
+import HomeFooter from '../Landing-Page/footer';
+import HomeHeader from '../Landing-Page/header';
 
 
 const FirstTimeLoginPassswordChange = ({ changePassword, auth }: any) => {
@@ -67,6 +69,7 @@ const FirstTimeLoginPassswordChange = ({ changePassword, auth }: any) => {
 
     return (
         <>
+        <HomeHeader />
             <section className="login-content" style={{ background: '#fcfcfc' }} data-aos="fade-up">
                 <Row className="m-0 align-items-center d-flex justify-content-center bg-white vh-100">
                     <Col md="6">
@@ -268,6 +271,7 @@ const FirstTimeLoginPassswordChange = ({ changePassword, auth }: any) => {
 
                 </Row>
             </section>
+        <HomeFooter />
         </>
     )
 }

@@ -1,20 +1,27 @@
 import { useFormik } from "formik";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { connect, } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { CreateDoc } from "../../../store/actions/documentation-actions";
+import { CreateDoc, getFeatures } from "../../../store/actions/documentation-actions";
 import { Alert } from "../../../utils/Alert";
 import MyEditor from "../../../utils/Editor";
 import '../fwsAdmin.css'
 
-const CreateDocumentation = ({ documentation, createDoc }: any) => {
+const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => {
     const locations = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(locations.search);
     const productId = queryParams.get("productId");
     const [content, setContent] = useState("");
+
+    useEffect(() => {
+        getFeatures()
+    }, [])
+
+    console.log('documentation', documentation);
+
 
     //VALIDATIONS SCHEMA
     const validation = Yup.object().shape({
@@ -26,7 +33,8 @@ const CreateDocumentation = ({ documentation, createDoc }: any) => {
         initialValues: {
             subject: "",
             body: "",
-            product: productId
+            product: productId,
+            feature: 0
         },
         enableReinitialize: true,
         validationSchema: validation,
@@ -67,6 +75,29 @@ const CreateDocumentation = ({ documentation, createDoc }: any) => {
                                                 )}
                                             </div>
                                         </Row>
+                                        <Form.Group className=" form-group">
+                                            <label className="form-label">
+                                                <b>Subject:</b>
+                                            </label>
+                                            <select className="form-control">
+
+                                                <option value={0}>{'Select Feature'}</option>
+                                                {
+                                                    documentation.features?.length > 0 &&
+                                                    documentation.features.map((x: any) => {
+                                                        return (
+                                                            <option
+                                                                onChange={(e: any) => {
+                                                                    setFieldValue("feature", e.target.value);
+                                                                }}
+                                                                selected={x.value == values.feature}
+                                                                value={x.value}>{x.text}</option>
+                                                        )
+                                                    })
+                                                }
+
+                                            </select>
+                                        </Form.Group>
 
                                         <Form.Group className=" form-group">
                                             <label className="form-label">
@@ -91,7 +122,7 @@ const CreateDocumentation = ({ documentation, createDoc }: any) => {
                                                 <b>Body:</b>
                                             </label>
 
-                                            <MyEditor setContent={setContent} />
+                                            <MyEditor setContent={setContent} content={content} />
 
                                         </Form.Group>
 
@@ -137,7 +168,8 @@ function mapStateToProps(state: any) {
 
 function mapDispatchToProps(dispatch: any) {
     return {
-        createDoc: (values: any, navigate: any) => CreateDoc(values, navigate)(dispatch)
+        createDoc: (values: any, navigate: any) => CreateDoc(values, navigate)(dispatch),
+        getFeatures: () => getFeatures()(dispatch)
     };
 }
 

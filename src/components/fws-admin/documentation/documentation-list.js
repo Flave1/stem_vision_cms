@@ -9,7 +9,7 @@ import { ReturnFilteredList } from '../../../utils/tools';
 import PaginationFilter from '../../../utils/pagination-filter';
 import { Alert } from '../../../utils/Alert';
 
-const DocumentationList = ({ docList, filterProps, getDocList}) => {
+const DocumentationList = ({ docList, filterProps, getDocList }) => {
     const locations = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
             ["subject"]
         )
     }, [searchQuery, docList])
-  
+
     return (
         <>
             <div>
@@ -112,9 +112,9 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                             <span>Add Documentation</span>
                                         </button>
                                     </Link>
-                                    </div>
+                                </div>
 
-                                    </Row>
+                            </Row>
 
                             <Card.Body className="">
                                 <div className="table-responsive">
@@ -134,7 +134,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                     <b>Subject</b>
                                                 </th>
 
-                                                <th min-width="100px">
+                                                <th >
                                                     <b>Action</b>
                                                 </th>
                                             </tr>
@@ -151,25 +151,23 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                         <b>{item.subject}</b>
                                                     </td>
 
-                                                    <td>
-                                                        <div className="d-flex align-items-center list-user-action">
-
+                                                    <td className=''>
+                                                   
                                                             <OverlayTrigger
                                                                 placement="left"
                                                                 overlay={
-                                                                    <Tooltip id="button-tooltip-2">
+                                                                    <Tooltip id="button-tooltip-1">
                                                                         Preview Documentation
                                                                     </Tooltip>
                                                                 }
                                                             >
-                                                                
-                                                                <Link
+
+                                                                <a
                                                                     className="btn btn-sm btn-icon btn-success"
-                                                                    data-toggle="tooltip"
-                                                                    data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Details"
-                                                                    to={`${dashboard_routes.documentation.previewDocumentation}?docId=${item.id}`}
+                                                                   
+                                                                    onClick={() => {
+                                                                        navigate(`${dashboard_routes.documentation.previewDocumentation}?docId=${item.id}`)
+                                                                    }}
                                                                 >
                                                                     <span className="btn-inner">
                                                                         <svg
@@ -203,10 +201,10 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                             ></path>
                                                                         </svg>
                                                                     </span>
-                                                                </Link>{" "}
-                                                               
-                                                            </OverlayTrigger>{" "}
-                                                            <OverlayTrigger
+                                                                </a>
+
+                                                            </OverlayTrigger>
+                                                             <OverlayTrigger
                                                                 placement="top"
                                                                 overlay={
                                                                     <Tooltip id="button-tooltip-2">
@@ -215,14 +213,12 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                     </Tooltip>
                                                                 }
                                                             >
-                                                          
-                                                                <Link
-                                                                    className="btn btn-sm btn-icon btn-warning"
-                                                                    data-toggle="tooltip"
-                                                                    data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Edit"
-                                                                    to={`${dashboard_routes.documentation.updateDocumentation}?docId=${item.id}&productId=${productId}`}
+
+                                                                <a
+                                                                    className="btn btn-sm btn-icon btn-warning  mx-4"
+                                                                    onClick={() => {
+                                                                        navigate(`${dashboard_routes.documentation.updateDocumentation}?docId=${item.id}&productId=${productId}`)
+                                                                    }}
                                                                 >
                                                                     <span className="btn-inner">
                                                                         <svg
@@ -256,14 +252,14 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                             ></path>
                                                                         </svg>
                                                                     </span>
-                                                                </Link>
-                                                              
-                                                            </OverlayTrigger>{" "}
+                                                                </a>
+
+                                                            </OverlayTrigger>
 
                                                             <OverlayTrigger
-                                                                placement="top"
+                                                                placement="right"
                                                                 overlay={
-                                                                    <Tooltip id="button-tooltip-2">
+                                                                    <Tooltip id="button-tooltip-3">
                                                                         Delete Document
                                                                     </Tooltip>
                                                                 }
@@ -275,10 +271,10 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                     title=""
                                                                     data-original-title="Delete"
                                                                     onClick={() => {
-                                                                        const params = {selectedId:item.id,navigate}
-                                                                  Alert.showDialog("Delete Documentation","Are you sure you want to delete item",setSelectedId,DeleteDoc,params,dispatch)
-                                                                  setSelectedId(item.id);
-                                                                }}
+                                                                        const params = { selectedId: item.id, navigate }
+                                                                        Alert.showDialog("Delete Documentation", "Are you sure you want to delete item", setSelectedId, DeleteDoc, params, dispatch)
+                                                                        setSelectedId(item.id);
+                                                                    }}
                                                                 >
                                                                     <span className="btn-inner">
                                                                         <svg
@@ -314,7 +310,6 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                                                 </span>
                                                             </OverlayTrigger>
 
-                                                        </div>
                                                     </td>
                                                 </tr>
                                             ))}
@@ -323,7 +318,7 @@ const DocumentationList = ({ docList, filterProps, getDocList}) => {
                                 </div>
                             </Card.Body>
                             <Card.Footer>
-                                <PaginationFilter filterProps={filterProps} action={GetDocList}  />
+                                <PaginationFilter filterProps={filterProps} action={GetDocList} />
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -341,7 +336,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return { getDocList: (id, pageNumber) => GetDocList(id, 1)(dispatch) , };
+    return { getDocList: (id, pageNumber) => GetDocList(id, 1)(dispatch), };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DocumentationList)

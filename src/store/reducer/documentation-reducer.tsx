@@ -29,6 +29,14 @@ export const documentationReducer = (state: IDocumentationState = _state, { type
     }
 
 
+    case actions.FETCH_EXPORTED_DOCUMENTATION: {
+      return {
+        ...state,
+        exportedDocumentation: payload,
+      };
+    }
+
+
     case actions.FETCH_SINGLE_DOCUMENTATION: {
       return {
         ...state,

@@ -4,5 +4,6 @@ export interface IDocumentationState {
     docList: DocumentationDetail[],
     docProducts:DocumentationDetail[],
     singleDocumentation:DocumentationDetail,
+    exportedDocumentation:DocumentationDetail[],
     filterProps:any,
 }

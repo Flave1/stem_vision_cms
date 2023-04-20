@@ -137,7 +137,7 @@ const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc, fea
 
 
 
-                                        <div className="d-flex justify-content-end">
+                                        <div className="d-flex justify-content-end mt-5">
                                             <Button
                                                 type="button"
                                                 variant="btn btn-danger mx-2"

@@ -134,7 +134,7 @@ const DocumentationList = ({ docList, filterProps, getDocList }) => {
                                                     <b>Subject</b>
                                                 </th>
 
-                                                <th min-width="100px">
+                                                <th >
                                                     <b>Action</b>
                                                 </th>
                                             </tr>
@@ -151,12 +151,12 @@ const DocumentationList = ({ docList, filterProps, getDocList }) => {
                                                         <b>{item.subject}</b>
                                                     </td>
 
-                                                    <td>
-                                                        <div className="d-flex align-items-center list-user-actions pr-3">
+                                                    <td className=''>
+                                                   
                                                             <OverlayTrigger
-                                                                placement="top"
+                                                                placement="left"
                                                                 overlay={
-                                                                    <Tooltip id="button-tooltip-2">
+                                                                    <Tooltip id="button-tooltip-1">
                                                                         Preview Documentation
                                                                     </Tooltip>
                                                                 }
@@ -164,10 +164,7 @@ const DocumentationList = ({ docList, filterProps, getDocList }) => {
 
                                                                 <a
                                                                     className="btn btn-sm btn-icon btn-success"
-                                                                    data-toggle="tooltip"
-                                                                    data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Details"
+                                                                   
                                                                     onClick={() => {
                                                                         navigate(`${dashboard_routes.documentation.previewDocumentation}?docId=${item.id}`)
                                                                     }}
@@ -218,11 +215,7 @@ const DocumentationList = ({ docList, filterProps, getDocList }) => {
                                                             >
 
                                                                 <a
-                                                                    className="btn btn-sm btn-icon btn-warning mx-2"
-                                                                    data-toggle="tooltip"
-                                                                    data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Edit"
+                                                                    className="btn btn-sm btn-icon btn-warning  mx-4"
                                                                     onClick={() => {
                                                                         navigate(`${dashboard_routes.documentation.updateDocumentation}?docId=${item.id}&productId=${productId}`)
                                                                     }}
@@ -264,9 +257,9 @@ const DocumentationList = ({ docList, filterProps, getDocList }) => {
                                                             </OverlayTrigger>
 
                                                             <OverlayTrigger
-                                                                placement="top"
+                                                                placement="right"
                                                                 overlay={
-                                                                    <Tooltip id="button-tooltip-2">
+                                                                    <Tooltip id="button-tooltip-3">
                                                                         Delete Document
                                                                     </Tooltip>
                                                                 }
@@ -317,7 +310,6 @@ const DocumentationList = ({ docList, filterProps, getDocList }) => {
                                                                 </span>
                                                             </OverlayTrigger>
 
-                                                        </div>
                                                     </td>
                                                 </tr>
                                             ))}

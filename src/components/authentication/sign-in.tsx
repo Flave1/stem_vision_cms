@@ -10,6 +10,8 @@ import { Login } from '../../store/actions/auth-actions';
 import Card from '../../utils/Card';
 import { app_routes } from '../../router/routes';
 import { aos } from '../../utils/Animation/aos-animation';
+import HomeHeader from '../Landing-Page/header';
+import HomeFooter from '../Landing-Page/footer';
 
 const SignIn = ({ login, auth, navigate }: any) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -40,6 +42,7 @@ const SignIn = ({ login, auth, navigate }: any) => {
     });
     return (
         <>
+        <HomeHeader />
             <section className="login-content" style={{ background: '#fcfcfc' }} data-aos="fade-up">
 
                 <Row className="m-0 align-items-center d-flex justify-content-center  vh-100">
@@ -147,6 +150,7 @@ const SignIn = ({ login, auth, navigate }: any) => {
                     </Col>
                 </Row>
             </section>
+            <HomeFooter />
         </>
     )
 }

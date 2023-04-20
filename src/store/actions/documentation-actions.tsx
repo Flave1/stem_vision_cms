@@ -68,6 +68,23 @@ export const GetSingleDoc = (docId: any) => (dispatch: any) => {
         });
 };
 
+export const GetExportedDoc = (featureId: any) => (dispatch: any) => {
+    startSpining()(dispatch);
+
+    axiosInstance.get(`/fws/doc/api/v1/get-doc-by-feature?feature=${featureId}`)
+        .then((res) => {
+            dispatch({
+                type: actions.FETCH_EXPORTED_DOCUMENTATION,
+                payload: res.data.result,
+            });
+        })
+        .catch((err: any) => {
+            stopSpining()(dispatch);
+            console.log('err', err);
+            Alert.showError(err?.response?.data?.message?.friendlyMessage)
+        });
+};
+
 export const CreateDoc = (values: any, navigate: any) => (dispatch: any) => {
     startSpining()(dispatch);
     console.log('values', values);

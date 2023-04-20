@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import Card from '../../utils/Card';
 import { Register } from '../../store/actions/auth-actions';
 import AOS from 'aos';
+import HomeHeader from '../Landing-Page/header';
+import HomeFooter from '../Landing-Page/footer';
 
 
 const SignUp = ({ register, auth }: any) => {
@@ -46,6 +48,7 @@ const SignUp = ({ register, auth }: any) => {
 
     return (
         <>
+        <HomeHeader />
             <section className="login-content" style={{ background: '#fcfcfc' }} data-aos="fade-up">
                 {/* <SmpLoader /> */}
                 <Row className="m-0 align-items-center d-flex justify-content-center bg-white vh-100">
@@ -164,6 +167,7 @@ const SignUp = ({ register, auth }: any) => {
 
                 </Row>
             </section>
+        <HomeFooter />
         </>
     )
 }

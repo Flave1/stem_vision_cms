@@ -9,7 +9,7 @@ import { Alert } from "../../../utils/Alert";
 import MyEditor from "../../../utils/Editor";
 import '../fwsAdmin.css'
 
-const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => {
+const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }: any) => {
     const locations = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(locations.search);
@@ -34,11 +34,13 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
             subject: "",
             body: "",
             product: productId,
-            feature: 0
+            feature: ""
         },
         enableReinitialize: true,
         validationSchema: validation,
         onSubmit: (values: any) => {
+            console.log("val",values);
+            
             values.body = content;
             if (!content) {
                 Alert.showError('Body is required');
@@ -77,28 +79,29 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
                                         </Row>
                                         <Form.Group className=" form-group">
                                             <label className="form-label">
-                                                <b>Subject:</b>
+                                                <b>Feature:</b>
                                             </label>
-                                            <select className="form-control">
 
-                                                <option value={0}>{'Select Feature'}</option>
-                                                {
-                                                    documentation.features?.length > 0 &&
-                                                    documentation.features.map((x: any) => {
-                                                        return (
-                                                            <option
-                                                                onChange={(e: any) => {
-                                                                    setFieldValue("feature", e.target.value);
-                                                                }}
-                                                                selected={x.value == values.feature}
-                                                                value={x.value}>{x.text}</option>
-                                                        )
-                                                    })
-                                                }
 
+                                            <select
+                                                name="feature"
+                                                className="form-select"
+                                                id="feature"
+                                                value={values.feature}
+                                                onChange={(e: any) => {
+                                                    setFieldValue("feature", e.target.value);
+                                                }}
+                                            >
+                                                <option value="Select Feature">
+                                                    Select Feature
+                                                </option>
+                                                {features?.map((item: any, idx: any) => (
+                                                    <option key={idx} value={item.value}>
+                                                        {item.text}
+                                                    </option>
+                                                ))}
                                             </select>
                                         </Form.Group>
-
                                         <Form.Group className=" form-group">
                                             <label className="form-label">
                                                 <b>Subject:</b>
@@ -163,6 +166,7 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
 function mapStateToProps(state: any) {
     return {
         documentation: state.documentation,
+        features: state.documentation.features
     };
 }
 

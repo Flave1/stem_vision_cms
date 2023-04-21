@@ -8,4 +8,5 @@ export const app_routes = {
         firstTimeLogin: "/fws/change-password-on-login",
     },
     documentation:'/fws/documentation',
+    detailedDocumentation:'/fws/detailed-documentation',
 }

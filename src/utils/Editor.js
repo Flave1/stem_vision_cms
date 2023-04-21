@@ -1,8 +1,9 @@
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+//import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 // import * as UploadAdapter  from '@ckeditor/ckeditor5-upload'
+//import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 
 
 function MyEditor({ setContent, content }) {
@@ -37,6 +38,10 @@ function MyEditor({ setContent, content }) {
                 // console.log('Focus.', editor);
                 // setContent(data)
             }}
+            // config={{
+            //  plugins: [ Base64UploadAdapter ],
+              
+            // }}
         // config={{
         //     simpleUpload: {
         //         uploadUrl: '/your-upload-endpoint',

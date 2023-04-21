@@ -83,7 +83,7 @@ const CreateDocumentation = ({ singleDocumentation, createDoc, getSingleDoc, fea
                                         </Row>
                                         <Form.Group className=" form-group">
                                             <label className="form-label">
-                                                <b>Subject:</b>
+                                                <b>Feature:</b>
                                             </label>
 
 

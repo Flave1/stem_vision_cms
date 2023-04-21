@@ -20,9 +20,6 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
         getFeatures()
     }, [])
 
-    console.log('documentation', documentation);
-
-
     //VALIDATIONS SCHEMA
     const validation = Yup.object().shape({
         subject: Yup.string().required("Subject is required"),
@@ -44,7 +41,6 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
                 Alert.showError('Body is required');
                 return;
             }
-
             createDoc(values, navigate);
         }
     });
@@ -79,23 +75,23 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
                                             <label className="form-label">
                                                 <b>Subject:</b>
                                             </label>
-                                            <select className="form-control">
-
-                                                <option value={0}>{'Select Feature'}</option>
-                                                {
-                                                    documentation.features?.length > 0 &&
-                                                    documentation.features.map((x: any) => {
-                                                        return (
-                                                            <option
-                                                                onChange={(e: any) => {
-                                                                    setFieldValue("feature", e.target.value);
-                                                                }}
-                                                                selected={x.value == values.feature}
-                                                                value={x.value}>{x.text}</option>
-                                                        )
-                                                    })
-                                                }
-
+                                            <select
+                                                name="feature"
+                                                className="form-select"
+                                                id="feature"
+                                                value={values.feature}
+                                                onChange={(e: any) => {
+                                                    setFieldValue("feature", e.target.value);
+                                                }}
+                                            >
+                                                <option value="Select Featuer">
+                                                    Select Feature
+                                                </option>
+                                                {documentation.features?.map((item: any, idx: any) => (
+                                                    <option key={idx} value={item.value}>
+                                                        {item.text}
+                                                    </option>
+                                                ))}
                                             </select>
                                         </Form.Group>
 

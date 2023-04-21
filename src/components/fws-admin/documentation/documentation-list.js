@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { Col, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import Card from "../../../utils/Card";
@@ -11,6 +12,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ReturnFilteredList } from "../../../utils/tools";
 import PaginationFilter from "../../../utils/pagination-filter";
 import { Alert } from "../../../utils/Alert";
+=======
+import React, { useEffect, useState } from 'react'
+import { Col, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import Card from '../../../utils/Card';
+import { dashboard_routes } from '../../../router/fws-path-locations';
+import { connect, useDispatch } from 'react-redux';
+import { DeleteDoc, GetDocList } from '../../../store/actions/documentation-actions';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { filterList } from '../../../utils/tools';
+import PaginationFilter from '../../../utils/pagination-filter';
+import { Alert } from '../../../utils/Alert';
+>>>>>>> 820e95a63262cc1d464ceef8faad2a926ff52f5c
 
 const DocumentationList = ({ docList, filterProps, getDocList }) => {
   const locations = useLocation();
@@ -25,9 +38,15 @@ const DocumentationList = ({ docList, filterProps, getDocList }) => {
     getDocList(productId, 1);
   }, [productId]);
 
+<<<<<<< HEAD
   useEffect(() => {
     ReturnFilteredList(docList, searchQuery, ["subject"]);
   }, [searchQuery, docList]);
+=======
+    useEffect(() => {
+        filterList(docList, searchQuery, ["subject"])
+    }, [searchQuery, docList])
+>>>>>>> 820e95a63262cc1d464ceef8faad2a926ff52f5c
 
   return (
     <>

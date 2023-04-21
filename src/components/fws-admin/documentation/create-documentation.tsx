@@ -20,9 +20,6 @@ const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }:
         getFeatures()
     }, [])
 
-    console.log('documentation', documentation);
-
-
     //VALIDATIONS SCHEMA
     const validation = Yup.object().shape({
         subject: Yup.string().required("Subject is required"),
@@ -46,7 +43,6 @@ const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }:
                 Alert.showError('Body is required');
                 return;
             }
-
             createDoc(values, navigate);
         }
     });
@@ -81,8 +77,11 @@ const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }:
                                             <label className="form-label">
                                                 <b>Feature:</b>
                                             </label>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 820e95a63262cc1d464ceef8faad2a926ff52f5c
                                             <select
                                                 name="feature"
                                                 className="form-select"
@@ -92,10 +91,17 @@ const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }:
                                                     setFieldValue("feature", e.target.value);
                                                 }}
                                             >
+<<<<<<< HEAD
                                                 <option value="Select Feature">
                                                     Select Feature
                                                 </option>
                                                 {features?.map((item: any, idx: any) => (
+=======
+                                                <option value="Select Featuer">
+                                                    Select Feature
+                                                </option>
+                                                {documentation.features?.map((item: any, idx: any) => (
+>>>>>>> 820e95a63262cc1d464ceef8faad2a926ff52f5c
                                                     <option key={idx} value={item.value}>
                                                         {item.text}
                                                     </option>

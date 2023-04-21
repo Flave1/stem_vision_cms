@@ -41,7 +41,7 @@ export const HandleMultipleCheckbox = (event, selectedArray) => {
     }
 };
 
-export const ReturnFilteredList = (arrayofObjects = [], searchQuery = "", columns = []) => { 
+export const filterList = (arrayofObjects = [], searchQuery = "", columns = []) => { 
     return arrayofObjects && arrayofObjects.filter((item) => {
         if (searchQuery === "") {
             return item;

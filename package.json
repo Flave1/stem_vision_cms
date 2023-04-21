@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@ckeditor/ckeditor5-build-classic": "^37.1.0",
     "@ckeditor/ckeditor5-editor-classic": "^37.1.0",
     "@ckeditor/ckeditor5-react": "5.1.0",
     "@ckeditor/ckeditor5-upload": "^37.1.0",
+=======
+>>>>>>> 820e95a63262cc1d464ceef8faad2a926ff52f5c
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -19,6 +22,7 @@
     "bootstrap": "^5.2.3",
     "formik": "^2.2.9",
     "moment": "^2.29.4",
+    "react-quill": "^2.0.0-beta.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-countup": "^5.2.0",

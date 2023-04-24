@@ -1,16 +1,6 @@
-<<<<<<< HEAD
-
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-//import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
-// import * as UploadAdapter  from '@ckeditor/ckeditor5-upload'
-//import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
-
-=======
 import { useMemo } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
->>>>>>> 820e95a63262cc1d464ceef8faad2a926ff52f5c
 
 function MyEditor({ setContent, content }) {
 
@@ -30,47 +20,6 @@ function MyEditor({ setContent, content }) {
         },
     }), []);
     return (
-<<<<<<< HEAD
-        <CKEditor
-
-            // style={{ height: '300px' }}
-            editor={ClassicEditor}
-            data={content}
-
-            onReady={(editor) => {
-                // You can store the "editor" and use when it is needed.
-                // console.log('Editor is ready to use!', editor);
-            }}
-            onChange={(event, editor) => {
-                const data = editor.getData();
-                console.log({ event, editor, data });
-                setContent(data)
-            }}
-            onBlur={(event, editor) => {
-                // console.log('Blur.', editor);
-                // setContent(event.target.value)
-            }}
-            onFocus={(event, editor) => {
-                // console.log('Focus.', editor);
-                // setContent(data)
-            }}
-            // config={{
-            //  plugins: [ Base64UploadAdapter ],
-              
-            // }}
-        // config={{
-        //     simpleUpload: {
-        //         uploadUrl: '/your-upload-endpoint',
-        //         headers: {
-        //             'X-CSRF-TOKEN': 'CSRF-Token', // Replace with actual CSRF token
-        //         },
-        //         // Upload adapter options
-        //         adapter: <UploadAdapter />,
-        //         // Configure the URL endpoint for the file uploads
-        //         withCredentials: true,
-        //     },
-        // }}
-=======
         <ReactQuill
             theme="snow"
             value={content}
@@ -78,7 +27,6 @@ function MyEditor({ setContent, content }) {
             modules={textEditorModules}
             style={{ height: '1000px', maxHeight: "1000px" }}
             className="h6 mb-5"
->>>>>>> 820e95a63262cc1d464ceef8faad2a926ff52f5c
         />
     );
 }

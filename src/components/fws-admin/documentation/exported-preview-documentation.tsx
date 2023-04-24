@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { GetExportedDoc } from '../../../store/actions/documentation-actions';
 import { useLocation } from 'react-router-dom';
+import Loader from '../../../utils/loader';
 
 const ExportedPreviewDocumentation = ({ exportedDocumentation, getExportedDoc }: any) => {
     const locations = useLocation();
@@ -15,13 +16,14 @@ const ExportedPreviewDocumentation = ({ exportedDocumentation, getExportedDoc }:
 
     return (
         <>
+        <Loader/>
         {exportedDocumentation.length === 0 ? <div>No Documentation available</div> :
             exportedDocumentation?.map((doc: any, idx: number) => (
-                <div>
+                <div style={{width:'100%', maxWidth:'100%'}}>
                     <h4 className="card-title m-3 ">
                         <b>{doc.subject}</b>
                     </h4>
-                    <div className='container'>
+                    <div className='container '>
                         <div
                             dangerouslySetInnerHTML={{
                                 __html: doc?.body,

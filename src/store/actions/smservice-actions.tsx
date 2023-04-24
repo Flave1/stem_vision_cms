@@ -9,6 +9,7 @@ export const GetAllSms = () => (dispatch: any) => {
     
     axiosInstance.get(`/fws/products/api/v1/get-all-products`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_SMS,
                 payload: res.data.result,
@@ -27,6 +28,7 @@ export const AddSms = (formData: any,navigate:any) => (dispatch: any) => {
                 
     axiosInstance.post('/fws/sms/api/v1/create-sms',  formData)
         .then((res) => {
+            stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)
             GetAllSms()(dispatch);
             navigate(-1)
@@ -41,6 +43,7 @@ export const UpdateSmservice = (formData: any,navigate:any) => (dispatch: any) =
                 
     axiosInstance.post('/fws/sms/api/v1/update-sms',  formData)
         .then((res) => {
+            stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)
             GetAllSms()(dispatch);
             navigate(-1)
@@ -61,6 +64,7 @@ export const ExportPins = (numberOfPins: number,clientId :string) => (dispatch: 
  
     axiosInstance.post('fws/sms/api/v1/export-pins',  payload)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.EXPORT_PINS,
                 payload: res.data.result
@@ -83,6 +87,7 @@ const payload={
 }
     axiosInstance.post(`fws/sms/api/v1/validate-baseurl-suffix`,payload)
         .then(response => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.VALIDATE_BASE_URL_SUFFIX,
                 payload: response.data.result
@@ -100,6 +105,7 @@ export const GetCountries = () => (dispatch: any) => {
 
     axiosInstance.get(`/fws/lookups/api/v1/get/country-select`)
         .then(response => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_COUNTRY,
                 payload: response.data.result
@@ -117,6 +123,7 @@ export const GetStates = (country: any) => (dispatch: any) => {
 
     axiosInstance.get(`/fws/lookups/api/v1/get/state-select?country=${country}`)
         .then(response => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_STATE,
                 payload: response.data.result

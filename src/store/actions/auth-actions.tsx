@@ -19,6 +19,7 @@ export const Login = (payload: any, navigate: any) => (dispatch: any) => {
    
     axiosInstance.post('fws/user/api/v1/login', payload)
         .then((res: any) => {
+            stopSpining()(dispatch);
             dispatch({ type: actions.LOGIN_USER, payload: res.data.result });
             const decodedToken = jwt<AuthenticationResponse>(res.data.result.authResult.token);
             const stringValue = JSON.stringify(decodedToken);
@@ -46,6 +47,7 @@ export const Register = (payload: any,navigate:any) => (dispatch: any) => {
 
     axiosInstance.post('/fws/user/api/v1/register', payload)
         .then((res: any) => {
+            stopSpining()(dispatch);
             dispatch({ type: actions.REGISTER_USER, payload: res.data.result });
             const decodedToken = jwt<AuthenticationResponse>(res.data.result.authResult.token);
             const stringValue = JSON.stringify(decodedToken);
@@ -67,6 +69,7 @@ export const ChangePassword = (payload: any,navigate : any) => (dispatch: any) =
 
     axiosInstance.post('user/api/v1/first-time/change-password', payload)
         .then((res: any) => {
+            stopSpining()(dispatch);
             dispatch({ type: actions.LOGIN_USER, payload: res.data.result });
             const decodedToken = jwt<AuthenticationResponse>(res.data.result.authResult.token);
             const stringValue = JSON.stringify(decodedToken);

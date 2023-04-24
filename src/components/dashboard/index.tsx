@@ -6,6 +6,7 @@ import "./dashboard.scss"
 import { useLocation } from 'react-router-dom'
 import AdminRouter from '../../router/administrator-router'
 import Header from './header'
+import Loader from '../../utils/loader'
 
 const AdministrationIndex = () => {
     const [toggle, setToggle] = useState(true);
@@ -13,8 +14,9 @@ const AdministrationIndex = () => {
     let location = useLocation();
 
     return (
-        <div className='container-fluid bg-dashboard min-vh-100 '>
-           
+        <>
+        <Loader/>
+        <div className='container-fluid bg-dashboard min-vh-100 '>           
             <div className='row '>
                 {toggle &&
                     <div className='col-4 col-md-2 bg-white vh-100 position-fixed d-none d-md-block'>
@@ -30,6 +32,7 @@ const AdministrationIndex = () => {
             </div>
 
         </div>
+        </>
     )
 }
 export default AdministrationIndex

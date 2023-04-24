@@ -8,6 +8,7 @@ export const GetAllProducts = () => (dispatch: any) => {
    
     axiosInstance.get(`/fws/products/api/v1/get-all-products`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_PRODUCTS,
                 payload: res.data.result,
@@ -27,6 +28,7 @@ export const GetSingleProduct = (productId:any) => (dispatch: any) => {
 
     axiosInstance.get(`/fws/products/api/v1/get-single-product?productId=${productId}`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_SINGLE_PRODUCT,
                 payload: res.data.result,
@@ -44,6 +46,7 @@ export const GetAllUserProducts = () => (dispatch: any) => {
 
     axiosInstance.get(`/fws/products/api/v1/get-user-products`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_USER_PRODUCTS,
                 payload: res.data.result,
@@ -61,6 +64,7 @@ export const GetSingleUserProduct = (userProductId:any) => (dispatch: any) => {
 
     axiosInstance.get(`/fws/products/api/v1/get-single/user-product?userProductId=${userProductId}`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_SINGLE_USER_PRODUCT,
                 payload: res.data.result,

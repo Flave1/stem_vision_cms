@@ -31,7 +31,7 @@ const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }:
             subject: "",
             body: "",
             product: productId,
-            feature: ""
+            feature: 0
         },
         enableReinitialize: true,
         validationSchema: validation,
@@ -77,6 +77,7 @@ const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }:
                                             <label className="form-label">
                                                 <b>Feature:</b>
                                             </label>
+
                                             <select
                                                 name="feature"
                                                 className="form-select"
@@ -86,10 +87,10 @@ const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }:
                                                     setFieldValue("feature", e.target.value);
                                                 }}
                                             >
-                                                <option value="Select Featuer">
+                                                <option value="Select Feature">
                                                     Select Feature
                                                 </option>
-                                                {documentation.features?.map((item: any, idx: any) => (
+                                                {features?.map((item: any, idx: any) => (
                                                     <option key={idx} value={item.value}>
                                                         {item.text}
                                                     </option>

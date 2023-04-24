@@ -9,6 +9,7 @@ import SignUp from "../components/authentication/sign-up";
 import ContactUs from "../components/Landing-Page/contactus";
 import AboutUs from "../components/Landing-Page/aboutus";
 import ExportedPreviewDocumentation from "../components/fws-admin/documentation/exported-preview-documentation";
+import DetailedExportedPreviewDocumentation from "../components/fws-admin/documentation/detailed-exported-preview-documentation";
 
 
 
@@ -26,6 +27,7 @@ const IndexRouter = () => {
                 <Route path={app_routes.authentication.firstTimeLogin} element={<FirstTimeLoginPassswordChange />} />
                 <Route path={app_routes.authentication.register} element={<SignUp />} />
                 <Route path={app_routes.documentation} element={<ExportedPreviewDocumentation />} />
+                <Route path={app_routes.detailedDocumentation} element={<DetailedExportedPreviewDocumentation />} />
             </Routes>
       
         </>

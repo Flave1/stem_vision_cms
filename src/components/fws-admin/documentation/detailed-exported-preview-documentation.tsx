@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { GetExportedDoc } from '../../../store/actions/documentation-actions';
 import { useLocation } from 'react-router-dom';
 
-const ExportedPreviewDocumentation = ({ exportedDocumentation, getExportedDoc }: any) => {
+const DetailedExportedPreviewDocumentation = ({ exportedDocumentation, getExportedDoc }: any) => {
     const locations = useLocation();
     const queryParams = new URLSearchParams(locations.search);
     const feature = queryParams.get("feature");
@@ -15,6 +15,7 @@ const ExportedPreviewDocumentation = ({ exportedDocumentation, getExportedDoc }:
 
     return (
         <>
+        <div className='' style={{width:'70%'}}>
         {exportedDocumentation.length === 0 ? <div>No Documentation available</div> :
             exportedDocumentation?.map((doc: any, idx: number) => (
                 <div>
@@ -32,6 +33,7 @@ const ExportedPreviewDocumentation = ({ exportedDocumentation, getExportedDoc }:
                     </div>
                 </div>
             ))}
+            </div>
         </>
     )
 }
@@ -46,4 +48,4 @@ function mapDispatchToProps(dispatch: any) {
     return { getExportedDoc: (id: any, pageNumber: number) => GetExportedDoc(id)(dispatch) };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExportedPreviewDocumentation)
+export default connect(mapStateToProps, mapDispatchToProps)(DetailedExportedPreviewDocumentation)

@@ -9,7 +9,7 @@ import { Alert } from "../../../utils/Alert";
 import MyEditor from "../../../utils/Editor";
 import '../fwsAdmin.css'
 
-const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => {
+const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }: any) => {
     const locations = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(locations.search);
@@ -31,11 +31,13 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
             subject: "",
             body: "",
             product: productId,
-            feature: 0
+            feature: ""
         },
         enableReinitialize: true,
         validationSchema: validation,
         onSubmit: (values: any) => {
+            console.log("val",values);
+            
             values.body = content;
             if (!content) {
                 Alert.showError('Body is required');
@@ -73,8 +75,13 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
                                         </Row>
                                         <Form.Group className=" form-group">
                                             <label className="form-label">
-                                                <b>Subject:</b>
+                                                <b>Feature:</b>
                                             </label>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 820e95a63262cc1d464ceef8faad2a926ff52f5c
                                             <select
                                                 name="feature"
                                                 className="form-select"
@@ -84,17 +91,23 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
                                                     setFieldValue("feature", e.target.value);
                                                 }}
                                             >
+<<<<<<< HEAD
+                                                <option value="Select Feature">
+                                                    Select Feature
+                                                </option>
+                                                {features?.map((item: any, idx: any) => (
+=======
                                                 <option value="Select Featuer">
                                                     Select Feature
                                                 </option>
                                                 {documentation.features?.map((item: any, idx: any) => (
+>>>>>>> 820e95a63262cc1d464ceef8faad2a926ff52f5c
                                                     <option key={idx} value={item.value}>
                                                         {item.text}
                                                     </option>
                                                 ))}
                                             </select>
                                         </Form.Group>
-
                                         <Form.Group className=" form-group">
                                             <label className="form-label">
                                                 <b>Subject:</b>
@@ -159,6 +172,7 @@ const CreateDocumentation = ({ documentation, createDoc, getFeatures }: any) => 
 function mapStateToProps(state: any) {
     return {
         documentation: state.documentation,
+        features: state.documentation.features
     };
 }
 

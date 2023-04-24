@@ -52,6 +52,11 @@ const Header = (props: any) => {
                                              </Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item as="li">
+                                            <Nav.Link className={`${location.pathname === dashboard_routes.documentation.documentationProducts? 'active' : ''}`}
+                                             href={dashboard_routes.documentation.documentationProducts}> <div className='px-3'>Documentation</div>
+                                             </Nav.Link>
+                                        </Nav.Item>
+                                        <Nav.Item as="li">
                                             <Nav.Link onClick={() => { dispatch(logOut()); window.location.href = "/sign-in" }}> <div className='px-3'> Log Out</div></Nav.Link>
                                         </Nav.Item>
                                     </Nav>

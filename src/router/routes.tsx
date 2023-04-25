@@ -7,6 +7,6 @@ export const app_routes = {
         register: "/fws/register",
         firstTimeLogin: "/fws/change-password-on-login",
     },
-    documentation:'/fws/documentation',
-    detailedDocumentation:'/fws/detailed-documentation',
+    documentation:'/docs/smp',
+    detailedDocumentation:'/docs/smp-canvas',
 }

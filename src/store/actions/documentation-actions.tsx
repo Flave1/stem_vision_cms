@@ -8,6 +8,7 @@ export const GetDocProducts = () => (dispatch: any) => {
 
     axiosInstance.get(`/fws/doc/api/v1/products`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_DOCUMENTATION_PRODUCTS,
                 payload: res.data.result,
@@ -27,6 +28,7 @@ export const GetDocList = (docId: any, pageNumber: any) => (dispatch: any) => {
 
     axiosInstance.get(`/fws/doc/api/v1/get?id=${docId}&pageNumber=${pageNumber}`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_DOCUMENTATION_LIST,
                 payload: res.data.result,
@@ -43,6 +45,7 @@ export const getFeatures = () => (dispatch: any) => {
 
     axiosInstance.get(`/fws/doc/api/v1/get-features`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({ type: actions.GET_FEATURES, payload: res.data.result });
         })
         .catch((err: any) => {
@@ -56,6 +59,7 @@ export const GetSingleDoc = (docId: any) => (dispatch: any) => {
 
     axiosInstance.get(`/fws/doc/api/v1/get-doc?documentationId=${docId}`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_SINGLE_DOCUMENTATION,
                 payload: res.data.result,
@@ -73,6 +77,7 @@ export const GetExportedDoc = (featureId: any) => (dispatch: any) => {
 
     axiosInstance.get(`/fws/doc/api/v1/get-doc-by-feature?feature=${featureId}`)
         .then((res) => {
+            stopSpining()(dispatch);
             dispatch({
                 type: actions.FETCH_EXPORTED_DOCUMENTATION,
                 payload: res.data.result,
@@ -91,6 +96,7 @@ export const CreateDoc = (values: any, navigate: any) => (dispatch: any) => {
 
     axiosInstance.post('/fws/doc/api/v1/create', values)
         .then((res) => {
+            stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)
             GetDocList(values.id, 1)(dispatch);
             navigate(-1)
@@ -110,6 +116,7 @@ export const DeleteDoc = (values: any) => (dispatch: any) => {
 
     axiosInstance.post('/fws/doc/api/v1/delete', payload)
         .then((res) => {
+            stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)
             GetDocList(values.selectedId, 1)(dispatch);
             values.navigate(0);

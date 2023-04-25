@@ -78,7 +78,6 @@ const CreateDocumentation = ({ documentation, createDoc, features,getFeatures }:
                                                 <b>Feature:</b>
                                             </label>
 
-
                                             <select
                                                 name="feature"
                                                 className="form-select"

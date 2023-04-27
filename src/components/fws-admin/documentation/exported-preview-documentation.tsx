@@ -17,13 +17,13 @@ const ExportedPreviewDocumentation = ({ exportedDocumentation, getExportedDoc }:
     return (
         <>
         <Loader/>
-            {exportedDocumentation?.map((doc: any, idx: number) => (
+            {exportedDocumentation?.length === 0 ? <div>No Documentation available</div> :
+            exportedDocumentation?.map((doc: any, idx: number) => (
                 <div style={{width:'100%', maxWidth:'100%'}}>
                     <h4 className="card-title m-3 ">
                         <b>{doc.subject}</b>
                     </h4>
                     <div className='container '>
-                    {exportedDocumentation.length === 0 ? <div>No Documentation available</div> :
                         <div
                             dangerouslySetInnerHTML={{
                                 __html: doc?.body,
@@ -31,7 +31,6 @@ const ExportedPreviewDocumentation = ({ exportedDocumentation, getExportedDoc }:
                         >
 
                         </div>
-                     }
                     </div>
                 </div>
             ))}

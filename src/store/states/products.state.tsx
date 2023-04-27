@@ -6,5 +6,6 @@ export const _state = {
     userProducts:[],
     singleProduct: new ProductDetail(),
     singleUserProduct: new ProductDetail(),
+    clientUsers:[],
     message: "",
 }

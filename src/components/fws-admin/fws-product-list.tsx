@@ -2,11 +2,14 @@ import React, { useEffect} from "react";
 import { Card, Row } from "react-bootstrap";
 import { GetAllProducts } from "../../store/actions/products-actions";
 import { dashboard_routes } from "../../router/fws-path-locations";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Products = ({getAllProducts,products}:any) => {
   const navigate = useNavigate();
+  const locations = useLocation();
+  const queryParams = new URLSearchParams(locations.search);
+  const isSmsUser = queryParams.get("isSmsUser");
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -16,6 +19,7 @@ const Products = ({getAllProducts,products}:any) => {
     } else return str;
   }
 
+  console.log("isSmsUser",isSmsUser);
   
   return (
     <>
@@ -87,11 +91,11 @@ const Products = ({getAllProducts,products}:any) => {
                     </div>
                   </div>
                 </div>
-                <div
-                  className=" border text-center mt-0 mt-md-n3 mb-3 p-2"
+                <div className="d-flex justify-content-around border text-center mt-0 mt-md-n3 mb-3 p-2 ">
+                <div  
+                 className=" border text-center  p-2 px-5" 
                   style={{
-                    backgroundColor: product.installed ? "#f9cd39" : "white",
-                    color: product.installed ? "white" : "",
+                    backgroundColor: "white",
                     cursor: "pointer",
                   }}
                   onClick={() =>
@@ -101,7 +105,28 @@ const Products = ({getAllProducts,products}:any) => {
                     )
                   }
                 >
-                  {!product.installed ? "View" : "Installed"}
+                  View
+                </div>
+                <div
+                  className=" border text-center p-2 px-5"
+                  style={{
+                    backgroundColor: product.installed ? "#f9cd39" : "white",
+                    color: product.installed ? "white" : "",
+                    cursor: "pointer",
+                  }}
+                  onClick={() =>
+                    isSmsUser ?
+                    navigate(
+                      `${dashboard_routes.smsLocations.updateSms}?userProductId=${product.userProductId}`
+                    )
+                    :
+                    navigate(
+                      `${dashboard_routes.smsLocations.createSms}`
+                    )
+                  }
+                >
+                  {!product.installed ? "Add" : "Update"}
+                </div>
                 </div>
               </div>
             ))}

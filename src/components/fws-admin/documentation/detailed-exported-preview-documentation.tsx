@@ -16,27 +16,25 @@ const DetailedExportedPreviewDocumentation = ({ exportedDocumentation, getExport
 
     return (
         <>
-          <Loader/>
-        <div className='' style={{width:'70%', maxWidth:'70%'}}>
-        {
-            exportedDocumentation?.map((doc: any, idx: number) => (
-                <div>
-                    <h4 className="card-title m-3 ">
-                        <b>{doc.subject}</b>
-                    </h4>
-                    <div className='container responsive'>
-                    {exportedDocumentation.length === 0 ? <div>No Documentation available</div> :
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: doc?.body,
-                            }}
-                        >
-                    
+            <Loader />
+            <div className='' style={{ width: '70%', maxWidth: '70%' }}>
+                {exportedDocumentation?.length === 0 ? <div>No Documentation available</div> :
+                    exportedDocumentation?.map((doc: any, idx: number) => (
+                        <div>
+                            <h4 className="card-title m-3 ">
+                                <b>{doc.subject}</b>
+                            </h4>
+                            <div className='container responsive'>
+
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: doc?.body,
+                                    }}
+                                >
+                                </div>
+                            </div>
                         </div>
-                        }
-                    </div>
-                </div>
-            ))}
+                    ))}
             </div>
         </>
     )

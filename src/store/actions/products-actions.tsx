@@ -76,3 +76,22 @@ export const GetSingleUserProduct = (userProductId:any) => (dispatch: any) => {
             Alert.showError(err?.response?.data?.message?.friendlyMessage)
         });
 };
+
+
+export const GetClientUsers = (pageNumber:any) => (dispatch: any) => {
+    startSpining()(dispatch);
+
+    axiosInstance.get(`fws/usermanager/api/v1/get-client-users?pageNumber=${pageNumber}`)
+        .then((res) => {
+            stopSpining()(dispatch);
+            dispatch({
+                type: actions.FETCH_CLIENT_USERS,
+                payload: res.data.result,
+            });
+        })
+        .catch((err : any)  => {
+            stopSpining()(dispatch);
+            console.log('err', err);
+            Alert.showError(err?.response?.data?.message?.friendlyMessage)
+        });
+};

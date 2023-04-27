@@ -35,7 +35,7 @@ const Sidebar = (props: any) => {
                 </li>
 
                 <li className="nav-item">
-                    <Link className={`${location.pathname === dashboard_routes.productsLocations.products ? 'active' : ''} nav-link px-4`} aria-current="page" to={`${dashboard_routes.productsLocations.products}`} onClick={() => { }} >
+                    <Link className={`${location.pathname === dashboard_routes.productsLocations.userList ? 'active' : ''} nav-link px-4`} aria-current="page" to={`${dashboard_routes.productsLocations.userList}`} onClick={() => { }} >
                         <i className="icon">
                             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path opacity="0.4" d="M10.0833 15.958H3.50777C2.67555 15.958 2 16.6217 2 17.4393C2 18.2559 2.67555 18.9207 3.50777 18.9207H10.0833C10.9155 18.9207 11.5911 18.2559 11.5911 17.4393C11.5911 16.6217 10.9155 15.958 10.0833 15.958Z" fill="currentColor"></path>
@@ -58,6 +58,73 @@ const Sidebar = (props: any) => {
                         <span className="item-name px-2">Documentation</span>
                     </Link>
                 </li>
+                <Accordion.Item as="li" eventKey="horizontal-menu" bsPrefix="nav-item" >
+                          
+                        <i className="icon">
+                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M8.53162 2.93677C10.7165 1.66727 13.402 1.68946 15.5664 2.99489C17.7095 4.32691 19.012 6.70418 18.9998 9.26144C18.95 11.8019 17.5533 14.19 15.8075 16.0361C14.7998 17.1064 13.6726 18.0528 12.4488 18.856C12.3228 18.9289 12.1848 18.9777 12.0415 19C11.9036 18.9941 11.7693 18.9534 11.6508 18.8814C9.78243 17.6746 8.14334 16.134 6.81233 14.334C5.69859 12.8314 5.06584 11.016 5 9.13442C4.99856 6.57225 6.34677 4.20627 8.53162 2.93677ZM9.79416 10.1948C10.1617 11.1008 11.0292 11.6918 11.9916 11.6918C12.6221 11.6964 13.2282 11.4438 13.6748 10.9905C14.1214 10.5371 14.3715 9.92064 14.3692 9.27838C14.3726 8.29804 13.7955 7.41231 12.9073 7.03477C12.0191 6.65723 10.995 6.86235 10.3133 7.55435C9.63159 8.24635 9.42664 9.28872 9.79416 10.1948Z" fill="currentColor"></path><ellipse opacity="0.4" cx="12" cy="21" rx="5" ry="1" fill="currentColor"></ellipse></svg>
+                        </i>
+                        <span className="item-name">Locations</span>
+                        <i className="right-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </i>
+               
+                    <Accordion.Collapse eventKey="sidebar-user">
+                        <ul className="sub-nav">
+                            <li className="nav-item">
+                            <Link className={`${location.pathname === dashboard_routes.locationLocations.country ? 'active' : ''} nav-link `} aria-current="page" to={dashboard_routes.locationLocations.country} onClick={() => {}}>
+                                    <i className="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i className="sidenav-mini-icon"> C </i>
+                                    <span className="item-name">Country</span>
+                                </Link>
+                            </li>
+
+                        </ul>
+                    </Accordion.Collapse>
+                    <Accordion.Collapse eventKey="sidebar-user">
+                        <ul className="sub-nav">
+                            <li className="nav-item">
+                            <Link className={`${location.pathname === dashboard_routes.locationLocations.state ? 'active' : ''} nav-link `} aria-current="page" to={dashboard_routes.locationLocations.state} onClick={() => {}}>
+                                    <i className="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i className="sidenav-mini-icon"> S </i>
+                                    <span className="item-name">State</span>
+                                </Link>
+                            </li>
+
+                        </ul>
+                    </Accordion.Collapse>
+                    <Accordion.Collapse eventKey="sidebar-user">
+                        <ul className="sub-nav">
+                            <li className="nav-item">
+                            <Link className={`${location.pathname === dashboard_routes.locationLocations.city ? 'active' : ''} nav-link `} aria-current="page" to={dashboard_routes.locationLocations.city} onClick={() => {}}>
+                                    <i className="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i className="sidenav-mini-icon"> C </i>
+                                    <span className="item-name">City</span>
+                                </Link>
+                            </li>
+
+                        </ul>
+                    </Accordion.Collapse>
+                </Accordion.Item>
 
                 <li className="nav-item">
                     <a className={`${location.pathname === app_routes.index ? 'active' : ''} nav-link px-4`} aria-current="page"

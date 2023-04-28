@@ -1,54 +1,41 @@
 import React, { useState } from "react";
 import { Row, Col, OverlayTrigger, Tooltip, Badge, Card } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Field, Formik } from "formik";
+import { connect, useDispatch } from "react-redux";
+import { useFormik } from "formik";
 import { dashboard_routes } from "../../../../router/fws-path-locations";
-import { DeleteCityItem, GetCityLookupList } from "../../../../store/actions/location-lookup-actions";
+import { DeleteCityItem, GetCityLookupList, GetCountryLookupList, GetStateLookupList } from "../../../../store/actions/location-lookup-actions";
+import { Alert } from "../../../../utils/Alert";
 
 
 
-const ListCity = () => {
+const ListCity = (props:any) => {
     //VARIABLE DECLARATIONS
     const dispatch = useDispatch();
     let locations = useLocation();
     const navigate= useNavigate();
     const [searchQuery, setSearchQuery] = useState<any>("");
+    const [selectedId, setSelectedId] = useState("");
     //VARIABLE DECLARATIONS
-
-    // ACCESSING STATE FROM REDUX STORE
-    const state = useSelector((state: any) => state);
-    const { cityList, stateList, selectedIds } = state.locationLookup;
-    const { deleteDialogResponse } = state.alert;
-    // ACCESSING STATE FROM REDUX STORE
-
     const queryParams = new URLSearchParams(locations.search);
+    const countryIdQueryParam = queryParams.get("countryId") || "";
     const stateIdQueryParam = queryParams.get("stateId") || "";
     const cityIdQueryParam = queryParams.get("cityId") || "";
 
     React.useEffect(() => {
         const fetchCityLookupList = () => {
             if (stateIdQueryParam) {
-                GetCityLookupList(stateIdQueryParam)(dispatch);
+                props.getCityLookupList(stateIdQueryParam)
             }
         };
+        props.getCountryLookupList()
+        countryIdQueryParam && props.getStateLookupList(countryIdQueryParam)
         fetchCityLookupList();
-    }, [stateIdQueryParam, dispatch]);
+    }, [stateIdQueryParam,countryIdQueryParam]);
 
-    React.useEffect(() => {
-        if (deleteDialogResponse === "continue") {
-            if (selectedIds.length === 0) {
-                return
-            } else {
-                DeleteCityItem(selectedIds, stateIdQueryParam)(dispatch)
-            }
-        }
-        return () => {
-           // respondToDeleteDialog("")(dispatch);
-        };
-    }, [selectedIds, deleteDialogResponse, dispatch]);
+    
 
-    const filteredCityList = cityList.filter((city:any) => {
+    const filteredCityList = props.cityList?.filter((city:any) => {
         if (searchQuery === "") {
             //if query is empty
             return city;
@@ -60,23 +47,25 @@ const ListCity = () => {
         }
     });
 
+
+    const {   values, setFieldValue, }:any = useFormik({
+        initialValues: {
+            stateId: stateIdQueryParam,
+            cityId: cityIdQueryParam,
+            cityName: "",
+            isActive: true,
+        },
+        enableReinitialize: true,
+        onSubmit: (values: any) => {
+        }
+      });
+
     return (
         <>
             <div>
                 <Row>
                     <Col sm="12">
-                        <Formik
-                            initialValues={{
-                                stateId: stateIdQueryParam,
-                                cityId: cityIdQueryParam,
-                                cityName: "",
-                                isActive: true,
-                            }}
-                            enableReinitialize={true}
-                            onSubmit={() => {
-                            }}
-                        >
-                            {({ setFieldValue }) => (
+                     
                                 <Card>
                                     <Card.Header className="d-flex justify-content-between">
                                         <div className="header-title">
@@ -85,33 +74,9 @@ const ListCity = () => {
                                             </h4>
                                         </div>
                                     </Card.Header>
-                                    <div className="d-md-flex justify-content-between">
-                                        <div className=" me-3 mx-2 mt-3 mt-lg-0 dropdown">
-                                            <Field
-                                                disabled={stateList.length === 0 ? true : false}
-                                                as="select"
-                                                name="stateId"
-                                                className="form-select text-uppercase"
-                                                id="stateId"
-                                                onChange={(e: any) => {
-                                                    setFieldValue("stateId", e.target.value);
-                                                    navigate(`${dashboard_routes.locationLocations.city}?stateId=${e.target.value}`
-                                                    );
-                                                }}
-                                            >
-                                                <option value="">Select State</option>
-                                                {stateList?.map((item:any, idx:any) => (
-                                                    <option
-                                                        key={idx}
-                                                        value={item?.stateId}
-                                                    >
-                                                        {item.stateName}
-                                                    </option>
-                                                ))}
-                                            </Field>
-                                        </div>
-                                        <div>
-                                            <div className="input-group">
+                                    <div className="p-3">
+                                    <div>
+                                            <div className="input-group my-3">
                                                 <span
                                                     className="input-group-text border-0"
                                                     id="search-input"
@@ -150,11 +115,59 @@ const ListCity = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <div className="d-flex justify-content-end">
+                                    <div className="row mt-3">
+                                    <div className="col-md-4 me-2  mt-3 mt-lg-0 dropdown">
+                                            <select
+                                                name="stateId"
+                                                className="form-select text-uppercase"
+                                                id="stateId"
+                                                value={countryIdQueryParam}
+                                                onChange={(e: any) => {
+                                                    setFieldValue("countryId", e.target.value);
+                                                    navigate(`${dashboard_routes.locationLocations.city}?countryId=${e.target.value}`
+                                                    );
+                                                }}
+                                            >
+                                                <option value="">Select Country</option>
+                                                {props.countryList?.map((item:any, idx:any) => (
+                                                    <option
+                                                        key={idx}
+                                                        value={item?.countryId}
+                                                    >
+                                                        {item.countryName}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="col-md-4  me-2 mt-3 mt-lg-0 dropdown">
+                                            <select
+                                                disabled={props.countryList.length === 0 ? true : false}
+                                                name="stateId"
+                                                className="form-select text-uppercase"
+                                                id="stateId"
+                                                value={stateIdQueryParam}
+                                                onChange={(e: any) => {
+                                                    setFieldValue("stateId", e.target.value);
+                                                    navigate(`${dashboard_routes.locationLocations.city}?countryId=${countryIdQueryParam}&stateId=${e.target.value}`
+                                                    );
+                                                }}
+                                            >
+                                                <option value="">Select State</option>
+                                                {props.stateList?.map((item:any, idx:any) => (
+                                                    <option
+                                                        key={idx}
+                                                        value={item?.stateId}
+                                                    >
+                                                        {item.stateName}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                       
+                                            <div className="col-md-3 mt-3 mt-lg-0">
                                                 <Link
-                                                    to={dashboard_routes.locationLocations.addCity}
-                                                    className="d-flex justify-content-end"
+                                                    to={`${dashboard_routes.locationLocations.addCity}?countryId=${countryIdQueryParam}&stateId=${stateIdQueryParam}`}
+                                                    className="d-flex justify-content-end align-items-center"
                                                 >
                                                     <button
                                                         type="button"
@@ -167,6 +180,7 @@ const ListCity = () => {
                                                                 fill="none"
                                                                 viewBox="0 0 24 24"
                                                                 stroke="currentColor"
+                                                                width="24"
                                                             >
                                                                 <path
                                                                     strokeLinecap="round"
@@ -180,10 +194,11 @@ const ListCity = () => {
                                                     </button>
                                                 </Link>
                                             </div>
-                                        </div>
+                                        
+                                    </div>
                                     </div>
                                     <Card.Body className="px-0">
-                                        {stateList.length === 0 || stateIdQueryParam === "" ?
+                                        {props.stateList?.length === 0 || stateIdQueryParam === "" ?
                                             <div className="d-flex justify-content-center">
                                                 <p className="display-6">Ensure a state is selected to view cities</p>
                                             </div>
@@ -243,10 +258,10 @@ const ListCity = () => {
                                                                                 data-placement="top"
                                                                                 title=""
                                                                                 data-original-title="Details"
-                                                                                to={`${dashboard_routes.locationLocations.editCity}?stateId=${stateIdQueryParam}&cityId=${item.cityId}`}
+                                                                                to={`${dashboard_routes.locationLocations.editCity}?countryId=${countryIdQueryParam}&stateId=${stateIdQueryParam}&cityId=${item.cityId}`}
                                                                             >
                                                                                 <span className="btn-inner">
-                                                                                    <svg width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                         <path
                                                                                             d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341"
                                                                                             stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -277,7 +292,20 @@ const ListCity = () => {
                                                                                 to={`${dashboard_routes.locationLocations.city}?stateId=${stateIdQueryParam}`}
                                                                                 data-id={item.cityId}
                                                                                 onClick={() => {
-                                                                                  
+                                                                                    const params = {
+                                                                                        cityId:item.cityId,
+                                                                                        stateIdQueryParam,
+                                                                                       
+                                                                                      };
+                                                                                      Alert.showDialog(
+                                                                                        "Delete City",
+                                                                                        "Are you sure you want to delete item",
+                                                                                        setSelectedId,
+                                                                                        DeleteCityItem,
+                                                                                        params,
+                                                                                        dispatch
+                                                                                      );
+                                                                                      setSelectedId(item.cityId);
                                                                                 }}
                                                                             >
                                                                                 <span className="btn-inner">
@@ -324,13 +352,27 @@ const ListCity = () => {
 
                                     </Card.Body>
                                 </Card>
-                            )}
-                        </Formik>
+                         
                     </Col>
                 </Row>
             </div>
         </>
     );
 };
-
-export default ListCity;
+function mapStateToProps(state:any) {
+    return {
+        countryList: state.locationLookup.countryList,
+        stateList: state.locationLookup.stateList,
+         cityList: state.locationLookup.cityList,
+    };
+  }
+  
+  function mapDispatchToProps(dispatch:any) {
+    return { 
+        getCountryLookupList: () => GetCountryLookupList()(dispatch),
+        getStateLookupList: (countryId:any) => GetStateLookupList(countryId)(dispatch),
+        getCityLookupList: (stateId:any) => GetCityLookupList(stateId)(dispatch)
+     };
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(ListCity);

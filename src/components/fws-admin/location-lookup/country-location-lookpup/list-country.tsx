@@ -16,25 +16,14 @@ const ListCountry = () => {
     // ACCESSING STATE FROM REDUX STORE
     const state = useSelector((state: any) => state);
     const { countryList, selectedIds,message } = state.locationLookup;
-    const { deleteDialogResponse } = state.alert;
     // ACCESSING STATE FROM REDUX STORE
 
     React.useEffect(() => {
         GetCountryLookupList()(dispatch)
     }, [dispatch]);
 
-    React.useEffect(() => {
-        if (deleteDialogResponse === "continue") {
-        if (selectedIds.length === 0) {
-            return
-        } else {
-            DeleteCountryItem(selectedIds)(dispatch)
-        }
-    }
-    return () => {
-       // respondToDeleteDialog("")(dispatch);
-      };
-    }, [selectedIds, deleteDialogResponse,dispatch]);
+    
+
 
     const filteredCountryList = countryList.filter((country:any) => {
         if (searchQuery === "") {

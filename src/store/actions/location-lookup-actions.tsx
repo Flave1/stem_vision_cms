@@ -1,4 +1,5 @@
 import axiosInstance from "../../axios/axiosInstance"
+import { dashboard_routes } from "../../router/fws-path-locations";
 import { Alert } from "../../utils/Alert";
 import { actions } from "../action-types/location-lookup-action-types"
 import { startSpining, stopSpining } from "./app-layout-actions";
@@ -91,7 +92,7 @@ export const CreateCity = (form: any,navigate:any) => (dispatch: any) => {
             stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)
             GetCountryLookupList()(dispatch)
-            navigate(-1)
+            navigate(`${dashboard_routes.locationLocations.city}?countryId=${form.countryId}&stateId=${form.stateId}`)
         }).catch((err : any)  => {
             stopSpining()(dispatch);
             console.log('err', err);
@@ -139,7 +140,7 @@ export const UpdateCity = (city: any,navigate:any) => (dispatch: any) => {
             stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)
             GetCountryLookupList()(dispatch)
-            navigate(-1)
+            navigate(`${dashboard_routes.locationLocations.city}?countryId=${city.countryId}&stateId=${city.stateId}`)
         }).catch((err) => {
             stopSpining()(dispatch);
             console.log('err', err);
@@ -182,16 +183,16 @@ export const DeleteStateItem = (stateId: any, countryIdQueryParam: any) => (disp
         });
 }
 
-export const DeleteCityItem = (cityId: any, stateIdQueryParam: any) => (dispatch: any) => {
+export const DeleteCityItem = (params: any,) => (dispatch: any) => {
     startSpining()(dispatch);
     const payload = {
-        lookupId: cityId[0]
+        lookupId: params.cityId
     }
     axiosInstance.post('/fws/lookups/api/v1/delete/city-lookup', payload)
         .then((res) => {
             stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)
-            GetCityLookupList(stateIdQueryParam)(dispatch)
+            GetCityLookupList(params.stateIdQueryParam)(dispatch)
         }).catch((err) => {
             stopSpining()(dispatch);
             console.log('err', err);

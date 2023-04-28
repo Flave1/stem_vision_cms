@@ -41,10 +41,10 @@ export const GetSingleProduct = (productId:any) => (dispatch: any) => {
         });
 };
 
-export const GetAllUserProducts = () => (dispatch: any) => {
+export const GetAllUserProducts = (userId:any) => (dispatch: any) => {
     startSpining()(dispatch); 
 
-    axiosInstance.get(`/fws/products/api/v1/get-user-products`)
+    axiosInstance.get(`/fws/products/api/v1/get-user-products?userId=${userId}`)
         .then((res) => {
             stopSpining()(dispatch);
             dispatch({

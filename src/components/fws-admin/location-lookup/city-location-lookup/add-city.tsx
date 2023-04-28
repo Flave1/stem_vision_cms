@@ -1,20 +1,19 @@
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Field } from "formik";
+import { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { useFormik } from "formik";
 import * as Yup from "yup"
 import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../../../../utils/Card";
 import { dashboard_routes } from "../../../../router/fws-path-locations";
-import { CreateCity } from "../../../../store/actions/location-lookup-actions";
+import { CreateCity, GetStateLookupList } from "../../../../store/actions/location-lookup-actions";
 
 
-const AddCity = () => {
+const AddCity = ({ stateList, getStateLookupList, createCity }: any) => {
   //VARIABLE DECLARATIONS
   const [isChecked, setIsChecked] = useState(true);
   const navigate = useNavigate();
   let locations = useLocation();
-  const dispatch = useDispatch();
   //VARIABLE DECLARATIONS
 
   //VALIDATIONS SCHEMA
@@ -23,14 +22,29 @@ const AddCity = () => {
       .required("City is required"),
   });
   //VALIDATIONS SCHEMA
-
-  // ACCESSING STATE FROM REDUX STORE
-  const state = useSelector((state: any) => state);
-  const { stateList } = state.locationLookup;
-  // ACCESSING STATE FROM REDUX STORE
-
   const queryParams = new URLSearchParams(locations.search);
   const stateIdQueryParam = queryParams.get("stateId") || "";
+  const countryIdQueryParam = queryParams.get("countryId") || "";
+
+  useEffect(() => {
+    getStateLookupList(countryIdQueryParam)
+  }, [countryIdQueryParam])
+
+
+  const {  handleSubmit, values, setFieldValue, errors,touched}:any = useFormik({
+    initialValues: {
+      stateId: stateIdQueryParam,
+      cityName: "",
+      isActive: true,
+    },
+    enableReinitialize: true,
+    validationSchema: validation,
+    onSubmit: (values: any) => {
+      values.countryId = countryIdQueryParam;
+      values.isActive = isChecked;
+      createCity(values, navigate)
+    }
+  });
 
   return (
     <>
@@ -44,26 +58,7 @@ const AddCity = () => {
                 </div>
               </Card.Header>
               <Card.Body>
-                <Formik
-                  initialValues={{
-                    stateId: stateIdQueryParam,
-                    cityName: "",
-                    isActive: true,
-                  }}
-                  validationSchema={validation}
-                  onSubmit={(values) => {
-                    values.stateId = values.stateId;
-                    values.cityName = values.cityName;
-                    values.isActive = isChecked;
-                    CreateCity(values,navigate)(dispatch);
-                  }}
-                >
-                  {({
-                    handleSubmit,
-                    setFieldValue,
-                    touched,
-                    errors,
-                  }) => (
+          
                     <Form>
                       <Col lg="12">
                         <div className="mt-lg-0 dropdown">
@@ -71,19 +66,19 @@ const AddCity = () => {
                             {" "}
                             <b>State Name</b>
                           </label>
-                          <Field
-                            as="select"
+                          <select
                             name="stateId"
                             className="form-select text-uppercase"
                             id="stateId"
+                            value={stateIdQueryParam}
                             onChange={(e: any) => {
                               setFieldValue("stateId", e.target.value);
-                              navigate(`${dashboard_routes.locationLocations.addCity}?stateId=${e.target.value}`
+                              navigate(`${dashboard_routes.locationLocations.addCity}?countryId=${countryIdQueryParam}&stateId=${e.target.value}`
                               );
                             }}
                           >
                             <option value="">Select State</option>
-                            {stateList?.map((item:any, idx:any) => (
+                            {stateList?.map((item: any, idx: any) => (
                               <option
                                 key={idx}
                                 value={item?.stateId}
@@ -91,7 +86,7 @@ const AddCity = () => {
                                 {item.stateName}
                               </option>
                             ))}
-                          </Field>
+                          </select>
                         </div>
                       </Col>
                       <Col lg="12">
@@ -103,13 +98,13 @@ const AddCity = () => {
                             {" "}
                             <b>City Name</b>
                           </label>
-                          <Field
+                          <input
                             type="text"
                             className="form-control"
                             name="cityName"
                             id="cityName"
                             aria-describedby="cityName"
-                            required
+                            value={values.cityId}
                             placeholder="Enter City name"
                             onChange={(e: any) => setFieldValue("cityName", e.target.value)}
                           />
@@ -152,8 +147,7 @@ const AddCity = () => {
                         </Button>
                       </div>
                     </Form>
-                  )}
-                </Formik>
+                 
               </Card.Body>
             </Card>
           </Col>
@@ -163,4 +157,18 @@ const AddCity = () => {
   );
 };
 
-export default AddCity;
+function mapStateToProps(state: any) {
+  return {
+    stateList: state.locationLookup.stateList,
+  };
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return {
+    getStateLookupList: (country: any) => GetStateLookupList(country)(dispatch),
+    createCity: (values: any, navigate: any) => CreateCity(values, navigate)(dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCity);
+

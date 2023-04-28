@@ -39,6 +39,7 @@ export const productReducer = (state : IProductState = _state, { type, payload }
             return {
               ...state,
               clientUsers: payload.data,
+              filterProps:payload,
             };
          }
             

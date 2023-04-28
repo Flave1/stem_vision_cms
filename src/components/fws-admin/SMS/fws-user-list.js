@@ -8,12 +8,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { filterList } from '../../../utils/tools';
 import PaginationFilter from '../../../utils/pagination-filter';
 
-const ClientUserList = ({ clientUsers, getClientUsers }:any) => {
-  const locations = useLocation();
+const ClientUserList = ({ clientUsers,filterProps, getClientUsers }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const queryParams = new URLSearchParams(locations.search);
-  const productId = queryParams.get("productId");
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -23,7 +19,7 @@ const ClientUserList = ({ clientUsers, getClientUsers }:any) => {
     useEffect(() => {
         filterList(clientUsers, searchQuery, ["email"])
     }, [searchQuery, clientUsers])
-
+    
   return (
     <>
       <div>
@@ -107,7 +103,7 @@ const ClientUserList = ({ clientUsers, getClientUsers }:any) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {clientUsers?.map((item:any, idx:any) => (
+                      {clientUsers?.map((item, idx) => (
                         <tr key={idx}>
                           <td className="h6">{idx + 1}</td>
                           <td className="text-uppercase">
@@ -147,10 +143,10 @@ const ClientUserList = ({ clientUsers, getClientUsers }:any) => {
                 </div>
               </Card.Body>
               <Card.Footer>
-                {/* <PaginationFilter
+                <PaginationFilter
                   filterProps={filterProps}
                   action={GetClientUsers}
-                /> */}
+                />
               </Card.Footer>
             </Card>
           </Col>
@@ -160,15 +156,15 @@ const ClientUserList = ({ clientUsers, getClientUsers }:any) => {
   );
 };
 
-function mapStateToProps(state:any) {
+function mapStateToProps(state) {
   return {
     clientUsers: state.product.clientUsers,
     filterProps: state.product.filterProps,
   };
 }
 
-function mapDispatchToProps(dispatch:any) {
-  return { getClientUsers: (pageNumber:any) => GetClientUsers(pageNumber)(dispatch) };
+function mapDispatchToProps(dispatch) {
+  return { getClientUsers: (pageNumber) => GetClientUsers(pageNumber)(dispatch) };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientUserList);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Row, Col, OverlayTrigger, Tooltip, Badge, Card } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { dashboard_routes } from "../../../../router/fws-path-locations";
 import { DeleteCityItem, GetCityLookupList, GetCountryLookupList, GetStateLookupList } from "../../../../store/actions/location-lookup-actions";
 import { Alert } from "../../../../utils/Alert";
+import { filterList } from "../../../../utils/tools";
 
 
 
@@ -16,6 +17,7 @@ const ListCity = (props:any) => {
     const navigate= useNavigate();
     const [searchQuery, setSearchQuery] = useState<any>("");
     const [selectedId, setSelectedId] = useState("");
+    const [objectArray, setObjectArray] = useState<any>([]);
     //VARIABLE DECLARATIONS
     const queryParams = new URLSearchParams(locations.search);
     const countryIdQueryParam = queryParams.get("countryId") || "";
@@ -34,21 +36,12 @@ const ListCity = (props:any) => {
     }, [stateIdQueryParam,countryIdQueryParam]);
 
     
-
-    const filteredCityList = props.cityList?.filter((city:any) => {
-        if (searchQuery === "") {
-            //if query is empty
-            return city;
-        } else if (
-            city.cityName.toLowerCase().includes(searchQuery.toLowerCase())
-        ) {
-            //returns filtered array
-            return city;
-        }
-    });
+    useEffect(() => {
+       setObjectArray(filterList(props.cityList, searchQuery, ["cityName"]))
+    }, [searchQuery, props.cityList])
 
 
-    const {   values, setFieldValue, }:any = useFormik({
+    const {  setFieldValue, }:any = useFormik({
         initialValues: {
             stateId: stateIdQueryParam,
             cityId: cityIdQueryParam,
@@ -227,7 +220,7 @@ const ListCity = (props:any) => {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {filteredCityList.map((item:any, idx:any) => (
+                                                        {objectArray.map((item:any, idx:any) => (
                                                             <tr key={idx}>
                                                                 <td className="text-dark">
                                                                     {
@@ -289,13 +282,12 @@ const ListCity = (props:any) => {
                                                                                 data-placement="top"
                                                                                 title=""
                                                                                 data-original-title="Delete"
-                                                                                to={`${dashboard_routes.locationLocations.city}?stateId=${stateIdQueryParam}`}
+                                                                                to={`${dashboard_routes.locationLocations.city}?countryId=${countryIdQueryParam}&stateId=${stateIdQueryParam}`}
                                                                                 data-id={item.cityId}
                                                                                 onClick={() => {
                                                                                     const params = {
                                                                                         cityId:item.cityId,
                                                                                         stateIdQueryParam,
-                                                                                       
                                                                                       };
                                                                                       Alert.showDialog(
                                                                                         "Delete City",

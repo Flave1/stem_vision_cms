@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Field } from "formik";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
 import * as Yup from "yup"
 import { useLocation, useNavigate } from "react-router-dom";
 import { dashboard_routes } from '../../../../router/fws-path-locations';
@@ -10,11 +10,10 @@ import Card from '../../../../utils/Card';
 import { UpdateCountry } from '../../../../store/actions/location-lookup-actions';
 
 
-const EditCountry = () => {
+const EditCountry = ({updateCountry}:any) => {
   //VARIABLE DECLARATIONS
   const [isChecked, setIsChecked] = useState(true);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   //VARIABLE DECLARATIONS
 
   //VALIDATIONS SCHEMA
@@ -33,18 +32,21 @@ const EditCountry = () => {
   const queryParams = new URLSearchParams(locations.search);
   const countryIdQueryParam = queryParams.get("countryId") || "";
 
-  let selectedCountryValue = countryList.filter((item: any) => {
-    if (item.countryId === countryIdQueryParam) {
-      return item.countryName
-    }
-  })
+  let selectedCountryValue = countryList.find((item: any) => (item.countryId === countryIdQueryParam)).countryName
 
-
-  React.useEffect(() => {
-    if (!isSuccessful) {
-      navigate(dashboard_routes.locationLocations.country);
+  const { handleSubmit, values, setFieldValue, errors, touched }: any = useFormik({
+    initialValues: {
+      countryName: selectedCountryValue||"",
+      isActive: true,
+    },
+    enableReinitialize: true,
+    validationSchema: validation,
+    onSubmit: (values: any) => {  
+      values.countryId = countryIdQueryParam;
+      values.isActive = isChecked;
+      updateCountry(values,navigate);
     }
-  }, [])
+  });
 
   return (
     <>
@@ -58,45 +60,26 @@ const EditCountry = () => {
                 </div>
               </Card.Header>
               <Card.Body>
-                <Formik
-                  initialValues={{
-                    countryId: countryIdQueryParam,
-                    countryName: selectedCountryValue[0]['countryName'] || [],
-                    isActive: true,
-                  }}
-                  validationSchema={validation}
-                  onSubmit={(values) => {
-                    values.countryId = countryIdQueryParam;
-                    values.countryName = values.countryName;
-                    values.isActive = isChecked;
-                    UpdateCountry(values,navigate)(dispatch);
-                  }}
-                >
-                  {({
-                    handleSubmit,
-                    setFieldValue,
-                    touched,
-                    errors,
-                  }) => (
+                
                     <Form>
                       <Col lg="12">
                         <div className="form-group">
                           {touched.countryName && errors.countryName && (
                             <div className="text-danger">
-                              {/* {errors.countryName} */}
+                              {errors.countryName}
                             </div>
                           )}
                           <label htmlFor="countryName" className="form-label">
                             {" "}
                             <b>Country Name</b>
                           </label>
-                          <Field
+                          <input
                             type="text"
                             className="form-control text-uppercase"
                             name="countryName"
                             id="countryName"
+                            value={values.countryName}
                             aria-describedby="countryName"
-                            required
                             placeholder="Enter Country name e.g Ghana... etc"
                             onChange={(e: any) => setFieldValue("countryName", e.target.value)}
                           />
@@ -138,8 +121,7 @@ const EditCountry = () => {
                         </Button>
                       </div>
                     </Form>
-                  )}
-                </Formik>
+                  
               </Card.Body>
             </Card>
           </Col>
@@ -148,5 +130,16 @@ const EditCountry = () => {
     </>
   );
 };
+function mapStateToProps(state: any) {
+  return {
+    countryList: state.locationLookup.countryList,
+  };
+}
 
-export default EditCountry;
+ function mapDispatchToProps(dispatch: any) {
+  return {
+    updateCountry: (values: any, navigate: any) => UpdateCountry(values, navigate)(dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditCountry);

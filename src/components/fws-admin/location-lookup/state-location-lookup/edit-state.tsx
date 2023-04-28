@@ -1,22 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Field } from "formik";
+import { connect } from "react-redux";
+import {  useFormik } from "formik";
 import * as Yup from "yup"
 import { useNavigate, useLocation } from "react-router-dom";
 import { GetCountryLookupList, UpdateState } from '../../../../store/actions/location-lookup-actions';
 import Card from '../../../../utils/Card';
-import { dashboard_routes } from '../../../../router/fws-path-locations';
 
-
-const EditState = () => {
-
-  // ACCESSING STATE FROM REDUX STORE
-  const state = useSelector((state: any) => state);
-  const { stateList, submittedSuccessfully } = state.locationLookup;
-  // ACCESSING STATE FROM REDUX STORE
-
+const EditState = (props:any) => {
   //VALIDATIONS SCHEMA
   const validation = Yup.object().shape({
     stateName: Yup.string()
@@ -28,26 +20,36 @@ const EditState = () => {
   let locations = useLocation();
   const [isChecked, setIsChecked] = useState<any>(true);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const queryParams = new URLSearchParams(locations.search);
   const countryIdQueryParam = queryParams.get("countryId") || "";
   const stateIdQueryParam = queryParams.get("stateId") || "";
   //VARIABLE DECLARATIONS
 
-  let selectedStateValue = stateList?.filter((item:any) => {
-    if (item.stateId === stateIdQueryParam) {
-      return item.stateName
+  let selectedStateValue = props.stateList?.find((item:any) => (item.stateId === stateIdQueryParam)).stateName
+   
+
+  useEffect(() => {
+    props.getCountryLookupList();
+  }, [])
+
+  
+  const { handleSubmit, setFieldValue,values, errors, touched }: any = useFormik({
+    initialValues: {
+      countryId: countryIdQueryParam,
+      stateId: stateIdQueryParam,
+      stateName: selectedStateValue||"",
+      isActive: true,
+    },
+    enableReinitialize: true,
+    validationSchema: validation,
+    onSubmit: (values: any) => {
+      values.countryId = countryIdQueryParam;
+      values.stateId = stateIdQueryParam;
+      values.isActive = isChecked;
+      props.updateState(values,navigate)
     }
-  })
-
-  React.useEffect(() => {
-    GetCountryLookupList()(dispatch)
-  }, [dispatch])
-
-  React.useEffect(() => {
-    submittedSuccessfully && navigate(`${dashboard_routes.locationLocations.state}?countryId=${countryIdQueryParam}`);
-  }, [submittedSuccessfully, navigate, countryIdQueryParam]);
-
+  });
+  
   return (
     <>
       <div className="col-md-8 mx-auto">
@@ -60,48 +62,27 @@ const EditState = () => {
                 </div>
               </Card.Header>
               <Card.Body>
-                <Formik
-                  initialValues={{
-                    countryId: countryIdQueryParam,
-                    stateId: stateIdQueryParam,
-                    stateName: selectedStateValue[0]['stateName'] || [],
-                    isActive: true,
-                  }}
-                  validationSchema={validation}
-                  onSubmit={(values) => {
-                    values.countryId = countryIdQueryParam;
-                    values.stateId = stateIdQueryParam;
-                    values.stateName = values.stateName;
-                    values.isActive = isChecked;
-                    UpdateState(values,navigate)(dispatch);
-                  }}
-                >
-                  {({
-                    handleSubmit,
-                    setFieldValue,
-                    touched,
-                    errors,
-                  }) => (
+              
                     <Form>
                       
                       <Col lg="12">
                         <div className="form-group">
                           {touched.stateName && errors.stateName && (
                             <div className="text-danger">
-                              {/* {errors.stateName} */}
+                              {errors.stateName}
                               </div>
                           )}
                           <label htmlFor="stateName" className="form-label">
                             {" "}
                             <b>State Name</b>
                           </label>
-                          <Field
+                          <input
                             type="text"
                             className="form-control text-uppercase"
                             name="stateName"
                             id="stateName"
                             aria-describedby="stateName"
-                            required
+                            value={values.stateName}
                             placeholder="Enter State name"
                             onChange={(e: any) => setFieldValue("stateName", e.target.value)}
                           />
@@ -144,8 +125,7 @@ const EditState = () => {
                         </Button>
                       </div>
                     </Form>
-                  )}
-                </Formik>
+                 
               </Card.Body>
             </Card>
           </Col>
@@ -154,5 +134,17 @@ const EditState = () => {
     </>
   );
 };
+function mapStateToProps(state: any) {
+  return {
+    stateList: state.locationLookup.stateList,
+  };
+}
 
-export default EditState;
+function mapDispatchToProps(dispatch: any) {
+  return {
+    getCountryLookupList: (country: any) => GetCountryLookupList()(dispatch),
+    updateState: (values: any, navigate: any) => UpdateState(values, navigate)(dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditState);

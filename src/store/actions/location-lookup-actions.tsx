@@ -124,7 +124,7 @@ export const UpdateState = (states: any,navigate:any) => (dispatch: any) => {
             stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)
             GetCountryLookupList()(dispatch)
-            navigate(-1)
+            navigate(`${dashboard_routes.locationLocations.state}?countryId=${states.countryId}`);
         }).catch((err) => {
             stopSpining()(dispatch);
             console.log('err', err);
@@ -148,10 +148,10 @@ export const UpdateCity = (city: any,navigate:any) => (dispatch: any) => {
         });
 }
 
-export const DeleteCountryItem = (countryId: any) => (dispatch: any) => {
+export const DeleteCountryItem = (values:any) => (dispatch: any) => {
     startSpining()(dispatch);
     const payload = {
-        lookupId: countryId[0]
+        lookupId: values.countryId
     }
     axiosInstance.post('/fws/lookups/api/v1/delete/country-lookup', payload)
         .then((res) => {
@@ -165,17 +165,17 @@ export const DeleteCountryItem = (countryId: any) => (dispatch: any) => {
         });
 }
 
-export const DeleteStateItem = (stateId: any, countryIdQueryParam: any) => (dispatch: any) => {
+export const DeleteStateItem = (values: any) => (dispatch: any) => {
     startSpining()(dispatch);
     const payload = {
-        lookupId: stateId[0]
+        lookupId: values.stateId
     }
 
     axiosInstance.post('/fws/lookups/api/v1/delete/state-lookup', payload)
         .then((res) => {
             stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)
-            GetStateLookupList(countryIdQueryParam)(dispatch)
+            GetStateLookupList(values.countryIdQueryParam)(dispatch)
         }).catch((err) => {
             stopSpining()(dispatch);
             console.log('err', err);
@@ -183,7 +183,7 @@ export const DeleteStateItem = (stateId: any, countryIdQueryParam: any) => (disp
         });
 }
 
-export const DeleteCityItem = (params: any,) => (dispatch: any) => {
+export const DeleteCityItem = (params: any) => (dispatch: any) => {
     startSpining()(dispatch);
     const payload = {
         lookupId: params.cityId

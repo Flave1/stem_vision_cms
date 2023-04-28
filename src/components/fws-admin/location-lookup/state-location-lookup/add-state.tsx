@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Field } from "formik";
+import { connect, useDispatch, useSelector } from "react-redux";
+import {  useFormik } from "formik";
 import * as Yup from "yup"
 import { useNavigate, useLocation } from "react-router-dom";
 import { CreateState, GetCountryLookupList } from '../../../../store/actions/location-lookup-actions';
@@ -10,13 +10,7 @@ import Card from '../../../../utils/Card';
 import { dashboard_routes } from '../../../../router/fws-path-locations';
 
 
-const AddState = () => {
-
-  // ACCESSING STATE FROM REDUX STORE
-  const state = useSelector((state: any) => state);
-  const { countryList} = state.locationLookup;
-  // ACCESSING STATE FROM REDUX STORE
-
+const AddState = (props: any) => {
   //VALIDATIONS SCHEMA
   const validation = Yup.object().shape({
     stateName: Yup.string()
@@ -28,14 +22,27 @@ const AddState = () => {
   let locations = useLocation();
   const [isChecked, setIsChecked] = useState<any>(true);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const queryParams = new URLSearchParams(locations.search);
   const countryIdQueryParam = queryParams.get("countryId") || "";
   //VARIABLE DECLARATIONS
 
   React.useEffect(() => {
-    GetCountryLookupList()(dispatch)
-  }, [dispatch])
+    props.getCountryLookupList()
+  }, [])
+
+  const { handleSubmit, values, setFieldValue, errors, touched }: any = useFormik({
+    initialValues: {
+      countryId: countryIdQueryParam,
+      stateName: "",
+      isActive: true,
+    },
+    enableReinitialize: true,
+    validationSchema: validation,
+    onSubmit: (values: any) => {
+      values.isActive = isChecked;
+      props.createState(values, navigate);
+    }
+  });
 
   return (
     <>
@@ -49,26 +56,7 @@ const AddState = () => {
                 </div>
               </Card.Header>
               <Card.Body>
-                <Formik
-                  initialValues={{
-                    countryId: countryIdQueryParam,
-                    stateName: "",
-                    isActive: true,
-                  }}
-                  validationSchema={validation}
-                  onSubmit={(values) => {
-                    values.countryId = values.countryId;
-                    values.stateName = values.stateName.toUpperCase();
-                    values.isActive = isChecked;
-                    CreateState(values,navigate)(dispatch);
-                  }}
-                >
-                  {({
-                    handleSubmit,
-                    setFieldValue,
-                    touched,
-                    errors,
-                  }) => (
+               
                     <Form>
                       <Col lg="12">
                         <div className="mt-lg-0 dropdown">
@@ -76,11 +64,11 @@ const AddState = () => {
                             {" "}
                             <b>Choose Country</b>
                           </label>
-                          <Field
-                            as="select"
+                          <select
                             name="countryId"
                             className="form-select text-uppercase"
                             id="countryId"
+                            value={countryIdQueryParam}
                             onChange={(e: any) => {
                               setFieldValue("countryId", e.target.value);
                               navigate(`${dashboard_routes.locationLocations.addState}?countryId=${e.target.value}`
@@ -88,7 +76,7 @@ const AddState = () => {
                             }}
                           >
                             <option value="">Select Country</option>
-                            {countryList?.map((country:any, idx:any) => (
+                            {props.countryList?.map((country: any, idx: any) => (
                               <option
                                 key={idx}
                                 value={country?.countryId}
@@ -96,7 +84,7 @@ const AddState = () => {
                                 {country.countryName}
                               </option>
                             ))}
-                          </Field>
+                          </select>
                         </div>
                       </Col>
                       <Col lg="12">
@@ -108,15 +96,16 @@ const AddState = () => {
                             {" "}
                             <b>State Name</b>
                           </label>
-                          <Field
+                          <input
                             type="text"
                             className="form-control"
                             name="stateName"
                             id="stateName"
                             aria-describedby="stateName"
-                            required
+                            value={values.stateName}
                             placeholder="Enter State name"
-                            onChange={(e: any) => setFieldValue("stateName", e.target.value)}
+                            onChange={(e: any) => {
+                             setFieldValue("stateName", e.target.value)}}
                           />
                         </div>
                       </Col>
@@ -151,16 +140,16 @@ const AddState = () => {
                         <Button
                           type="button"
                           variant="btn btn-primary mx-2"
-                          onClick={() => {handleSubmit();
-                            setFieldValue("stateName", "")}
+                          onClick={() => {
+                            handleSubmit();
+                          }
                           }
                         >
                           Submit
                         </Button>
                       </div>
                     </Form>
-                  )}
-                </Formik>
+             
               </Card.Body>
             </Card>
           </Col>
@@ -169,5 +158,17 @@ const AddState = () => {
     </>
   );
 };
+function mapStateToProps(state: any) {
+  return {
+    countryList: state.locationLookup.countryList,
+  };
+}
 
-export default AddState;
+function mapDispatchToProps(dispatch: any) {
+  return {
+    getCountryLookupList: (country: any) => GetCountryLookupList()(dispatch),
+    createState: (values: any, navigate: any) => CreateState(values, navigate)(dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddState);

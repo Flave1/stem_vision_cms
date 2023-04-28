@@ -1,41 +1,30 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Row, Col, OverlayTrigger, Tooltip, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import Card from "../../../../utils/Card";
 import { dashboard_routes } from "../../../../router/fws-path-locations";
 import { DeleteCountryItem, GetCountryLookupList } from "../../../../store/actions/location-lookup-actions";
+import { filterList } from "../../../../utils/tools";
+import { Alert } from "../../../../utils/Alert";
 
 
-const ListCountry = () => {
+const ListCountry = (props:any) => {
     //VARIABLE DECLARATIONS
     const dispatch = useDispatch();
     const [searchQuery, setSearchQuery] = useState<any>("");
+    const [objectArray, setObjectArray] = useState<any>([]);
+    const [selectedId, setSelectedId] = useState("");
     //VARIABLE DECLARATIONS
 
-    // ACCESSING STATE FROM REDUX STORE
-    const state = useSelector((state: any) => state);
-    const { countryList, selectedIds,message } = state.locationLookup;
-    // ACCESSING STATE FROM REDUX STORE
+    useEffect(() => {
+        props.getCountryLookupList()
+    }, []);
 
-    React.useEffect(() => {
-        GetCountryLookupList()(dispatch)
-    }, [dispatch]);
-
-    
-
-
-    const filteredCountryList = countryList.filter((country:any) => {
-        if (searchQuery === "") {
-            //if query is empty
-            return country;
-        } else if (
-            country.countryName.toLowerCase().includes(searchQuery.toLowerCase())
-        ) {
-            //returns filtered array
-            return country;
-        }
-    });
+    useEffect(() => {
+        setObjectArray(filterList(props.countryList, searchQuery, ["countryName"]))
+     }, [searchQuery, props.countryList])
+   
     
     return (
         <>
@@ -50,8 +39,9 @@ const ListCountry = () => {
                                     </h4>
                                 </div>
                             </Card.Header>
-                            <div className="d-md-flex justify-content-between">
-                                <div>
+                            
+                            <div className="d-md-flex justify-content-between my-3 mx-2">
+                              <div>
                                     <div className="input-group">
                                         <span
                                             className="input-group-text border-0"
@@ -95,7 +85,7 @@ const ListCountry = () => {
                                     <div className="d-flex justify-content-end">
                                         <Link
                                             to={dashboard_routes.locationLocations.addCountry}
-                                            className="d-flex justify-content-end"
+                                            className=""
                                         >
                                             <button
                                                 type="button"
@@ -108,6 +98,7 @@ const ListCountry = () => {
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
+                                                        width="24"
                                                     >
                                                         <path
                                                             strokeLinecap="round"
@@ -148,7 +139,7 @@ const ListCountry = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {filteredCountryList.map((item:any, idx:any) => (
+                                            {objectArray.map((item:any, idx:any) => (
                                                 <tr key={idx}>
                                                     <td className="text-dark">
                                                         {
@@ -182,7 +173,7 @@ const ListCountry = () => {
                                                                     to={`${dashboard_routes.locationLocations.editCountry}?countryId=${item.countryId}`}
                                                                 >
                                                                     <span className="btn-inner">
-                                                                        <svg width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                             <path
                                                                                 d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341"
                                                                                 stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -209,10 +200,21 @@ const ListCountry = () => {
                                                                     data-placement="top"
                                                                     title=""
                                                                     data-original-title="Delete"
-                                                                    to="#"
+                                                                    to={`${dashboard_routes.locationLocations.country}`}
                                                                     data-id={item.countryId}
                                                                     onClick={() => {
-                                                                  
+                                                                        const params = {
+                                                                            countryId:item.countryId,
+                                                                          };
+                                                                        Alert.showDialog(
+                                                                            "Delete Country",
+                                                                            "Are you sure you want to delete item",
+                                                                            setSelectedId,
+                                                                            DeleteCountryItem,
+                                                                            params,
+                                                                            dispatch
+                                                                          );
+                                                                          setSelectedId(item.countryId);
                                                                     }}
                                                                 >
                                                                     <span className="btn-inner">
@@ -263,5 +265,16 @@ const ListCountry = () => {
         </>
     );
 };
-
-export default ListCountry;
+function mapStateToProps(state:any) {
+    return {
+        countryList: state.locationLookup.countryList,
+    };
+  }
+  
+  function mapDispatchToProps(dispatch:any) {
+    return { 
+        getCountryLookupList: () => GetCountryLookupList()(dispatch),
+     };
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(ListCountry);

@@ -1,82 +1,62 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Row, Col, OverlayTrigger, Tooltip, Badge } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Field, Formik } from "formik";
+import { connect, useDispatch } from "react-redux";
+import {  useFormik } from "formik";
 import { DeleteStateItem, GetCountryLookupList, GetStateLookupList } from "../../../../store/actions/location-lookup-actions";
 import { dashboard_routes } from "../../../../router/fws-path-locations";
 import Card from "../../../../utils/Card";
+import { Alert } from "../../../../utils/Alert";
+import { filterList } from "../../../../utils/tools";
 
 
-const ListState = () => {
+const ListState = (props:any) => {
     //VARIABLE DECLARATIONS
     const dispatch = useDispatch();
     let locations = useLocation();
     const navigate = useNavigate();
+    const [selectedId, setSelectedId] = useState("");
     const [searchQuery, setSearchQuery] = useState<any>("");
+    const [objectArray, setObjectArray] = useState<any>([]);
     //VARIABLE DECLARATIONS
-
-    // ACCESSING STATE FROM REDUX STORE
-    const state = useSelector((state: any) => state);
-    const { stateList, countryList, selectedIds } = state.locationLookup;
-    const { deleteDialogResponse }= state.alert;
-    // ACCESSING STATE FROM REDUX STORE
 
     const queryParams = new URLSearchParams(locations.search);
     const countryIdQueryParam = queryParams.get("countryId") || "";
 
-    React.useEffect(() => {
-        GetCountryLookupList()(dispatch)
-    }, [dispatch]);
+    useEffect(() => {
+        props.getCountryLookupList();
+    }, []);
 
-    React.useEffect(() => {
+        useEffect(() => {
         const fetchStateLookupList = () => {
             if (countryIdQueryParam) {
-                GetStateLookupList(countryIdQueryParam)(dispatch)
+                props.getStateLookupList(countryIdQueryParam)
             }
         };
+        props.getCountryLookupList();
         fetchStateLookupList();
     }, [countryIdQueryParam, dispatch]);
 
-    React.useEffect(() => {
-        if (deleteDialogResponse === "continue") {
-            if (selectedIds.length === 0) {
-                return
-            } else {
-                DeleteStateItem(selectedIds, countryIdQueryParam)(dispatch)
-            }
-        }
-        return () => {
-           // respondToDeleteDialog("")(dispatch);
-        };
-    }, [selectedIds, deleteDialogResponse, dispatch]);
+    useEffect(() => {
+        setObjectArray(filterList(props.stateList, searchQuery, ["stateName"]))
+     }, [searchQuery, props.stateList])
+    
 
-    const filteredStateList = stateList.filter((items:any) => {
-        if (searchQuery === "") {
-            //if query is empty
-            return items;
-        } else if (
-            items.stateName.toLowerCase().includes(searchQuery.toLowerCase())
-        ) {
-            //returns filtered array
-            return items;
+    const {  setFieldValue, }:any = useFormik({
+        initialValues: {
+            countryId: countryIdQueryParam,
+        },
+        enableReinitialize: true,
+        onSubmit: (values: any) => {
         }
-    });
+      });
 
     return (
         <>
             <div>
                 <Row>
                     <Col sm="12">
-                        <Formik
-                            initialValues={{
-                                countryId: countryIdQueryParam,
-                            }}
-                            enableReinitialize={true}
-                            onSubmit={() => {
-                            }}
-                        >
-                            {({ setFieldValue }) => (
+                        
                                 <Card>
                                     <Card.Header className="d-flex justify-content-between">
                                         <div className="header-title">
@@ -85,31 +65,7 @@ const ListState = () => {
                                             </h4>
                                         </div>
                                     </Card.Header>
-                                    <div className="d-md-flex justify-content-between">
-                                        <div className=" me-3 mx-2 mt-3 mt-lg-0 dropdown">
-                                            <Field
-                                                as="select"
-                                                name="countryId"
-                                                className="form-select text-uppercase"
-                                                id="countryId"
-                                                onChange={(e: any) => {
-                                                    setFieldValue("countryId", e.target.value);
-                                                    navigate(`${dashboard_routes.locationLocations.state}?countryId=${e.target.value}`
-                                                    );
-                                                }}
-                                            >
-                                                <option value="">Select Country</option>
-                                                {countryList?.map((country:any, idx:any) => (
-                                                    <option
-                                                        key={idx}
-                                                        value={country?.countryId}
-                                                    >
-                                                        {country.countryName}
-                                                    </option>
-                                                ))}
-                                            </Field>
-                                        </div>
-                                        <div>
+                                    <div className="px-3  pt-2">
                                             <div className="input-group">
                                                 <span
                                                     className="input-group-text border-0"
@@ -149,15 +105,40 @@ const ListState = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <div className="d-flex justify-content-end">
+                                    <div className="p-3 row">
+                                        <div className="col-md-5 mt-3 mt-lg-0 dropdown">
+                                            <select
+                                                name="countryId"
+                                                className="form-select text-uppercase"
+                                                id="countryId"
+                                                value={countryIdQueryParam}
+                                                onChange={(e: any) => {
+                                                    setFieldValue("countryId", e.target.value);
+                                                    navigate(`${dashboard_routes.locationLocations.state}?countryId=${e.target.value}`
+                                                    );
+                                                }}
+                                            >
+                                                <option value="">Select Country</option>
+                                                {props.countryList?.map((country:any, idx:any) => (
+                                                    <option
+                                                        key={idx}
+                                                        value={country?.countryId}
+                                                    >
+                                                        {country.countryName}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                       
+                                      
+                                            <div className="col-md-6 ms-2 mt-3 mt-lg-0 d-flex justify-content-end">
                                                 <Link
-                                                    to={dashboard_routes.locationLocations.addState}
-                                                    className="d-flex justify-content-end"
+                                                    to={`${dashboard_routes.locationLocations.addState}?countryId=${countryIdQueryParam}`}
+                                                    className=""
                                                 >
                                                     <button
                                                         type="button"
-                                                        className="text-center btn-primary btn-icon me-2 mt-lg-0 mt-md-0 mt-3 btn btn-primary"
+                                                        className="text-center btn-primary btn-icon me-2 mt-md-0 mt-3 btn"
                                                     >
                                                         <i className="btn-inner">
                                                             <svg
@@ -166,6 +147,7 @@ const ListState = () => {
                                                                 fill="none"
                                                                 viewBox="0 0 24 24"
                                                                 stroke="currentColor"
+                                                                width="24"
                                                             >
                                                                 <path
                                                                     strokeLinecap="round"
@@ -179,7 +161,7 @@ const ListState = () => {
                                                     </button>
                                                 </Link>
                                             </div>
-                                        </div>
+                                      
                                     </div>
                                     <Card.Body className="px-0">
                                         {countryIdQueryParam === "" ?
@@ -211,7 +193,7 @@ const ListState = () => {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {filteredStateList.map((item:any, idx:any) => (
+                                                        {objectArray.map((item:any, idx:any) => (
                                                             <tr key={idx}>
                                                                 <td className="text-dark">
                                                                     {
@@ -245,7 +227,7 @@ const ListState = () => {
                                                                                 to={`${dashboard_routes.locationLocations.editState}?countryId=${countryIdQueryParam}&stateId=${item.stateId}`}
                                                                             >
                                                                                 <span className="btn-inner">
-                                                                                    <svg width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                         <path
                                                                                             d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341"
                                                                                             stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -276,7 +258,19 @@ const ListState = () => {
                                                                                 to={`${dashboard_routes.locationLocations.state}?countryId=${countryIdQueryParam}`}
                                                                                 data-id={item.stateId}
                                                                                 onClick={() => {
-                                                                                 
+                                                                                    const params = {
+                                                                                        stateId:item.stateId,
+                                                                                        countryIdQueryParam
+                                                                                      };
+                                                                                    Alert.showDialog(
+                                                                                        "Delete State",
+                                                                                        "Are you sure you want to delete item",
+                                                                                        setSelectedId,
+                                                                                        DeleteStateItem,
+                                                                                        params,
+                                                                                        dispatch
+                                                                                      );
+                                                                                      setSelectedId(item.stateId);
                                                                                 }}
                                                                             >
                                                                                 <span className="btn-inner">
@@ -323,13 +317,25 @@ const ListState = () => {
 
                                     </Card.Body>
                                 </Card>
-                            )}
-                        </Formik>
+                           
                     </Col>
                 </Row>
             </div>
         </>
     );
 };
-
-export default ListState;
+function mapStateToProps(state:any) {
+    return {
+        countryList: state.locationLookup.countryList,
+        stateList: state.locationLookup.stateList,
+    };
+  }
+  
+  function mapDispatchToProps(dispatch:any) {
+    return { 
+        getCountryLookupList: () => GetCountryLookupList()(dispatch),
+        getStateLookupList: (countryId:any) => GetStateLookupList(countryId)(dispatch),
+     };
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(ListState);

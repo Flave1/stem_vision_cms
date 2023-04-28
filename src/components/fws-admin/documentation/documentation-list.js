@@ -17,13 +17,14 @@ const DocumentationList = ({ docList, filterProps, getDocList }) => {
   const productId = queryParams.get("productId");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedId, setSelectedId] = useState("");
+  const [objectArray, setObjectArray] = useState([]);
 
   useEffect(() => {
     getDocList(productId, 1);
   }, [productId]);
 
     useEffect(() => {
-        filterList(docList, searchQuery, ["subject"])
+        setObjectArray(filterList(docList, searchQuery, ["subject"]))
     }, [searchQuery, docList])
 
   return (
@@ -159,7 +160,7 @@ const DocumentationList = ({ docList, filterProps, getDocList }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {docList.map((item, idx) => (
+                      {objectArray.map((item, idx) => (
                         <tr key={idx}>
                           <td className="h6">{idx + 1}</td>
                           <td className="text-uppercase">

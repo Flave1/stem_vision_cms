@@ -11,13 +11,14 @@ import PaginationFilter from '../../../utils/pagination-filter';
 const ClientUserList = ({ clientUsers,filterProps, getClientUsers }) => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [objectArray, setObjectArray] = useState([]);
 
   useEffect(() => {
     getClientUsers(1);
   }, []);
 
     useEffect(() => {
-        filterList(clientUsers, searchQuery, ["email"])
+        setObjectArray(filterList(clientUsers, searchQuery, ["email"]))
     }, [searchQuery, clientUsers])
     
   return (
@@ -103,7 +104,7 @@ const ClientUserList = ({ clientUsers,filterProps, getClientUsers }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {clientUsers?.map((item, idx) => (
+                      {objectArray?.map((item, idx) => (
                         <tr key={idx}>
                           <td className="h6">{idx + 1}</td>
                           <td className="text-uppercase">

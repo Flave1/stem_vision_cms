@@ -36,7 +36,7 @@ useEffect(() => {
     initialValues: {
       stateId: stateIdQueryParam,
       cityId: cityIdQueryParam,
-      cityName: selectedCityValue,
+      cityName: selectedCityValue || "",
       isActive: true,
     },
     enableReinitialize: true,

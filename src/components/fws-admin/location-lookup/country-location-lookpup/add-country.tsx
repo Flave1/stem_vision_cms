@@ -1,20 +1,18 @@
 import React from 'react';
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Field } from "formik";
+import { connect } from "react-redux";
+import { useFormik } from "formik";
 import * as Yup from "yup"
-import { dashboard_routes } from '../../../../router/fws-path-locations';
 import Card from '../../../../utils/Card';
 import { CreateCountry } from '../../../../store/actions/location-lookup-actions';
 import { useNavigate } from 'react-router-dom';
 
 
-const AddCountry = () => {
+const AddCountry = ({countryList,createCountry}:any) => {
   //VARIABLE DECLARATIONS
   const [isChecked, setIsChecked] = useState(true);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   //VARIABLE DECLARATIONS
 
   //VALIDATIONS SCHEMA
@@ -25,20 +23,18 @@ const AddCountry = () => {
   });
   //VALIDATIONS SCHEMA
 
-  // ACCESSING STATE FROM REDUX STORE
-  const state = useSelector((state: any) => state);
-  const { isSuccessful }= state.locationLookup;
-  // ACCESSING STATE FROM REDUX STORE
-
-
-  React.useEffect(() => {
-    if (!isSuccessful) {
-      navigate(dashboard_routes.locationLocations.country);
+  const { handleSubmit, values, setFieldValue, errors, touched }: any = useFormik({
+    initialValues: {
+      countryName: "",
+      isActive: true,
+    },
+    enableReinitialize: true,
+    validationSchema: validation,
+    onSubmit: (values: any) => {  
+      values.isActive = isChecked;
+      createCountry(values, navigate);
     }
-  }, [isSuccessful, navigate]);
-
-  
-
+  });
   return (
     <>
       <div className="col-md-8 mx-auto">
@@ -51,24 +47,7 @@ const AddCountry = () => {
                 </div>
               </Card.Header>
               <Card.Body>
-                <Formik
-                  initialValues={{
-                    countryName: "",
-                    isActive: true,
-                  }}
-                  validationSchema={validation}
-                  onSubmit={(values) => {
-                    values.countryName = values.countryName.toUpperCase();
-                    values.isActive = isChecked;
-                    CreateCountry(values,navigate)(dispatch);
-                  }}
-                >
-                  {({
-                    handleSubmit,
-                    setFieldValue,
-                    touched,
-                    errors,
-                  }) => (
+          
                     <Form>
                       <Col lg="12">
                         <div className="form-group">
@@ -79,13 +58,13 @@ const AddCountry = () => {
                             {" "}
                             <b>Country Name</b>
                           </label>
-                          <Field
+                          <input
                             type="text"
                             className="form-control"
                             name="countryName"
                             id="countryName"
                             aria-describedby="countryName"
-                            required
+                            value={values.countryName}
                             placeholder="Enter Country name e.g Ghana... etc"
                             onChange={(e: any) => setFieldValue("countryName", e.target.value)}
                           />
@@ -127,8 +106,7 @@ const AddCountry = () => {
                         </Button>
                       </div>
                     </Form>
-                  )}
-                </Formik>
+                 
               </Card.Body>
             </Card>
           </Col>
@@ -137,5 +115,16 @@ const AddCountry = () => {
     </>
   );
 };
+function mapStateToProps(state: any) {
+  return {
+    countryList: state.locationLookup.countryList,
+  };
+}
 
-export default AddCountry;
+function mapDispatchToProps(dispatch: any) {
+  return {
+    createCountry: (values: any, navigate: any) => CreateCountry(values, navigate)(dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCountry);

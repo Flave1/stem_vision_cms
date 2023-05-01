@@ -3,7 +3,7 @@ import { DocumentationDetail } from "../../components/Models/documentation/Docum
 export const _state = {
     docList:[],
     docProducts:[],
-    exportedDocumentation:[],
+    exportedDocumentation:null,
     singleDocumentation: new DocumentationDetail(),
     message: "",
     filterProps:{},

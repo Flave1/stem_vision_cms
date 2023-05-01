@@ -47,8 +47,8 @@ const Header = (props: any) => {
                                             </Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item as="li">
-                                            <Nav.Link className={`${location.pathname === dashboard_routes.productsLocations.products? 'active' : ''}`}
-                                             href={dashboard_routes.productsLocations.products}> <div className='px-3'> Products</div>
+                                            <Nav.Link className={`${location.pathname === dashboard_routes.productsLocations.userList? 'active' : ''}`}
+                                             href={dashboard_routes.productsLocations.userList}> <div className='px-3'> Products</div>
                                              </Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item as="li">
@@ -56,6 +56,7 @@ const Header = (props: any) => {
                                              href={dashboard_routes.documentation.documentationProducts}> <div className='px-3'>Documentation</div>
                                              </Nav.Link>
                                         </Nav.Item>
+                                        
                                         <Nav.Item as="li">
                                             <Nav.Link onClick={() => { dispatch(logOut()); window.location.href = "/sign-in" }}> <div className='px-3'> Log Out</div></Nav.Link>
                                         </Nav.Item>

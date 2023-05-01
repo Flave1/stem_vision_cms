@@ -13,6 +13,16 @@ import DocumentationList from "../components/fws-admin/documentation/documentati
 import PreviewDocumentation from "../components/fws-admin/documentation/preview-documentation";
 import CreateDocumentation from "../components/fws-admin/documentation/create-documentation";
 import UpdateDocumentation from "../components/fws-admin/documentation/update-documentation";
+import ClientUserList from "../components/fws-admin/SMS/fws-user-list";
+import ListCountry from "../components/fws-admin/location-lookup/country-location-lookpup/list-country";
+import ListState from "../components/fws-admin/location-lookup/state-location-lookup/list-state";
+import AddCountry from "../components/fws-admin/location-lookup/country-location-lookpup/add-country";
+import AddState from "../components/fws-admin/location-lookup/state-location-lookup/add-state";
+import EditCity from "../components/fws-admin/location-lookup/city-location-lookup/edit-city";
+import EditState from "../components/fws-admin/location-lookup/state-location-lookup/edit-state";
+import EditCountry from "../components/fws-admin/location-lookup/country-location-lookpup/edit-country";
+import ListCity from "../components/fws-admin/location-lookup/city-location-lookup/list-city";
+import AddCity from "../components/fws-admin/location-lookup/city-location-lookup/add-city";
 
 
 
@@ -29,12 +39,23 @@ const AdminRouter = () => {
       <Route path={dashboard_routes.smsLocations.updateSms} element={<UpdateSms />} />
       {/* product */}
       <Route path={dashboard_routes.productsLocations.products} element={< Products />} />
+      <Route path={dashboard_routes.productsLocations.userList} element={< ClientUserList/>} />
        {/* documentation */}
        <Route path={dashboard_routes.documentation.documentationList} element={< DocumentationList />} />
        <Route path={dashboard_routes.documentation.documentationProducts} element={< DocumentationProducts />} />
        <Route path={dashboard_routes.documentation.createDocumentation} element={< CreateDocumentation />} />
        <Route path={dashboard_routes.documentation.updateDocumentation} element={< UpdateDocumentation />} />
        <Route path={dashboard_routes.documentation.previewDocumentation} element={< PreviewDocumentation />} />
+   {/* location */}
+       <Route path={dashboard_routes.locationLocations.country} element={<ListCountry/>}></Route>
+        <Route path={dashboard_routes.locationLocations.state} element={<ListState/>}></Route>
+        <Route path={dashboard_routes.locationLocations.city} element={<ListCity/>}></Route>
+        <Route path={dashboard_routes.locationLocations.addCountry} element={<AddCountry/>}></Route>
+        <Route path={dashboard_routes.locationLocations.addState} element={<AddState/>}></Route>
+        <Route path={dashboard_routes.locationLocations.addCity} element={<AddCity/>}></Route>
+        <Route path={dashboard_routes.locationLocations.editCountry} element={<EditCountry/>}></Route>
+        <Route path={dashboard_routes.locationLocations.editState} element={<EditState/>}></Route>
+        <Route path={dashboard_routes.locationLocations.editCity} element={<EditCity/>}></Route>    
     </Routes>
   );
 }

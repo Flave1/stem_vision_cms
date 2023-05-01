@@ -6,4 +6,5 @@ export interface IProductState {
     singleProduct:ProductDetail,
     singleUserProduct: ProductDetail,
     message: string,
+    clientUsers:any,
 }

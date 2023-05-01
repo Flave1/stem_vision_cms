@@ -8,12 +8,13 @@ import { dashboard_routes } from "../../router/fws-path-locations";
 
 const UserProducts = ({userProducts,getAllUserProducts}:any) => {
   const navigate = useNavigate();
-  const [showMenuDropdown, setShowMenuDropdown] = useState(false);
-  const [indexRow, setIndexRow] = useState(-1);
-
+  const userInfo = sessionStorage.getItem('user');
+  const user = JSON.parse(userInfo||"")
+  
   useEffect(() => {
-    getAllUserProducts()
+    getAllUserProducts(user.userId)
   }, []);
+
   function truncateString(str: any) {
     if (str.length > 80) {
       return str.slice(0, 80) + "...";
@@ -32,7 +33,7 @@ const UserProducts = ({userProducts,getAllUserProducts}:any) => {
                     navigate(
                       `${dashboard_routes.productsLocations.userProductDetails}?userProductId=${product.userProductId}`
                     );
-                    setShowMenuDropdown(false);
+                 
                   }}
                     className="card-body "
                     style={{cursor:"pointer"}}
@@ -76,7 +77,7 @@ function mapStateToProps(state:any) {
 
 function mapDispatchToProps(dispatch:any) {
   return {
-    getAllUserProducts: () => GetAllUserProducts()(dispatch),
+    getAllUserProducts: (userId:any) => GetAllUserProducts(userId)(dispatch),
   };
  
 }

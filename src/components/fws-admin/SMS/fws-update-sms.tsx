@@ -107,7 +107,7 @@ const UpdateSms = (props:any) => {
                 <Card.Header className="d-flex justify-content-between">
                   <div className="header-title">
                     <h4 className="card-title">
-                      <b>Add Student Management Service</b>
+                      <b>Update Student Management Service</b>
                     </h4>
                   </div>
                 </Card.Header>

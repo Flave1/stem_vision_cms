@@ -17,7 +17,7 @@ const ExportedPreviewDocumentation = ({ exportedDocumentation, getExportedDoc }:
     return (
         <>
         <Loader/>
-        {exportedDocumentation.length === 0 ? <div>No Documentation available</div> :
+            {exportedDocumentation?.length === 0 ? <div>No Documentation available</div> :
             exportedDocumentation?.map((doc: any, idx: number) => (
                 <div style={{width:'100%', maxWidth:'100%'}}>
                     <h4 className="card-title m-3 ">

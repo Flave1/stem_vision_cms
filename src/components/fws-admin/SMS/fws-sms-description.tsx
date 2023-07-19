@@ -52,7 +52,7 @@ const SmsDescription = ({singleProduct,getSingleProduct}:any) => {
                   <h6 className="counter fw-bold  my-2 mt-3 ">
                     <span>{singleProduct?.productName}</span>
                   </h6>
-                  <div>by Flavetech</div>
+                  <div>by flaveconsole</div>
                   <div className="">
                     <svg
                       width="20"

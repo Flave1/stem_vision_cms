@@ -52,7 +52,7 @@ function AboutUs() {
 
             </div>
         </section>
-        <HomeFooter />
+        {/* <HomeFooter /> */}
         </>
     )
 }

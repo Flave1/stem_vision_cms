@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { BsFillPhoneFill } from "react-icons/bs";
@@ -7,11 +7,16 @@ import { useLocation } from "react-router-dom";
 import { Alert } from "../../utils/Alert";
 import { connect } from "react-redux";
 import { contactUs } from "../../store/actions/app-layout-actions";
+import { aos } from '../../utils/Animation/aos-animation';
 
 function ContactUsForm({ sendMessage }: any) {
+    useEffect(() => {
+        aos.animate();
+    }, []);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const option = Number(queryParams.get('cot') || 0);
+    const [showError, setError] = useState(false)
 
     const messages = [
         { id: 1, message: "How can I see a demo of the school managment portal" },
@@ -44,17 +49,21 @@ function ContactUsForm({ sendMessage }: any) {
         }
     });
 
-    touched.email && errors.email && Alert.showError(errors.email)
-    touched.name && errors.name && Alert.showError(errors.name)
-    touched.message && errors.message && Alert.showError(errors.message)
+    useEffect(() => {
+        touched.email && errors.email ? setError(true) : setError(false)
+        touched.name && errors.name ? setError(true) : setError(false)
+        touched.message && errors.message ? setError(true) : setError(false)
+    }, [errors])
 
+    console.log('errors', errors);
+    console.log('errors', errors);
 
     return (
         <>
             <section id="contact" className="contact" data-aos="fade-up">
                 <div className="container" data-aos="fade-up">
 
-                    <div className="section-title">
+                    <div className="section-title" style={{ marginTop: '30px' }}>
                         <h2>Contact Us</h2>
                         <p>Please get in touch with us via the form below, by phone, or by sending an email. </p>
                     </div>
@@ -102,6 +111,9 @@ function ContactUsForm({ sendMessage }: any) {
                             </div>
                             <form role="form" className="php-email-form">
                                 <div className="row">
+                                    {showError && <p className="danger">{errors.email}</p>}
+                                    {showError && <p className="danger">{errors.name}</p>}
+                                    {showError && <p className="danger">{errors.message}</p>}
                                     <div className="col-md-6 form-group">
                                         <input
                                             type="text"
@@ -174,4 +186,4 @@ function mapDispatchToProps(dispatch: any) {
     return { sendMessage: (values: any) => contactUs(values)(dispatch) };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactUsForm);
+export default ContactUsForm; //connect(mapStateToProps, mapDispatchToProps)(ContactUsForm);

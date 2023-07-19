@@ -26,7 +26,7 @@ export const GetAllSms = () => (dispatch: any) => {
 export const AddSms = (formData: any,navigate:any) => (dispatch: any) => {
     startSpining()(dispatch);
                 
-    axiosInstance.post('/fws/sms/api/v1/create-sms',  formData)
+    axiosInstance.post('/fws/sms/api/v1/create-sms-ii',  formData)
         .then((res) => {
             stopSpining()(dispatch);
             Alert.showSuccess(res.data.message.friendlyMessage)

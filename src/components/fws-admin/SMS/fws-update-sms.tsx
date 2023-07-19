@@ -308,7 +308,7 @@ const UpdateSms = (props:any) => {
                               />
                             </Col>
                             <Col md={4} sm={4}  className="my-2">
-                              <label>'flavetechs.com'</label>
+                              <label>'flaveconsole.com'</label>
                               <input
                                 type="text"
                                 className="form-control text-lowercase"
@@ -344,7 +344,7 @@ const UpdateSms = (props:any) => {
                             </div>
                             <div className="profile-img-edit position-relative">
                             <div>
-                           <img src="http://fwsapi.flavetechs.com/ApplicationFiles/3361a39c-7f7f-433e-b82b-e0ba77e7b90c.png" alt="profile img"    className=" "  height="120px" width="120px"/>
+                           <img src="http://fwsapi.flaveconsole.com/ApplicationFiles/3361a39c-7f7f-433e-b82b-e0ba77e7b90c.png" alt="profile img"    className=" "  height="120px" width="120px"/>
                                </div>
                             <div className="upload-icone bg-primary">
                                 <label htmlFor="files">

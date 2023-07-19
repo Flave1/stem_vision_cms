@@ -14,7 +14,7 @@ const HomeHeader = () => {
     <>
 
 
-     {/* fixed-top */}
+      {/* fixed-top */}
       <header id="header" className="d-flex align-items-center fixed-top">
         <div className="container d-flex align-items-center justify-content-between">
 
@@ -24,11 +24,12 @@ const HomeHeader = () => {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav justify-content-between me-0">
                 <Nav as="ul" className="nav-bar me-auto mb-2 mb-lg-0 nav-bg">
-                  <Nav.Link href="/" className={` scrollto ${location.hash == '' && location.pathname == '/' && 'active'}`}>Home</Nav.Link>
+                  {/* <Nav.Link href="/" className={` scrollto ${location.hash == '' && location.pathname == '/' && 'active'}`}>Home</Nav.Link>
                   <Nav.Link href={app_routes.about_us} className={`scrollto ${location.hash == app_routes.about_us && 'active'}`}>About</Nav.Link>
                   <Nav.Link href="#featured-services" className={` scrollto ${location.hash == '#services' && 'active'}`} >Services</Nav.Link>
                   <Nav.Link href={app_routes.contact_us} className={`scrollto ${location.hash == app_routes.contact_us && 'active'}`} >Contact</Nav.Link>
-                  <Nav.Link href={app_routes.authentication.sign_in} className={` scrollto ${location.pathname == app_routes.authentication.sign_in && 'active'}`} >Login</Nav.Link>
+                  <Nav.Link href={app_routes.authentication.sign_in} className={` scrollto ${location.pathname == app_routes.authentication.sign_in && 'active'}`} >Login</Nav.Link> */}
+                  <a href={app_routes.contact_us} className="btn-get-started scrollto">Get Started</a>
                 </Nav>
               </Navbar.Collapse>
             </Container>

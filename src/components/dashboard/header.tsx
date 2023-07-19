@@ -70,7 +70,7 @@ const Header = (props: any) => {
                         <Nav as="ul" className="mb-2 ms-auto navbar-list mb-lg-0">
                             <Dropdown as="li" className="nav-item">
                                 <Dropdown.Toggle variant=" nav-link py-0 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="http://fwsapi.flavetechs.com/ApplicationFiles/3361a39c-7f7f-433e-b82b-e0ba77e7b90c.png" alt="User-Profile" className="theme-color-default-img img-fluid avatar avatar-50 header-image" width="50px" height="50px" />
+                                    <img src="http://fwsapi.flaveconsole.com/ApplicationFiles/3361a39c-7f7f-433e-b82b-e0ba77e7b90c.png" alt="User-Profile" className="theme-color-default-img img-fluid avatar avatar-50 header-image" width="50px" height="50px" />
 
                                     <div className="caption ms-3 d-none d-md-block ">
                                         <h6 className="mb-0 caption-title fw-bold">{user?.userName}</h6>

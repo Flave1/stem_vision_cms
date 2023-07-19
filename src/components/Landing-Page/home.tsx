@@ -30,134 +30,134 @@ const Home = ({ navigate }: any) => {
           </div>
         </div>
       </section>
-
+{/* 
       <section id="featured-services" className="featured-services">
-          <div className="container" data-aos="fade-up">
+        <div className="container" data-aos="fade-up">
 
-            <div className="row">
-              <div className="col-md-6 col-lg-3 d-flex  align-items-stretch mb-5 mb-lg-0">
-                <div className="icon-box" data-aos="fade-up" data-aos-delay="100">
-                  <div className="icon"><i className="bx bxl-dribbble"></i></div>
-                  <h4 className="title"><a href="" className='text-danger'>School Managemnt System</a></h4>
-                  <p className="description">The school management portal is an innovative educational management system that
-                    seeks to revolutionize the way school, college and university administrations manage their operations</p>
-                </div>
+          <div className="row">
+            <div className="col-md-6 col-lg-3 d-flex  align-items-stretch mb-5 mb-lg-0">
+              <div className="icon-box" data-aos="fade-up" data-aos-delay="100">
+                <div className="icon"><i className="bx bxl-dribbble"></i></div>
+                <h4 className="title"><a href="" className='text-danger'>School Managemnt System</a></h4>
+                <p className="description">The school management portal is an innovative educational management system that
+                  seeks to revolutionize the way school, college and university administrations manage their operations</p>
               </div>
+            </div>
 
-              <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                <div className="icon-box" data-aos="fade-up" data-aos-delay="200">
-                  <div className="icon"><i className="bx bx-file"></i></div>
-                  <h4 className="title"><a href="" className='text-info'>Computer Base Test (CBT)</a></h4>
-                  <p className="description">The CBT sytem is an assessment infrastructure system that utilizes computers
-                    and digital technologies as the primary delivery system for tests, exams, quizzes or surveys which provides an excellent testing experience</p>
-                </div>
+            <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div className="icon-box" data-aos="fade-up" data-aos-delay="200">
+                <div className="icon"><i className="bx bx-file"></i></div>
+                <h4 className="title"><a href="" className='text-info'>Computer Base Test (CBT)</a></h4>
+                <p className="description">The CBT sytem is an assessment infrastructure system that utilizes computers
+                  and digital technologies as the primary delivery system for tests, exams, quizzes or surveys which provides an excellent testing experience</p>
               </div>
+            </div>
 
-              <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                <div className="icon-box" data-aos="fade-up" data-aos-delay="300">
-                  <div className="icon"><i className="bx bx-tachometer"></i></div>
-                  <h4 className="title "><a href="" className='text-success'>Intel Schools</a></h4>
-                  <p className="description">Intel school is an advanced schools search engine.  Our innovative platform makes finding the perfect school
-                    for your child a breeze.</p>
-                </div>
+            <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div className="icon-box" data-aos="fade-up" data-aos-delay="300">
+                <div className="icon"><i className="bx bx-tachometer"></i></div>
+                <h4 className="title "><a href="" className='text-success'>Intel Schools</a></h4>
+                <p className="description">Intel school is an advanced schools search engine.  Our innovative platform makes finding the perfect school
+                  for your child a breeze.</p>
               </div>
+            </div>
 
-              <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                <div className="icon-box" data-aos="fade-up" data-aos-delay="400">
-                  <div className="icon"><i className="bx bx-world"></i></div>
-                  <h4 className="title"><a href="" className='text-warning'>Child Gadget Monitor</a></h4>
-                  <p className="description"> Designed to help parents monitor their child's mobile device usage. With this app, parents can receive detailed
-                    reports of their child's activity, including which apps they are using, how long they are spending on each app, and what times of day they
-                    are most active</p>
-                </div>
+            <div className="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div className="icon-box" data-aos="fade-up" data-aos-delay="400">
+                <div className="icon"><i className="bx bx-world"></i></div>
+                <h4 className="title"><a href="" className='text-warning'>Child Gadget Monitor</a></h4>
+                <p className="description"> Designed to help parents monitor their child's mobile device usage. With this app, parents can receive detailed
+                  reports of their child's activity, including which apps they are using, how long they are spending on each app, and what times of day they
+                  are most active</p>
               </div>
-
             </div>
 
           </div>
-        </section>
 
-        <section className='section-bg'>
-          <AboutUs />
-        </section>
+        </div>
+      </section> */}
 
-        <section id="counts" className="counts">
-          <div className="container" data-aos="fade-up">
+      <section className='section-bg'>
+        <AboutUs />
+      </section>
 
-            <div className="row">
+      {/* <section id="counts" className="counts">
+        <div className="container" data-aos="fade-up">
 
-              <div className="col-lg-3 col-md-6">
-                <div className="count-box">
-                  <i ><ImHappy2 size={20} /></i>
-                  <span className="purecounter"><CountUp start={0} end={232} duration={3} /></span>
-                  <p>Happy Clients</p>
-                </div>
+          <div className="row">
+
+            <div className="col-lg-3 col-md-6">
+              <div className="count-box">
+                <i ><ImHappy2 size={20} /></i>
+                <span className="purecounter"><CountUp start={0} end={232} duration={3} /></span>
+                <p>Happy Clients</p>
               </div>
+            </div>
 
-              <div className="col-lg-3 col-md-6 mt-5 mt-md-0">
-                <div className="count-box">
-                  <i ><AiFillProject size={20} /></i>
-                  <span className="purecounter"><CountUp start={0} end={521} duration={3} /></span>
-                  <p>Projects</p>
-                </div>
+            <div className="col-lg-3 col-md-6 mt-5 mt-md-0">
+              <div className="count-box">
+                <i ><AiFillProject size={20} /></i>
+                <span className="purecounter"><CountUp start={0} end={521} duration={3} /></span>
+                <p>Projects</p>
               </div>
+            </div>
 
-              <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                <div className="count-box">
-                  <i ><BiSupport size={20} /></i>
-                  <span className="purecounter"><CountUp start={0} end={1463} duration={3} /></span>
-                  <p>Hours Of Support</p>
-                </div>
+            <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
+              <div className="count-box">
+                <i ><BiSupport size={20} /></i>
+                <span className="purecounter"><CountUp start={0} end={1463} duration={3} /></span>
+                <p>Hours Of Support</p>
               </div>
+            </div>
 
-              <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                <div className="count-box">
-                  <i><MdWorkHistory size={20} /></i>
-                  <span className="purecounter"><CountUp start={0} end={15} duration={3} /></span>
-                  <p>Hard Workers</p>
-                </div>
+            <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
+              <div className="count-box">
+                <i><MdWorkHistory size={20} /></i>
+                <span className="purecounter"><CountUp start={0} end={15} duration={3} /></span>
+                <p>Hard Workers</p>
               </div>
-
             </div>
 
           </div>
-        </section>
 
-        <section id="clients" className="clients section-bg">
-          <div className="container" data-aos="zoom-in">
+        </div>
+      </section> */}
 
-            <div className="row">
+      {/* <section id="clients" className="clients section-bg">
+        <div className="container" data-aos="zoom-in">
 
-              <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-1.png" className="img-fluid" alt="" />
-              </div>
+          <div className="row">
 
-              <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-2.png" className="img-fluid" alt="" />
-              </div>
+            <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+              <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-1.png" className="img-fluid" alt="" />
+            </div>
 
-              <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-3.png" className="img-fluid" alt="" />
-              </div>
+            <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+              <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-2.png" className="img-fluid" alt="" />
+            </div>
 
-              <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-4.png" className="img-fluid" alt="" />
-              </div>
+            <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+              <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-3.png" className="img-fluid" alt="" />
+            </div>
 
-              <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-5.png" className="img-fluid" alt="" />
-              </div>
+            <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+              <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-4.png" className="img-fluid" alt="" />
+            </div>
 
-              <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-6.png" className="img-fluid" alt="" />
-              </div>
+            <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+              <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-5.png" className="img-fluid" alt="" />
+            </div>
 
+            <div className="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+              <img src="https://bootstrapmade.com/demo/templates/BizLand/assets/img/clients/client-6.png" className="img-fluid" alt="" />
             </div>
 
           </div>
-        </section>
 
-        {/* <section id="testimonials" className="testimonials">
+        </div>
+      </section> */}
+
+      {/* <section id="testimonials" className="testimonials">
           <div className="container" data-aos="zoom-in">
 
             <div className="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -235,7 +235,7 @@ const Home = ({ navigate }: any) => {
           </div>
         </section> */}
 
-        {/* <section id="team" className="team section-bg">
+      {/* <section id="team" className="team section-bg">
           <div className="container" data-aos="fade-up">
 
             <div className="section-title">
@@ -303,9 +303,9 @@ const Home = ({ navigate }: any) => {
           </div>
         </section> */}
 
-        <Pricing navigate={navigate} />
+      {/* <Pricing navigate={navigate} /> */}
 
-        {/* <section id="faq" className="faq section-bg">
+      {/* <section id="faq" className="faq section-bg">
           <div className="container" data-aos="fade-up">
 
             <div className="section-title">
@@ -379,9 +379,9 @@ const Home = ({ navigate }: any) => {
           </div>
         </section> */}
 
-        <section className='section-bg'>
-          <ContactUsForm navigate={navigate} />
-        </section>
+      {/* <section className='section-bg'>
+        <ContactUsForm navigate={navigate} />
+      </section> */}
     </>
   )
 }

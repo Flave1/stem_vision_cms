@@ -148,11 +148,11 @@ const Products = ({getAllProducts, getAllUserProducts,products,userProducts}:any
                    const userProduct = userProducts.find((u:any)=>u.productId === product.productId)
                    isSmsUser === 'true' ?
                     navigate(
-                      `${dashboard_routes.smsLocations.updateSms}?userProductId=${userProduct.userProductId}`
+                      `${dashboard_routes.smsLocations.updateSms}?userProductId=${userProduct.userProductId}?userId=${userId}`
                     )
                     :
                     navigate(
-                      `${dashboard_routes.smsLocations.createSms}`
+                      `${dashboard_routes.smsLocations.createSms}?userId=${userId}&productId=${product.productId}`
                     )}
                   }}
                 >

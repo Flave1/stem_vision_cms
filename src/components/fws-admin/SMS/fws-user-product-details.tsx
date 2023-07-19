@@ -29,7 +29,7 @@ const UserProductDetails = ({singleUserProduct,getSingleUserProduct}:any) => {
                            </div>
                            <div className="d-md-flex flex-wrap align-items-center mb-3 mb-sm-0">
                               <h4 className="me-2 h4">{singleUserProduct?.productName}</h4>
-                              <span> - Flavetech</span>
+                              <span> - Flaveconsoleh</span>
                            </div>
                         </div>
                         

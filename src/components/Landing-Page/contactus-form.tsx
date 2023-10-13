@@ -38,8 +38,8 @@ function ContactUsForm({ sendMessage }: any) {
 
     const { handleChange, handleSubmit, values, setFieldValue, handleBlur, errors, touched } = useFormik({
         initialValues: {
-            email: '',
-            name: '',
+            email: "",
+            name: "",
             message: messages[selectedOption - 1]?.message ?? "",
         },
         enableReinitialize: true,

@@ -11,9 +11,9 @@ export const stopSpining = () => (dispatch: any) => {
 }
 
 
-export const contactUs = ({ name, email, message }: any) => (dispatch: any) => {
+export const contactUs = ({ name, email, message, phone }: any) => (dispatch: any) => {
     startSpining()(dispatch);
-    const payload = { name, email, message };
+    const payload = { name, email, message, phone };
     axiosInstance.post('/fws/contact/api/v1/create/update', payload)
         .then((res: any) => {
             stopSpining()(dispatch);
@@ -23,7 +23,7 @@ export const contactUs = ({ name, email, message }: any) => (dispatch: any) => {
             Alert.showError(err?.response?.data?.message?.friendlyMessage)
         })
 }
-   export const respondDialog = (value: any) => (dispatch: any)=> {
+export const respondDialog = (value: any) => (dispatch: any) => {
     dispatch({
         type: actions.RESPOND_DECISION_DIALOG,
         payload: value

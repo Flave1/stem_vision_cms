@@ -18,7 +18,7 @@ const HomeHeader = () => {
       <header id="header" className="d-flex align-items-center fixed-top">
         <div className="container d-flex align-items-center justify-content-between">
 
-          <h1 className="logo"><a href="index.html">Flaveconsole<span>..</span></a></h1>
+          <h1 className="logo"><a href="/">Flaveconsole<span>..</span></a></h1>
           <Navbar expand="lg">
             <Container fluid>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />

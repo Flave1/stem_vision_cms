@@ -7,6 +7,9 @@ export const app_routes = {
         register: "/fws/register",
         firstTimeLogin: "/fws/change-password-on-login",
     },
-    documentation:'/docs/smp',
-    detailedDocumentation:'/docs/smp-canvas',
+    documentation: '/docs/smp',
+    detailedDocumentation: '/docs/smp-canvas',
+    zoom: {
+        success: 'zoom/oauth'
+    }
 }

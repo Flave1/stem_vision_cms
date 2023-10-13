@@ -1475,7 +1475,6 @@ font-family: var(--fontFamily);
 .faq .faq-list .question {
   display: block;
   position: relative;
-  font-family: #106eea;
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;
@@ -1860,6 +1859,34 @@ font-family: var(--fontFamily);
   border-radius: 6px;
   margin: 5px;
   padding-left: 10px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Roboto", sans-serif;
   width: auto;
+}
+
+
+
+
+
+.schooltech-bg {
+  background-color: #106eea;
+  color: #fff;
+  font-family: var(--fontFamily);
+  border-radius: 7px;
+}
+
+/* Style the button */
+.start-button {
+  background-color: #FF5722;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the image */
+.section-image {
+  max-width: 100%;
+  height: auto;
 }
